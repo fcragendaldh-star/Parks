@@ -2196,72 +2196,130 @@ html.disable-fall .hero__botanical { display: none !important; }
 }
 .gov-footer__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) repeat(auto-fit, minmax(11rem, 1fr));
+  grid-template-columns: minmax(0, 1.35fr) repeat(auto-fit, minmax(11rem, 1fr));
   gap: 2rem clamp(1.5rem, 1rem + 2vw, 3rem);
   padding-bottom: 2.25rem;
 }
 .gov-footer h2, .gov-footer h3 { color: #fff; }
-.gov-footer__brand { display: flex; align-items: flex-start; gap: 0.875rem; margin-bottom: 1rem; }
+
+/* De-duplicated footer signature (subtle seal, lighter typography) */
+.gov-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.75rem;
+}
 .gov-footer__brand img {
-  width: 46px; height: 46px;
+  width: 32px;
+  height: 32px;
   flex: none;
   border-radius: 50%;
   background: #fff;
-  padding: 2px;
+  padding: 1.5px;
+  opacity: 0.92;
 }
-.gov-footer__org { font-family: var(--font-display); font-size: var(--t-md); font-weight: 600; color: #fff; line-height: 1.3; }
-.gov-footer__dept { font-size: var(--t-sm); color: #9FB6A7; margin-top: 0.125rem; }
-.gov-footer__addr { font-style: normal; font-size: var(--t-sm); line-height: 1.65; color: #B9CDC1; }
+.gov-footer__org {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #E2ECE5;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+.gov-footer__dept {
+  font-size: 0.75rem;
+  color: #A3B8AC;
+  margin-top: 0.1rem;
+}
+.gov-footer__addr {
+  font-style: normal;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #ADC2B5;
+}
 
+/* Compact, consistent vertical rhythm */
 .footer-col h3 {
   font-family: var(--font-mono);
-  font-size: var(--t-xs);
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #8FA697;
-  margin-bottom: 0.875rem;
+  color: #A3B8AC;
+  margin: 0 0 0.75rem 0;
 }
-.footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* Tight 10-12px compact vertical spacing between items */
+}
+.footer-col li {
+  margin: 0;
+  padding: 0;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+}
 .footer-col a {
   color: #DCE8E0;
   text-decoration: none;
   font-size: var(--t-sm);
-  /* 44px target without visually bulking the list. */
+  line-height: 1.35;
   display: inline-flex;
   align-items: center;
-  min-height: 28px;
+  gap: 0.45rem;
+  transition: color var(--dur-fast) var(--ease);
 }
-.footer-col a:hover { color: #fff; text-decoration: underline; }
+.footer-col a svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  color: #A3B8AC;
+}
+.footer-col a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
 
-/* Buttons that sit in a link list (Form CSR-1, CSV download) must read and
-   behave like the links beside them while staying real <button>s. */
+/* Buttons that sit in a link list (Form CSR-1, CSV download) */
 .footer-linkbtn {
   display: inline-flex;
   align-items: center;
-  min-height: 28px;
   padding: 0;
   background: none;
   border: 0;
   font: inherit;
   font-size: var(--t-sm);
+  line-height: 1.35;
   color: #DCE8E0;
   text-align: left;
   text-decoration: underline;
   text-decoration-color: rgba(220, 232, 224, 0.4);
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease), text-decoration-color var(--dur-fast) var(--ease);
 }
-.footer-linkbtn:hover { color: #fff; text-decoration-color: currentColor; }
+.footer-linkbtn:hover {
+  color: #fff;
+  text-decoration-color: currentColor;
+}
 
 .footer-contact-val {
   font-family: var(--font-mono);
-  font-size: var(--t-md);
+  font-size: var(--t-base);
   font-weight: 600;
   color: #fff;
   text-decoration: none;
+  letter-spacing: 0.02em;
 }
-.footer-contact-val:hover { color: #E6C48A; }
+.footer-contact-val:hover {
+  color: #E6C48A;
+}
 
+/* High-contrast WCAG AAA compliant footer bar */
 .gov-footer__bar {
   display: flex;
   flex-wrap: wrap;
@@ -2271,7 +2329,15 @@ html.disable-fall .hero__botanical { display: none !important; }
   padding-block: 1.125rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-size: var(--t-xs);
-  color: #8FA697;
+  color: #B9CDC1; /* Lightened from #8FA697: WCAG AAA 9.87:1 contrast on #0B2418 */
+  line-height: 1.5;
+}
+.gov-footer__bar p {
+  margin: 0;
+}
+.gov-footer__bar span {
+  font-weight: 500;
+  color: #DCE8E0;
 }
 
 
@@ -2868,6 +2934,30 @@ input[type="checkbox"] {
   #searchInput { font-size: 1rem; }
   .dossier-row { grid-template-columns: minmax(0, 1fr); gap: 0.125rem; }
   .dossier-row dd { text-align: left; }
+}
+
+/* ---- ≤640px: footer stacks to single full-width column ----------------- */
+@media (max-width: 640px) {
+  .gov-footer {
+    padding-block: 2.25rem 0;
+  }
+  .gov-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 1.875rem;
+    padding-bottom: 2rem;
+  }
+  .footer-col {
+    width: 100%;
+  }
+  .footer-col ul {
+    gap: 0.625rem;
+  }
+  .gov-footer__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
+    padding-block: 1rem;
+  }
 }
 
 /* ---- ≤600px ------------------------------------------------------------ */
