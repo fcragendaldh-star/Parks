@@ -43,7 +43,7 @@
 // unbounded bill. If this key was ever committed to a public repository,
 // rotate it: create a new restricted key, paste it here, then delete the old
 // The portal's main interactive GIS map and the dossier aerial preview both
-// run 100% keyless via Leaflet, OpenStreetMap/CartoDB, and Esri World Imagery.
+// run 100% keyless via Leaflet, OpenStreetMap, and Esri World Imagery.
 // An API key is NOT required. Set to "" for zero-cost, keyless operation.
 // ---------------------------------------------------------------------------
 const GOOGLE_MAPS_API_KEY = "";

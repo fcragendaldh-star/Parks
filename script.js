@@ -957,10 +957,9 @@
         scrollWheelZoom: true,
       });
 
-      // CartoDB Voyager raster tiles (fast, crisp, high-contrast)
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: "abcd",
+      // OpenStreetMap standard raster tiles (100% free, keyless, zero watermarks)
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
         maxZoom: 19,
       }).addTo(map);
 
