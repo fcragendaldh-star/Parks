@@ -94,8 +94,6 @@
     els.resultCount = byId("resultCount");
     els.resetFilters = byId("resetFilters");
     els.activeFilters = byId("activeFilters");
-    els.btnExportCsv = byId("btnExportCsv");
-    els.exportFooterBtn = byId("exportFooterBtn");
 
     // Mobile filter sheet
     els.filtersPanel = byId("filtersPanel");
@@ -938,64 +936,6 @@
     return !!els.filtersPanel && els.filtersPanel.classList.contains("is-open");
   }
 
-  /* ======================================================================
-     07 · CSV EXPORT
-     Column order, header spellings, quoting and filename pattern are
-     unchanged — downstream spreadsheets and any import tooling depend
-     on them.
-     ====================================================================== */
-
-  function exportFilteredToCSV() {
-    if (!FILTERED_SITES.length) {
-      showToast("No records to export.", "warn");
-      return;
-    }
-
-    const headers = [
-      "ID", "Name", "Category", "Zone", "Ward", "Area_Sqm", "Area_Acres",
-      "Authority", "Status", "Daily_Footfall", "Contract_End", "Latitude", "Longitude",
-    ];
-
-    const csvRows = [headers.join(",")];
-
-    for (const s of FILTERED_SITES) {
-      csvRows.push([
-        s.id,
-        quote(s.name),
-        s.category,
-        s.zone,
-        s.ward || "",
-        s.area_sqm || "",
-        s.area_sqm ? (s.area_sqm / SQM_PER_ACRE).toFixed(2) : "",
-        quote(s.authority),
-        s.status,
-        s.footfall,
-        s.contract_end || "",
-        s.lat,
-        s.lng,
-      ].join(","));
-    }
-
-    const blob = new Blob([csvRows.join("\n")], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download =
-      "MCL_Parks_Register_Export_" + new Date().toISOString().split("T")[0] + ".csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);   // release the blob (the old build leaked it)
-
-    showToast(
-      "Exported " + FILTERED_SITES.length.toLocaleString("en-IN") +
-      " municipal records to CSV."
-    );
-  }
-
-  function quote(value) {
-    return '"' + String(value == null ? "" : value).replace(/"/g, '""') + '"';
-  }
 
   /* ======================================================================
      08 · LEAFLET & GIS GEOSPATIAL MAP
@@ -1868,10 +1808,8 @@
     els.categorySelect.addEventListener("change", (e) => { selectedCategory = e.target.value; applyFilters(); });
     els.sortSelect.addEventListener("change", () => applyFilters());
 
-    // ---- Reset & export ---------------------------------------------
+    // ---- Reset filters ----------------------------------------------
     els.resetFilters.addEventListener("click", resetAllFilters);
-    els.btnExportCsv.addEventListener("click", exportFilteredToCSV);
-    if (els.exportFooterBtn) els.exportFooterBtn.addEventListener("click", exportFilteredToCSV);
 
     // ---- Result delegation (cards + table action buttons) -----------
     els.siteList.addEventListener("click", (e) => {

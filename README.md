@@ -19,7 +19,7 @@ dependencies to install.
 | --- | --- |
 | `index.html` | Page structure, semantic markup, inline SVG icon sprite, SEO metadata |
 | `style.css` | Design system and all layout, in 20 numbered sections (see below) |
-| `script.js` | Application engine — filtering, search, sort, CSV export, Maps/GIS, dossier modal, Form CSR-1 |
+| `script.js` | Application engine — filtering, search, sort, Maps/GIS, dossier modal, Form CSR-1 |
 | `motion.js` | Presentation-only motion layer — scroll reveals, stat count-up, hero parallax |
 | `config.js` | **Deployment configuration** — Maps API key, recipient email |
 | `parks_data.json` | The register: 918 sites with ward, authority, status, footfall, area, coordinates |
@@ -53,7 +53,7 @@ console, with a daily quota cap. `config.js` documents exactly what to set and
 why. Read that before deploying.
 
 If the key is empty, or present but rejected at runtime, the GIS panel shows a
-clearly-labelled *pending activation* notice. Search, filters, sort, CSV export
+clearly-labelled *pending activation* notice. Search, filters, sort
 and Form CSR-1 all remain fully operational.
 
 ---
@@ -124,7 +124,7 @@ present so the page is correct before JavaScript runs.
 
 `category` is `PARK` or `GREEN BELT`. `status` is `Available`, `RWA Managed` or
 `Adopted`. `footfall` is one of `0-50`, `50-200`, `200-500+`. Renaming any of
-these breaks filtering and CSV export.
+these breaks filtering and sorting.
 
 ---
 
@@ -181,7 +181,7 @@ toggling it at the OS level takes effect without a reload.
 ## 8 · Performance notes
 
 - **Progressive rendering.** The register renders 48 records at a time behind a
-  "show more" control. Filtering, sorting and CSV export always run over the
+  "show more" control. Filtering and sorting always run over the
   complete result set — only the DOM node count is capped. Rendering all 918
   cards on every keystroke previously pushed the document past ~7,000 nodes.
 - **Responsive images.** The six theme photographs were 156 KB–882 KB each
