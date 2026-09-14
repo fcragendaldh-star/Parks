@@ -66,7 +66,7 @@ const GOOGLE_MAPS_API_KEY = "AIzaSyA3huNb-9Cyeto-PSM1zp-3KVNa37RT_wo";
 // release — a personal Gmail address on a statutory civic portal undermines
 // the credibility of the submission channel and creates a single point of
 // failure if that account is lost. It also appears in the page footer.
-const CONTACT_EMAIL = "shivamgulati137@gmail.com";
+const CONTACT_EMAIL = "commissionermcl@gmail.com";
 
 
 // ===========================================================================
