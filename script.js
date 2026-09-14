@@ -1207,6 +1207,9 @@
     setTimeout(() => {
       if (miniMap) miniMap.invalidateSize();
     }, 100);
+    setTimeout(() => {
+      if (miniMap) miniMap.invalidateSize();
+    }, 280);
   }
 
   function renderStreetView(site) {
@@ -1215,9 +1218,11 @@
 
     const key = getMapsApiKey();
     if (!key) {
-      els.streetViewImg.hidden = true;
-      els.streetViewImg.removeAttribute("src");
-      if (badge) badge.textContent = "Satellite Imagery";
+      if (els.streetViewImg) {
+        els.streetViewImg.hidden = true;
+        els.streetViewImg.removeAttribute("src");
+      }
+      if (badge) badge.textContent = "Satellite View";
       return;
     }
 

@@ -42,16 +42,11 @@
 // Also set a daily quota cap on both APIs so a leak cannot run up an
 // unbounded bill. If this key was ever committed to a public repository,
 // rotate it: create a new restricted key, paste it here, then delete the old
-// one.
-//
-// The portal verifies the key at runtime (gm_authFailure, script onerror and
-// a load timeout). If it is rejected — expired, wrong referrer, over quota,
-// or billing disabled — the GIS panel falls back to the pending-activation
-// notice instead of showing a broken map, and Street View previews are
-// suppressed rather than rendering Google's error graphic inside an official
-// asset dossier.
+// The portal's main interactive GIS map and the dossier aerial preview both
+// run 100% keyless via Leaflet, OpenStreetMap/CartoDB, and Esri World Imagery.
+// An API key is NOT required. Set to "" for zero-cost, keyless operation.
 // ---------------------------------------------------------------------------
-const GOOGLE_MAPS_API_KEY = "AIzaSyA3huNb-9Cyeto-PSM1zp-3KVNa37RT_wo";
+const GOOGLE_MAPS_API_KEY = "";
 
 
 // ===========================================================================
