@@ -1,0 +1,3066 @@
+@charset "UTF-8";
+/* ==========================================================================
+   MCL PARK ADOPTION PORTAL — CIVIC DESIGN SYSTEM
+   Municipal Corporation Ludhiana
+
+   Organised in the review order of the page itself:
+     01 Design tokens          09 Fast-Track theme programme
+     02 Reset & base           10 Impact & green cover
+     03 Accessibility          11 Stewardship (adopted sites)
+     04 Motion primitives      12 GIS
+     05 Layout primitives      13 Closing CTA
+     06 Components             14 Footer
+     07 Masthead & hero        15 CSR-1 modal & form
+     08 Statistics band        16 Toast · 17 Responsive · 18 Print
+
+   Every colour pair used for text or a UI boundary is validated against
+   WCAG 2.1 AA (4.5:1 body, 3:1 large text and UI components). See the
+   contrast notes beside each token group.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   01 · DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+  /* ---- Palette: deep forest green ------------------------------------- */
+  /* Institutional lead colour. 700 is the CTA/interactive weight,
+     900 the heading weight, 100 the badge/wash weight.                    */
+  --forest-950: #0B2418;
+  --forest-900: #103322;   /* headings        · 13.03:1 on --paper         */
+  --forest-800: #15452C;   /* badge text      ·  9.34:1 on --forest-100    */
+  --forest-700: #1B5A39;   /* primary CTA     ·  8.18:1 vs white label     */
+  --forest-600: #227048;
+  --forest-500: #2F8A5B;
+  --forest-200: #C3DFCE;
+  --forest-100: #E4F0E8;
+  --forest-50:  #F1F8F3;
+
+  /* ---- Palette: warm terracotta (earthy accent) ----------------------- */
+  /* Reserved for accents, secondary CTAs and the "Adopted" status.        */
+  --terra-800: #77300F;
+  --terra-700: #8F3A1C;    /* accent text     ·  7.09:1 on --paper         */
+  --terra-600: #A94E28;    /* accent surface  ·  5.52:1 vs white label     */
+  --terra-200: #F0CDBB;
+  --terra-100: #FBEAE0;
+
+  /* ---- Palette: amber (Fast-Track priority only) ---------------------- */
+  --amber-700: #8A5A0B;    /* priority text   ·  5.19:1 on --amber-100     */
+  --amber-200: #F3DCA8;
+  --amber-100: #FBEFD6;
+
+  /* ---- Palette: municipal blue (RWA stewardship status) --------------- */
+  --civic-700: #1E3A5F;    /* RWA text        ·  9.83:1 on --civic-100     */
+  --civic-200: #C2D5E8;
+  --civic-100: #E6EEF7;
+
+  /* ---- Surfaces: warm paper ------------------------------------------- */
+  --paper:    #FAF8F3;     /* page background                              */
+  --paper-2:  #F3EEE4;     /* recessed / alternating band                  */
+  --surface:  #FFFFFF;     /* cards, inputs, panels                        */
+
+  /* ---- Ink ------------------------------------------------------------- */
+  --ink-1: #1A2620;        /* body            · 14.74:1 on --paper         */
+  --ink-2: #47544C;        /* secondary       ·  7.49:1 on --paper         */
+  --ink-3: #5C6963;        /* muted (still AA ·  5.41 paper / 4.97 paper-2)*/
+
+  /* ---- Lines ----------------------------------------------------------- */
+  /* --rule is decorative only (WCAG exempt). Anything that communicates
+     the bounds of a control uses --line-field, which clears 3:1 on all
+     three surfaces (3.60 white / 3.39 paper / 3.11 paper-2).              */
+  --rule:        #E2DCD0;
+  --rule-strong: #CFC6B6;
+  --line-field:  #8E8678;
+
+  /* ---- Status tokens (distinct hue + distinct lightness) --------------- */
+  --status-available-ink: var(--forest-800);
+  --status-available-bg:  var(--forest-100);
+  --status-available-ln:  var(--forest-200);
+  --status-rwa-ink:       var(--civic-700);
+  --status-rwa-bg:        var(--civic-100);
+  --status-rwa-ln:        var(--civic-200);
+  --status-adopted-ink:   var(--terra-700);
+  --status-adopted-bg:    var(--terra-100);
+  --status-adopted-ln:    var(--terra-200);
+
+  /* ---- Zone tokens (map legend + card spine) --------------------------- */
+  --zone-a: #1B5A39;
+  --zone-b: #A94E28;
+  --zone-c: #1E5E7E;
+  --zone-d: #6B4E8F;
+
+  /* ---- Typography ------------------------------------------------------ */
+  /* Serif for institutional weight, sans for dense data, mono for
+     identifiers and coordinates (reads as an official record).            */
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  /* Fluid type scale — clamp() keeps every step legible at 375px without
+     a single media query, and prevents reflow-driven layout shift.        */
+  --t-xs:   0.75rem;
+  --t-sm:   0.8125rem;
+  --t-base: 0.9375rem;
+  --t-md:   1rem;
+  --t-lg:   clamp(1.0625rem, 0.98rem + 0.4vw, 1.1875rem);
+  --t-xl:   clamp(1.25rem,  1.14rem + 0.5vw,  1.5rem);
+  --t-2xl:  clamp(1.5rem,   1.3rem  + 1vw,    2rem);
+  --t-3xl:  clamp(1.875rem, 1.55rem + 1.6vw,  2.75rem);
+  --t-4xl:  clamp(2.25rem,  1.7rem  + 2.8vw,  4rem);
+
+  /* ---- Space, radius, elevation ---------------------------------------- */
+  --gutter: clamp(1rem, 0.55rem + 2.2vw, 2rem);
+  --shell: 1240px;
+  --section-y: clamp(3rem, 2rem + 5vw, 5.5rem);
+
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  /* Warm-tinted shadows — neutral grey shadows look cold against paper.   */
+  --sh-1: 0 1px 2px rgba(26, 38, 32, 0.06);
+  --sh-2: 0 2px 6px rgba(26, 38, 32, 0.07), 0 1px 2px rgba(26, 38, 32, 0.05);
+  --sh-3: 0 10px 24px -6px rgba(26, 38, 32, 0.13), 0 3px 8px -3px rgba(26, 38, 32, 0.08);
+  --sh-4: 0 28px 60px -12px rgba(11, 36, 24, 0.3), 0 8px 20px -8px rgba(11, 36, 24, 0.18);
+
+  /* ---- Motion ---------------------------------------------------------- */
+  /* Single source of truth so §04 can zero all of it under
+     prefers-reduced-motion without hunting through the file.              */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.14s;
+  --dur: 0.24s;
+  --dur-slow: 0.6s;
+  --reveal-shift: 18px;      /* set to 0 under reduced motion              */
+  --parallax-gain: 1;        /* set to 0 under reduced motion / mobile     */
+
+  /* Sticky masthead height, published so anchors and sticky offsets agree. */
+  --masthead-h: 68px;
+}
+
+/* Botanical line-art texture, inlined as a data URI so it costs no request.
+   A single leaf sprig tiled at very low opacity — present as paper grain,
+   never as decoration competing with content.                             */
+:root {
+  --botanical: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23103322' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M28 118C30 84 44 56 74 34'/%3E%3Cpath d='M38 92c-9-5-13-16-10-26 10 0 19 8 21 18z'/%3E%3Cpath d='M50 70c-10-3-16-13-15-24 10 2 18 11 19 21z'/%3E%3Cpath d='M64 52c-10-1-18-10-19-21 10 3 19 12 21 22z'/%3E%3Cpath d='M44 100c10-4 22-1 29 8-9 6-21 6-30-1z'/%3E%3Cpath d='M56 78c10-5 22-3 30 5-8 7-21 8-30 2z'/%3E%3Cpath d='M112 128c1-22 9-38 27-52'/%3E%3Cpath d='M118 112c-6-4-8-11-6-18 7 1 13 6 14 13z'/%3E%3Cpath d='M124 96c7-3 15-1 20 6-6 4-15 4-20-2z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ==========================================================================
+   02 · RESET & BASE
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html {
+  /* Native inertia-free smooth scroll. A deliberate choice over a
+     scroll-hijacking library (Lenis et al.): on a statutory civic portal,
+     rewriting the scroll position every frame breaks screen-reader virtual
+     cursors, browser find-in-page and keyboard paging, and adds main-thread
+     work that costs Lighthouse TBT. Native gives the same smoothness for
+     anchor navigation at zero cost and degrades perfectly.                */
+  scroll-behavior: smooth;
+  /* Sticky masthead must not cover anchor targets. */
+  scroll-padding-top: calc(var(--masthead-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink-1);
+  font-family: var(--font-sans);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Guarantees the "no horizontal scroll at any breakpoint" requirement
+     even if a future child overflows. */
+  overflow-x: hidden;
+}
+
+/* Locked while a modal is open (set from JS) without losing scroll position. */
+body.is-locked { overflow: hidden; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.011em;
+  color: var(--forest-900);
+  margin: 0;
+  /* Avoids a single trailing word on institutional headings. */
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: var(--terra-700); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--terra-800); }
+
+img, svg, picture { display: block; max-width: 100%; }
+img { height: auto; }
+
+/* Sprite icon default size.
+   An inline <svg> with only a viewBox has no intrinsic size and falls back
+   to 300x150 — so every icon MUST be sized. Rather than rely on each
+   component remembering to do it, all sprite icons (identified by the
+   aria-hidden + focusable pair they all carry) are sized here, scaled to
+   the text they sit beside. Wrapped in :where() for zero specificity, so
+   any component rule below overrides it freely. */
+:where(svg[aria-hidden="true"][focusable="false"]) {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+/* The sprite definition block itself renders nothing — <symbol> children
+   are only drawn through <use> — but it must not occupy layout. */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+/* Tabular figures everywhere a number can change (counters, areas, counts)
+   so nothing reflows mid-animation — directly serves the zero-CLS target. */
+.num, .stat__value, .tab-count, .site-card__area, .gov-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+.font-mono { font-family: var(--font-mono); }
+
+
+/* ==========================================================================
+   03 · ACCESSIBILITY
+   ========================================================================== */
+
+/* Visible-on-focus skip link, first in the tab order. */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 2000;
+  background: var(--forest-900);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+  text-decoration: none;
+  transition: transform var(--dur) var(--ease);
+}
+.skip-link:focus-visible { transform: translate(-50%, 0); color: #fff; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* One consistent, high-contrast focus ring on every interactive element.
+   :focus-visible keeps it off mouse clicks but always on for keyboards. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--terra-600);   /* 5.20:1 on paper */
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+/* Dark surfaces need a light ring to stay visible. */
+.hero :where(a, button):focus-visible,
+.cta-band :where(a, button):focus-visible,
+.gov-footer :where(a, button):focus-visible {
+  outline-color: #F3DCA8;
+}
+
+/* Every touch target reaches 44px. Applied via min-height rather than
+   padding so text alignment is unaffected. */
+.btn, .chip, .status-tab, .view-btn, .theme-chip,
+.icon-btn, .site-card, .btn-table-action {
+  min-height: 44px;
+}
+
+
+/* ==========================================================================
+   04 · MOTION PRIMITIVES
+   ========================================================================== */
+
+/* Scroll-linked reveal. Only opacity + transform animate, so every reveal
+   stays on the compositor and never triggers layout. Elements are visible
+   by default and hidden only once JS confirms IntersectionObserver support
+   (html.js-reveal) — so a JS failure leaves the page fully readable. */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-shift), 0);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  /* Stagger index, set inline as --i on grid children. */
+  transition-delay: calc(var(--i, 0) * 70ms);
+  /* Deliberately NO will-change. With ~36 reveal targets on the page, all
+     below the fold at load, this pinned 36 simultaneous compositor layers
+     until each observer fired. Browsers already promote an element for the
+     duration of an opacity/transform transition; the hint bought nothing
+     and contributed to the GPU pressure behind the §07 artefact. */
+}
+.js-reveal .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+/* Released after the transition so we don't hold compositor layers for
+   the life of the page (JS removes .reveal-armed on transitionend). */
+.js-reveal .reveal:not(.reveal-armed) { will-change: auto; }
+
+/* Hero parallax. JS writes --hero-p (0 → 1 across the hero's scroll range)
+   on .hero; the layers in §07 consume it at different gains.
+
+   `will-change` is applied ONLY while the parallax loop is actually running.
+   Holding it permanently promoted three large layers to their own GPU
+   surfaces for the life of the page, which is what produced the compositing
+   artefact described in §07 — and, because `will-change` is CSS, no
+   JS-side feature flag could switch it off. */
+.hero.is-parallax-active .parallax { will-change: transform; }
+
+/* ---- Reduced motion: the single authoritative override ----------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --reveal-shift: 0px;
+    --parallax-gain: 0;
+    --dur-fast: 0.01ms;
+    --dur: 0.01ms;
+    --dur-slow: 0.01ms;
+  }
+  html { scroll-behavior: auto; }
+  /* Reveals resolve immediately and stay resolved. */
+  .js-reveal .reveal { opacity: 1; transform: none; transition: none; }
+  /* Blanket stop for anything decorative that slipped through. */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .parallax { transform: none !important; }
+}
+
+
+/* ==========================================================================
+   05 · LAYOUT PRIMITIVES
+   ========================================================================== */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-y); position: relative; }
+.section--paper2 { background: var(--paper-2); }
+.section--tint {
+  background: linear-gradient(180deg, var(--forest-50), var(--paper) 70%);
+}
+
+/* Hairline separators between sections, drawn on the section rather than
+   as a border so background bands can meet flush. */
+.section + .section:not(.section--paper2):not(.section--tint) {
+  border-top: 1px solid var(--rule);
+}
+
+/* Section masthead: eyebrow · title · lead. Repeated at every section so
+   the heading hierarchy is predictable for screen readers. */
+.section-head { max-width: 62ch; margin-bottom: clamp(1.75rem, 1rem + 2.5vw, 3rem); }
+.section-head--center { margin-inline: auto; text-align: center; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terra-700);
+  margin-bottom: 0.75rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  background: var(--terra-600);
+}
+.section-head--center .eyebrow::before { display: none; }
+
+.section-title { font-size: var(--t-3xl); }
+.section-lead {
+  margin-top: 0.875rem;
+  font-size: var(--t-lg);
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+
+/* ==========================================================================
+   06 · COMPONENTS
+   ========================================================================== */
+
+/* ---- Buttons ----------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6875rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: var(--t-base);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+/* Satisfying press: a real 1px depression, cheap and transform-only. */
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: var(--forest-700);
+  color: #fff;
+  box-shadow: var(--sh-2);
+}
+.btn--primary:hover { background: var(--forest-800); color: #fff; box-shadow: var(--sh-3); }
+
+.btn--accent {
+  background: var(--terra-600);
+  color: #fff;
+  box-shadow: var(--sh-2);
+}
+.btn--accent:hover { background: var(--terra-700); color: #fff; box-shadow: var(--sh-3); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--forest-800);
+  border-color: var(--line-field);
+}
+.btn--ghost:hover { background: var(--forest-50); border-color: var(--forest-600); color: var(--forest-900); }
+
+/* On the dark hero / CTA band. No backdrop-filter — these render inside the
+   hero's compositing stack (see §07). A flat translucent fill over a known
+   dark background is visually equivalent and costs no readback. */
+.btn--onDark {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.btn--onDark:hover { background: rgba(255, 255, 255, 0.2); color: #fff; border-color: #fff; }
+
+.btn--block { width: 100%; }
+.btn--sm { padding: 0.4375rem 0.75rem; font-size: var(--t-sm); min-height: 36px; }
+
+/* Submit button busy state (set by the form handler). */
+.btn.is-busy { pointer-events: none; opacity: 0.75; }
+.btn.is-busy .btn__spinner { display: inline-block; }
+.btn__spinner {
+  display: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  color: var(--ink-2);
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.icon-btn:hover { background: var(--paper-2); border-color: var(--rule-strong); }
+
+/* ---- Tags & status badges ---------------------------------------------- */
+/* Badges carry a hue AND a text label AND a leading dot, so status is never
+   communicated by colour alone (WCAG 1.4.1). */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.1875rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xs);
+  background: var(--paper-2);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.tag--status { padding-inline-start: 0.4375rem; }
+.tag--status::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.tag--status-available { background: var(--status-available-bg); color: var(--status-available-ink); border-color: var(--status-available-ln); }
+.tag--status-rwa       { background: var(--status-rwa-bg);       color: var(--status-rwa-ink);       border-color: var(--status-rwa-ln); }
+.tag--status-adopted   { background: var(--status-adopted-bg);   color: var(--status-adopted-ink);   border-color: var(--status-adopted-ln); }
+
+.tag--zone { background: var(--surface); }
+.tag--ward { background: var(--amber-100); color: var(--amber-700); border-color: var(--amber-200); }
+.tag--priority { background: var(--amber-100); color: var(--amber-700); border-color: var(--amber-200); }
+
+/* ---- Card surface ------------------------------------------------------ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+}
+
+/* Gentle lift on hover — transform + shadow only. */
+.card--lift {
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+@media (hover: hover) {
+  .card--lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sh-3);
+    border-color: var(--forest-200);
+  }
+}
+
+
+/* ==========================================================================
+   07 · MASTHEAD & HERO
+   ========================================================================== */
+
+/* ---- National tricolour rule ------------------------------------------- */
+.tricolour-bar {
+  height: 4px;
+  background: linear-gradient(90deg,
+    #FF9933 0 33.333%, #FFFFFF 33.333% 66.666%, #138808 66.666% 100%);
+  /* Without this the white band of the tricolour is invisible against the
+     white masthead below it, and the bar reads as two detached stripes. */
+  border-bottom: 1px solid rgba(26, 38, 32, 0.14);
+}
+
+/* ---- Sticky masthead --------------------------------------------------- */
+.gov-header {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  /* OPAQUE, and deliberately no backdrop-filter.
+     A translucent + blurred sticky element has to read back the composited
+     pixels underneath it on every frame. When what is underneath is a stack
+     of GPU-promoted layers (as the hero backdrop was), that readback could
+     sample stale tiles, tearing the masthead loose and smearing it down the
+     page — the "falling band" this portal exhibited.
+     An opaque masthead also guarantees the government branding stays legible
+     over whatever content scrolls beneath it, which matters more here than
+     a frosted-glass effect. Do not reintroduce backdrop-filter. */
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  /* Shadow appears only once scrolled (class toggled from JS). */
+  transition: box-shadow var(--dur) var(--ease);
+}
+.gov-header.is-stuck { box-shadow: var(--sh-2); }
+
+.gov-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.625rem;
+}
+
+.gov-header__brand { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+.gov-header__logo {
+  width: 44px; height: 44px;
+  flex: none;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  padding: 2px;
+}
+.gov-header__text { min-width: 0; }
+.gov-header__dept {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--terra-700);
+  line-height: 1.3;
+}
+.gov-header__title {
+  font-size: var(--t-md);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  /* Truncates gracefully rather than wrapping the masthead taller. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gov-header__title .sep { color: var(--rule-strong); font-weight: 400; }
+.gov-header__title .sub { font-family: var(--font-sans); font-weight: 500; font-size: var(--t-base); color: var(--ink-2); }
+
+.gov-header__actions { display: flex; align-items: center; gap: 1rem; flex: none; }
+
+.header-contact { text-align: right; line-height: 1.3; }
+.header-contact .contact-label {
+  display: block;
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+.header-contact .contact-val {
+  font-family: var(--font-mono);
+  font-size: var(--t-base);
+  font-weight: 600;
+  color: var(--forest-900);
+  text-decoration: none;
+}
+.header-contact .contact-val:hover { color: var(--terra-700); text-decoration: underline; }
+
+/* ---- Hero -------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   HERO STACKING — read this before changing any z-index or will-change below.
+
+   ROOT CAUSE OF THE "FALLING BAND" ARTEFACT
+   The hero used to place its decorative layers as direct children of .hero at
+   z-index -3 / -2 / -1, with `will-change: transform` held on three of them
+   permanently, all inside `isolation: isolate` + `overflow: hidden`, and with
+   `backdrop-filter` elements both above the stack (the sticky masthead) and
+   inside it (the crest, the ghost buttons).
+
+   That gave the compositor several large, permanently-promoted layers sitting
+   *behind* their parent's background, being read back by blur filters every
+   frame. On Windows Chrome/Edge it could serve stale GPU tiles: the masthead
+   tore loose from the top of the page, the helpline number ghosted (painted
+   twice, a few pixels apart), and a hard seam appeared at the 1280px tile
+   boundary. Users read the result as a dark band slowly falling down the page
+   and covering content. Nothing was actually moving — a movement probe over a
+   4s window with no scrolling recorded 6px of drift in total.
+
+   THE FOUR RULES THAT KEEP IT FIXED
+     1. .hero paints its OWN dark colour and tonal wash. If any decorative
+        layer fails to composite, white hero text still lands on a dark
+        background. This is the accessibility floor: the artefact previously
+        left white text on near-white, a contrast failure rather than a
+        merely cosmetic glitch.
+     2. NO negative z-index. Every decorative layer lives in one wrapper
+        (.hero__bg, z-index 0) with a positive z-index; content is z-index 1.
+     3. `will-change` is applied ONLY while parallax is actually running
+        (.hero.is-parallax-active, toggled by motion.js) and dropped as soon
+        as it stops. `will-change` is CSS, not JS — which is why flipping the
+        ENABLE_PARALLAX flag alone did not clear the artefact.
+     4. No `backdrop-filter` in or above the hero. Ever.
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;                 /* clips the parallax overscan */
+  color: #fff;
+  padding-block: clamp(3.5rem, 2rem + 9vw, 8rem);
+  min-height: min(78vh, 680px);
+  display: flex;
+  align-items: center;
+
+  /* Rule 1 — the dark base is painted by .hero ITSELF, so it cannot fail
+     independently of the decorative layers above it.
+
+     The photo (.hero__photo) sits above this at opacity .3, which means 70%
+     of what you see here shows through it — so these gradients darken the
+     photograph even though they paint beneath it, and they are also the
+     fallback if the photo never loads or fails to composite.
+
+     Measured result behind the white hero text: 9.3–13.6:1 on the mean and
+     ≥5.9:1 at the lightest single pixel, against a 4.5:1 requirement. If you
+     change the photo, the opacity, or these stops, re-measure — the hero is
+     the one place on this site where text sits on an image. */
+  background-color: var(--forest-950);
+  background-image:
+    radial-gradient(120% 90% at 15% 15%, rgba(11, 36, 24, 0.78), transparent 62%),
+    linear-gradient(180deg, rgba(11, 36, 24, 0.62) 0%, rgba(11, 36, 24, 0.44) 45%, rgba(11, 36, 24, 0.8) 100%);
+}
+
+/* Rule 2 — one wrapper for all decorative layers. Never interactive. */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+/* The <picture> holds an absolutely-positioned <img>, so it contributes no
+   box of its own. */
+.hero__bg picture { display: block; }
+
+/* Hero content sits above the decorative backdrop. */
+.hero > .shell { position: relative; z-index: 1; }
+
+/* Layer 0 — photographic base. Low opacity and heavily overlaid: it reads as
+   depth, not as a claim about a specific park. Overscan is only as large as
+   the parallax travel needs (was 120% tall at -10%, an unnecessarily big
+   surface to promote). */
+.hero__photo {
+  position: absolute;
+  inset: -6% 0 0 0;
+  z-index: 0;
+  width: 100%;
+  height: 112%;
+  object-fit: cover;
+  opacity: 0.3;
+  transform: translate3d(0, calc(var(--hero-p, 0) * var(--parallax-gain) * 60px), 0);
+}
+
+/* Layer 1 — botanical texture, the mid parallax layer. */
+.hero__botanical {
+  position: absolute;
+  inset: -8% -4% 0 -4%;
+  z-index: 1;
+  background-image: var(--botanical);
+  background-size: 150px 150px;
+  /* Invert the dark line-art to light so it reads on the dark hero. */
+  filter: invert(1);
+  opacity: 0.07;
+  transform: translate3d(0, calc(var(--hero-p, 0) * var(--parallax-gain) * 110px), 0);
+}
+
+/* Layer 2 — canopy silhouette along the top edge, the fastest layer. */
+.hero__canopy {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 2;
+  height: clamp(90px, 14vw, 190px);
+  color: var(--forest-950);
+  opacity: 0.55;
+  transform: translate3d(0, calc(var(--hero-p, 0) * var(--parallax-gain) * -46px), 0);
+}
+.hero__canopy svg { width: 100%; height: 100%; display: block; }
+
+/* Layer 3 — ground fade into the stats band, removes any seam. */
+.hero__base {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 3;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, var(--forest-950));
+}
+
+/* --------------------------------------------------------------------------
+   KILL SWITCH — html.disable-fall
+
+   Set `document.documentElement.classList.add("disable-fall")` (or add the
+   class to <html> in the markup) to neutralise every hero motion effect
+   without touching JS. Kept as a permanent, supported escape hatch for
+   deployments that hit driver-specific compositing trouble.
+
+   NOTE: an earlier version of this helper was accidentally pasted *inside*
+   the `.hero__wash { ... }` rule. CSS nesting then parsed it as
+   `.hero__wash html.disable-fall` — a descendant selector that can never
+   match, since no <html> exists inside a <div>. That is why toggling the
+   class appeared to do nothing. It must stay at the top level, as below.
+   -------------------------------------------------------------------------- */
+html.disable-fall {
+  --parallax-gain: 0;
+}
+html.disable-fall .hero__photo,
+html.disable-fall .hero__botanical,
+html.disable-fall .hero__canopy {
+  transform: none !important;
+  will-change: auto !important;
+}
+html.disable-fall .hero__botanical { display: none !important; }
+
+/* .shell handles centring and gutters; this only constrains the measure. */
+.hero__inner { position: relative; max-width: 46rem; }
+
+.hero__crest {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.375rem 0.875rem 0.375rem 0.5rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: var(--r-pill);
+  /* No backdrop-filter: it sits inside the hero's compositing stack and
+     forces a per-frame readback of the layers beneath it (see §07). */
+  background-color: rgba(11, 36, 24, 0.55);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #E8F2EB;
+}
+.hero__crest img { width: 26px; height: 26px; border-radius: 50%; background: #fff; padding: 1px; }
+
+.hero__title {
+  font-size: var(--t-4xl);
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+.hero__title em {
+  font-style: italic;
+  color: #E6C48A;              /* warm amber on forest-950: 9.4:1 */
+}
+
+.hero__lead {
+  font-size: var(--t-lg);
+  line-height: 1.62;
+  color: #D6E3DA;              /* 10.1:1 on forest-950 */
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* Scroll affordance — hidden for reduced motion and on short viewports. */
+.hero__scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+}
+.hero__scroll-hint svg { width: 14px; height: 14px; animation: nudge 2.4s var(--ease) infinite; }
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(4px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .hero__scroll-hint { display: none; } }
+@media (max-height: 620px) { .hero__scroll-hint { display: none; } }
+
+
+/* ==========================================================================
+   08 · STATISTICS BAND
+   ========================================================================== */
+
+.stats {
+  background: var(--forest-950);
+  color: #fff;
+  padding-block: clamp(2rem, 1.2rem + 3vw, 3.25rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats__grid {
+  display: grid;
+  /* 5 across on wide, 2 across on mobile, never squeezed. */
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.14);   /* becomes the divider grid */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.stat {
+  background: var(--forest-950);
+  padding: 1.25rem 1.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.stat__value {
+  font-family: var(--font-display);
+  font-size: var(--t-3xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.stat__value .unit { font-size: 0.5em; font-weight: 600; color: #9FC4AE; margin-left: 0.4em; }
+.stat__label {
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: #B9CDC1;              /* 7.6:1 on forest-950 */
+}
+.stat__note {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: #8FA697;
+  letter-spacing: 0.02em;
+}
+/* The headline metric — the 266 sites actually open for adoption. */
+.stat--feature { background: var(--forest-800); }
+.stat--feature .stat__value { color: #E6C48A; }
+.stat--feature .stat__label { color: #DCEBE1; }
+
+.stats__footnote {
+  margin-top: 1rem;
+  font-size: var(--t-xs);
+  color: #93AC9C;
+}
+
+
+/* ==========================================================================
+   09 · HOW IT WORKS & WHO CAN ADOPT  (process and entity pathways)
+   ========================================================================== */
+
+/* ---- Adoption Pathways for all entity types ---------------------------- */
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: clamp(1rem, 0.6rem + 1.5vw, 1.5rem);
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.pathway-card {
+  position: relative;
+  padding: 1.375rem 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+
+.pathway-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-2);
+  border-color: var(--forest-200);
+}
+
+.pathway-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--r-pill);
+  margin-bottom: 0.875rem;
+  width: fit-content;
+}
+
+.pathway-card--csr .pathway-card__badge {
+  background: var(--forest-100);
+  color: var(--forest-800);
+  border: 1px solid var(--forest-200);
+}
+
+.pathway-card--msme .pathway-card__badge {
+  background: var(--amber-100);
+  color: var(--amber-700);
+  border: 1px solid var(--amber-200);
+}
+
+.pathway-card--trade .pathway-card__badge {
+  background: var(--civic-100);
+  color: var(--civic-700);
+  border: 1px solid var(--civic-200);
+}
+
+.pathway-card--trust .pathway-card__badge {
+  background: var(--terra-100);
+  color: var(--terra-700);
+  border: 1px solid var(--terra-200);
+}
+
+.pathway-card h4 {
+  font-size: var(--t-md);
+  font-weight: 700;
+  color: var(--ink-1);
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.pathway-card p {
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.pathway-card__points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 1px dashed var(--rule);
+  padding-top: 0.875rem;
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+}
+
+.pathway-card__points li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pathway-card__points li svg {
+  width: 13px;
+  height: 13px;
+  color: var(--forest-600);
+  flex-shrink: 0;
+}
+
+.steps-heading {
+  margin-bottom: 0.5rem;
+}
+
+/* An <ol> for correct semantics, but the visible numbering is the .step__num
+   badge inside each card — so the browser's own markers are suppressed. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: clamp(1rem, 0.6rem + 1.5vw, 1.75rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.step {
+  position: relative;
+  padding: 1.5rem 1.5rem 1.625rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  border-top: 3px solid var(--forest-600);
+}
+.step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem; height: 2rem;
+  margin-bottom: 0.875rem;
+  background: var(--forest-100);
+  color: var(--forest-800);
+  border: 1px solid var(--forest-200);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  font-weight: 600;
+}
+.step h3 { font-size: var(--t-lg); margin-bottom: 0.5rem; }
+.step p { font-size: var(--t-base); color: var(--ink-2); }
+
+
+/* ==========================================================================
+   10 · REGISTRY  (filters · search · cards · table · export)
+   ========================================================================== */
+
+.registry__layout {
+  display: grid;
+  grid-template-columns: 19rem minmax(0, 1fr);
+  gap: clamp(1rem, 0.5rem + 2vw, 2rem);
+  align-items: start;
+}
+
+/* ---- Filter rail (desktop) --------------------------------------------- */
+.filters {
+  position: sticky;
+  top: calc(var(--masthead-h) + 1rem);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  /* Rail scrolls independently if the viewport is short. */
+  max-height: calc(100vh - var(--masthead-h) - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.filters__body { padding: 1.125rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+.filters__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: var(--r-md) var(--r-md) 0 0;
+}
+.filters__head h3 { font-size: var(--t-md); }
+/* The dismiss control belongs to the mobile bottom sheet only; on the sticky
+   desktop rail there is nothing to dismiss. §19 re-enables it. */
+.filters__head .icon-btn { display: none; }
+
+.filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.filter-group__label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ---- Search ------------------------------------------------------------ */
+.search-wrap { position: relative; }
+.search-wrap .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem; height: 1rem;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+#searchInput {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.625rem 2.5rem 0.625rem 2.375rem;
+  background: var(--surface);
+  border: 1px solid var(--line-field);
+  border-radius: var(--r-sm);
+  font-size: var(--t-base);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+#searchInput::placeholder { color: var(--ink-3); }
+#searchInput:focus {
+  outline: none;
+  border-color: var(--forest-600);
+  box-shadow: 0 0 0 3px var(--forest-100);
+}
+.search-clear {
+  position: absolute;
+  right: 0.375rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px; height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-2);
+  border: 0;
+  border-radius: 50%;
+  color: var(--ink-2);
+}
+.search-clear:hover { background: var(--rule); }
+
+/* ---- Status chips ------------------------------------------------------ */
+/* Radio-group semantics via role="radio"; the visual is a chip. */
+.status-tabs { display: grid; gap: 0.375rem; }
+.status-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  font-size: var(--t-base);
+  font-weight: 500;
+  color: var(--ink-1);
+  text-align: left;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.status-tab:hover { background: var(--paper-2); border-color: var(--rule-strong); }
+.status-tab:active { transform: scale(0.985); }
+.status-tab .swatch {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex: none;
+  margin-right: 0.125rem;
+  background: var(--ink-3);
+}
+.status-tab .tab-label { display: flex; align-items: center; gap: 0.5rem; }
+.status-tab .tab-count {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--ink-3);
+}
+/* Selected: filled, bordered, bolded — three cues, not colour alone. */
+.status-tab[aria-checked="true"] {
+  background: var(--forest-50);
+  border-color: var(--forest-600);
+  color: var(--forest-900);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--forest-600);
+}
+.status-tab[aria-checked="true"] .tab-count { color: var(--forest-800); }
+.status-tab--available .swatch { background: var(--forest-600); }
+.status-tab--rwa .swatch       { background: var(--civic-700); }
+.status-tab--adopted .swatch   { background: var(--terra-600); }
+
+/* ---- Selects ----------------------------------------------------------- */
+.field-select { position: relative; }
+.field-select select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5625rem 2.25rem 0.5625rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line-field);
+  border-radius: var(--r-sm);
+  font-size: var(--t-base);
+  appearance: none;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.field-select select:focus {
+  outline: none;
+  border-color: var(--forest-600);
+  box-shadow: 0 0 0 3px var(--forest-100);
+}
+.field-select::after {
+  content: "";
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  width: 0.5rem; height: 0.5rem;
+  border-right: 1.5px solid var(--ink-2);
+  border-bottom: 1.5px solid var(--ink-2);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.filters__footer {
+  padding: 0.875rem 1.125rem;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: 0 0 var(--r-md) var(--r-md);
+}
+
+/* ---- Results toolbar --------------------------------------------------- */
+.results__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.results__count {
+  font-size: var(--t-base);
+  color: var(--ink-2);
+}
+.results__count strong {
+  font-family: var(--font-mono);
+  font-size: var(--t-md);
+  color: var(--forest-900);
+}
+.results__tools { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+
+.view-switch {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+}
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  min-height: 38px;
+  background: transparent;
+  border: 0;
+  border-radius: var(--r-xs);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.view-btn svg { width: 15px; height: 15px; }
+.view-btn[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--forest-900);
+  font-weight: 600;
+  box-shadow: var(--sh-1);
+}
+
+/* Active-filter summary chips, each individually dismissible. */
+.active-filters { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 1rem; }
+.active-filters:empty { display: none; }
+.chip-dismiss {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 32px;
+  padding: 0.25rem 0.5rem 0.25rem 0.625rem;
+  background: var(--forest-50);
+  border: 1px solid var(--forest-200);
+  border-radius: var(--r-pill);
+  font-size: var(--t-sm);
+  color: var(--forest-900);
+}
+.chip-dismiss:hover { background: var(--forest-100); }
+.chip-dismiss .x { font-size: 0.875rem; line-height: 1; color: var(--ink-2); }
+
+/* ---- Site cards scroll container (internal scroll without moving main page) - */
+.results__cards-pane {
+  max-height: clamp(520px, calc(100vh - var(--masthead-h) - 6.5rem), 780px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.25rem 0.5rem 1.25rem 0.25rem;
+  border-radius: var(--r-md);
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--forest-300) transparent;
+}
+.results__cards-pane::-webkit-scrollbar {
+  width: 6px;
+}
+.results__cards-pane::-webkit-scrollbar-track {
+  background: var(--paper-2);
+  border-radius: 4px;
+}
+.results__cards-pane::-webkit-scrollbar-thumb {
+  background: var(--forest-300);
+  border-radius: 4px;
+}
+.results__cards-pane::-webkit-scrollbar-thumb:hover {
+  background: var(--forest-600);
+}
+
+.site-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 0.875rem;
+}
+/* Cards are real <button>s: keyboard-operable and announced correctly. */
+.site-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.9375rem 1rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  text-align: left;
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+@media (hover: hover) {
+  .site-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sh-3);
+    border-color: var(--rule-strong);
+  }
+}
+.site-card:active { transform: translateY(0); }
+.site-card.is-selected {
+  background: var(--forest-50);
+  border-color: var(--forest-600);
+  box-shadow: inset 0 0 0 1px var(--forest-600);
+}
+.site-card--zone-A { border-left-color: var(--zone-a); }
+.site-card--zone-B { border-left-color: var(--zone-b); }
+.site-card--zone-C { border-left-color: var(--zone-c); }
+.site-card--zone-D { border-left-color: var(--zone-d); }
+
+.site-card__top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.site-card__id {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+.site-card__name {
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  line-height: 1.28;
+  color: var(--forest-900);
+  /* Two-line clamp keeps every card the same height → no CLS. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.site-card__area {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--terra-700);
+}
+.site-card__meta { display: flex; flex-wrap: wrap; gap: 0.3125rem; margin-top: auto; }
+
+/* "Load more" progressive rendering. Only ~60 cards are in the DOM at a
+   time: re-filtering 918 records stays instant and the DOM never bloats
+   past Lighthouse's node budget. Filtering, sorting and CSV export all
+   operate on the complete result set regardless of what is rendered. */
+.load-more-wrap { display: flex; justify-content: center; margin-top: 1.5rem; }
+.load-more-wrap:empty { display: none; }
+.load-more-done {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+  text-align: center;
+  padding: 0.75rem 1rem;
+  background: var(--paper-2);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: var(--surface);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--r-md);
+}
+.empty-state svg { width: 40px; height: 40px; color: var(--ink-3); margin: 0 auto 0.875rem; }
+.empty-state h3 { font-size: var(--t-lg); margin-bottom: 0.375rem; }
+.empty-state p { color: var(--ink-2); margin-bottom: 1.25rem; }
+
+/* ---- Table view -------------------------------------------------------- */
+.table-scroll {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  overflow: auto;
+  max-height: 70vh;
+  overscroll-behavior: contain;
+}
+.gov-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--t-sm); }
+.gov-table caption { text-align: left; padding: 0.75rem 1rem; color: var(--ink-3); font-size: var(--t-sm); }
+.gov-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--paper-2);
+  padding: 0.6875rem 0.875rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.gov-table td {
+  padding: 0.6875rem 0.875rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+.gov-table tbody tr { transition: background-color var(--dur-fast) var(--ease); }
+.gov-table tbody tr:hover { background: var(--forest-50); }
+/* Mirrors .site-card.is-selected so the current site stays identifiable
+   when switching between card and table views. */
+.gov-table tbody tr.is-selected { background: var(--forest-50); box-shadow: inset 3px 0 0 var(--forest-600); }
+.gov-table .cell-id { font-family: var(--font-mono); font-size: var(--t-xs); color: var(--ink-3); }
+.gov-table .cell-name { font-weight: 600; color: var(--forest-900); min-width: 13rem; }
+.gov-table .cell-area { font-family: var(--font-mono); text-align: right; white-space: nowrap; }
+.btn-table-action {
+  min-height: 34px;
+  padding: 0.3125rem 0.6875rem;
+  background: var(--surface);
+  border: 1px solid var(--line-field);
+  border-radius: var(--r-xs);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  color: var(--forest-800);
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.btn-table-action:hover { background: var(--forest-700); border-color: var(--forest-700); color: #fff; }
+
+/* ---- Mobile filter trigger + bottom sheet ------------------------------ */
+/* Both hidden on desktop; §17 switches them on. */
+.filters__mobile-bar { display: none; }
+.filters__scrim { display: none; }
+
+
+/* ==========================================================================
+   11 · FAST-TRACK THEME PROGRAMME
+   ========================================================================== */
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: clamp(1rem, 0.6rem + 1.5vw, 1.5rem);
+}
+
+.theme-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+@media (hover: hover) {
+  .theme-card:hover { transform: translateY(-4px); box-shadow: var(--sh-3); border-color: var(--forest-200); }
+  .theme-card:hover .theme-card__img { transform: scale(1.045); }
+}
+
+.theme-card__media {
+  position: relative;
+  /* Fixed ratio + width/height on the <img> ⇒ zero layout shift. */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--forest-100);
+}
+/* <picture> is inline by default, which would leave a descender gap under
+   the image and stop it filling the fixed-ratio box. */
+.theme-card__media picture { display: block; width: 100%; height: 100%; }
+.theme-card__img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.theme-card__badge {
+  position: absolute;
+  top: 0.625rem; left: 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--amber-100);
+  border: 1px solid var(--amber-200);
+  border-radius: var(--r-xs);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--amber-700);
+  box-shadow: var(--sh-1);
+}
+.theme-card__badge svg { width: 11px; height: 11px; }
+
+.theme-card__body { display: flex; flex-direction: column; flex: 1; padding: 1.125rem 1.25rem 1.25rem; }
+.theme-card__body h3 { font-size: var(--t-lg); margin-bottom: 0.5rem; }
+.theme-card__desc { font-size: var(--t-base); color: var(--ink-2); margin-bottom: 0.875rem; }
+.theme-card__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3125rem;
+  margin-bottom: 1.125rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--rule);
+}
+.theme-card__features li {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  padding: 0.1875rem 0.4375rem;
+  background: var(--forest-50);
+  border: 1px solid var(--forest-200);
+  border-radius: var(--r-xs);
+  color: var(--forest-800);
+}
+.theme-card__features { margin: 0.875rem 0 1.125rem; padding: 0; list-style: none; }
+.theme-card .btn { margin-top: auto; }
+
+/* Quick-select chips above the grid. */
+.theme-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.theme-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.4375rem 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--line-field);
+  border-radius: var(--r-pill);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--ink-1);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.theme-chip:hover {
+  background: var(--forest-700);
+  border-color: var(--forest-700);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.theme-chip:active { transform: translateY(0) scale(0.97); }
+
+/* Fast-Track policy note. */
+.policy-note {
+  display: flex;
+  gap: 0.875rem;
+  padding: 1.125rem 1.25rem;
+  margin-top: 2rem;
+  background: var(--amber-100);
+  border: 1px solid var(--amber-200);
+  border-left: 3px solid var(--amber-700);
+  border-radius: var(--r-sm);
+}
+.policy-note svg { width: 20px; height: 20px; flex: none; color: var(--amber-700); margin-top: 2px; }
+.policy-note p { font-size: var(--t-base); color: #6E4708; }
+.policy-note strong { color: #56370A; }
+
+
+/* ==========================================================================
+   12 · IMPACT & GREEN COVER
+   ========================================================================== */
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: clamp(1rem, 0.6rem + 1.5vw, 1.75rem);
+}
+
+.impact-card { padding: 1.375rem 1.5rem 1.5rem; }
+.impact-card h3 {
+  font-family: var(--font-sans);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+  margin-bottom: 1rem;
+}
+
+/* Horizontal distribution meter — a bar per category, labelled with its
+   own value. No colour-only encoding: each row is named. */
+.meter { display: flex; flex-direction: column; gap: 0.8125rem; }
+.meter__row { display: grid; grid-template-columns: 1fr auto; gap: 0.25rem 0.75rem; align-items: baseline; }
+.meter__name { font-size: var(--t-sm); color: var(--ink-1); }
+.meter__val { font-family: var(--font-mono); font-size: var(--t-sm); font-weight: 600; color: var(--forest-900); }
+.meter__track {
+  grid-column: 1 / -1;
+  height: 7px;
+  background: var(--paper-2);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.meter__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--forest-600);
+  /* Width animates from 0 via a scaleX transform on reveal (see JS). */
+  transform-origin: left center;
+  transform: scaleX(var(--fill, 0));
+  transition: transform 0.9s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.meter__row--b .meter__fill { background: var(--terra-600); }
+.meter__row--c .meter__fill { background: var(--civic-700); }
+.meter__row--d .meter__fill { background: var(--zone-d); }
+
+/* Big single figure. */
+.figure-stack { display: flex; flex-direction: column; gap: 1.125rem; }
+.figure { display: flex; flex-direction: column; gap: 0.125rem; }
+.figure__val {
+  font-family: var(--font-display);
+  font-size: var(--t-2xl);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--forest-800);
+}
+.figure__val .unit { font-size: 0.5em; color: var(--ink-3); margin-left: 0.4em; }
+.figure__label { font-size: var(--t-sm); color: var(--ink-2); }
+
+
+/* ==========================================================================
+   13 · STEWARDSHIP (already-adopted sites)
+   ========================================================================== */
+
+.stewardship__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 0.875rem;
+}
+.steward-card {
+  padding: 1rem 1.125rem 1.125rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--terra-600);
+  border-radius: var(--r-sm);
+}
+.steward-card__name {
+  font-family: var(--font-display);
+  font-size: var(--t-md);
+  font-weight: 600;
+  color: var(--forest-900);
+  margin-bottom: 0.375rem;
+}
+.steward-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+.steward-card__meta span { white-space: nowrap; }
+
+/* Honest data disclosure — we publish what the register holds, no more. */
+.data-note {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  padding: 1rem 1.125rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+.data-note svg { width: 17px; height: 17px; flex: none; color: var(--ink-3); margin-top: 2px; }
+
+
+/* ==========================================================================
+   14 · GIS & SPLIT VIEW SYSTEM
+   ========================================================================== */
+
+/* ---- Split view layout ------------------------------------------------- */
+.results__gis-area {
+  width: 100%;
+}
+
+.gis-split-layout {
+  display: grid;
+  grid-template-columns: minmax(290px, 360px) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* When in Full Map view (list pane is hidden by JS) */
+.gis-split-layout.is-full-map {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.gis-split__list-pane {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  overflow: hidden;
+  max-height: clamp(480px, 72vh, 680px);
+}
+
+.gis-split__list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
+}
+.gis-split__count {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  color: var(--forest-900);
+}
+.gis-split__hint {
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+}
+
+.gis-split__list {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Compact card in split view */
+.gis-split-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
+}
+.gis-split-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--sh-2);
+  border-color: var(--rule-strong);
+}
+.gis-split-card.is-active-site {
+  background: var(--forest-50);
+  border-color: var(--forest-600);
+  box-shadow: 0 0 0 2px var(--forest-600);
+}
+.gis-split-card--zone-A { border-left-color: var(--zone-a); }
+.gis-split-card--zone-B { border-left-color: var(--zone-b); }
+.gis-split-card--zone-C { border-left-color: var(--zone-c); }
+.gis-split-card--zone-D { border-left-color: var(--zone-d); }
+
+.gis-split-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.gis-split-card__name {
+  font-family: var(--font-display);
+  font-size: var(--t-base);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--forest-900);
+}
+.gis-split-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+}
+.gis-split-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.375rem;
+  padding-top: 0.375rem;
+  border-top: 1px dashed var(--rule);
+}
+
+/* Locate button on cards & split cards */
+.btn-locate-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--forest-800);
+  background: var(--forest-50);
+  border: 1px solid var(--forest-200);
+  border-radius: var(--r-xs);
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+.btn-locate-action:hover {
+  background: var(--forest-700);
+  color: #fff;
+  border-color: var(--forest-700);
+}
+.btn-locate-action svg { width: 12px; height: 12px; flex: none; }
+
+.btn-card-dossier {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.btn-card-dossier:hover { color: var(--forest-900); }
+
+/* Card footer in grid view */
+.site-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--rule);
+}
+
+/* Map pane */
+.gis-split__map-pane {
+  position: sticky;
+  top: calc(var(--masthead-h) + 1rem);
+}
+
+.gis-panel {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+}
+.gis-panel__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1.125rem;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
+}
+.gis-panel__title { display: flex; align-items: center; gap: 0.625rem; }
+.gis-badge {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.1875rem 0.4375rem;
+  background: var(--forest-900);
+  color: #fff;
+  border-radius: var(--r-xs);
+}
+.gis-panel__title h3 { font-size: var(--t-md); }
+
+.map-legend { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+.legend-chip { display: inline-flex; align-items: center; gap: 0.375rem; font-size: var(--t-xs); color: var(--ink-2); }
+.legend-chip .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.dot--a { background: var(--zone-a); }
+.dot--b { background: var(--zone-b); }
+.dot--c { background: var(--zone-c); }
+.dot--d { background: var(--zone-d); }
+.dot--avail {
+  background: #2F8A5B;
+  box-shadow: 0 0 0 2px rgba(47, 138, 91, 0.4);
+}
+
+.map-stage {
+  position: relative;
+  height: clamp(380px, 58vh, 620px);
+  background: #e5e9e7;
+}
+.map { width: 100%; height: 100%; z-index: 1; }
+
+.gis-panel__foot {
+  padding: 0.6875rem 1.125rem;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-2);
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---- Custom Leaflet marker pins ---------------------------------------- */
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.mcl-map-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform var(--dur-fast) var(--ease);
+  cursor: pointer;
+}
+.mcl-map-pin:hover {
+  transform: scale(1.3);
+  z-index: 9999 !important;
+}
+.mcl-map-pin.is-available {
+  border-color: #2F8A5B;
+  box-shadow: 0 0 0 2.5px rgba(47, 138, 91, 0.6), 0 2px 6px rgba(0, 0, 0, 0.35);
+  animation: markerPulse 2.6s infinite;
+}
+@keyframes markerPulse {
+  0%, 100% { box-shadow: 0 0 0 2.5px rgba(47, 138, 91, 0.6), 0 2px 6px rgba(0, 0, 0, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(47, 138, 91, 0), 0 2px 6px rgba(0, 0, 0, 0.35); }
+}
+
+.mcl-map-pin--zone-A { background-color: var(--zone-a); }
+.mcl-map-pin--zone-B { background-color: var(--zone-b); }
+.mcl-map-pin--zone-C { background-color: var(--zone-c); }
+.mcl-map-pin--zone-D { background-color: var(--zone-d); }
+
+/* MarkerCluster custom styling */
+.marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
+  background-color: rgba(27, 90, 57, 0.25) !important;
+}
+.marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
+  background-color: var(--forest-800) !important;
+  color: #ffffff !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+}
+
+/* ---- Leaflet popup customization --------------------------------------- */
+.leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: var(--sh-4) !important;
+  border: 1px solid var(--rule-strong) !important;
+  background: var(--surface) !important;
+  overflow: hidden;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.35 !important;
+  width: 270px !important;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  top: 8px !important;
+  right: 8px !important;
+  color: var(--ink-3) !important;
+  font-size: 18px !important;
+  padding: 0 !important;
+}
+.gis-popup {
+  padding: 0.875rem 1rem;
+}
+.gis-popup__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+  padding-right: 1.25rem;
+}
+.gis-popup__id {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.gis-popup__name {
+  font-family: var(--font-display);
+  font-size: var(--t-md);
+  font-weight: 600;
+  color: var(--forest-900);
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+.gis-popup__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3125rem 0.5rem;
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+  padding: 0.5rem 0;
+  margin-bottom: 0.75rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.gis-popup__actions {
+  display: flex;
+  gap: 0.375rem;
+}
+.gis-popup__actions .btn {
+  flex: 1;
+  padding: 0.375rem 0.5rem;
+  font-size: 0.6875rem;
+  min-height: 32px;
+  justify-content: center;
+}
+
+/* Dossier inline locate button */
+.btn-locate-inline {
+  background: var(--forest-50) !important;
+  border: 1px solid var(--forest-200) !important;
+  color: var(--forest-800) !important;
+  font-weight: 600 !important;
+}
+.btn-locate-inline:hover {
+  background: var(--forest-700) !important;
+  color: #fff !important;
+}
+
+/* ---- Responsive adjustments for Split View ---------------------------- */
+@media (max-width: 1024px) {
+  .gis-split-layout {
+    grid-template-columns: 1fr;
+  }
+  .gis-split__map-pane {
+    position: relative;
+    top: 0;
+  }
+  .gis-split__list-pane {
+    max-height: 360px;
+  }
+  .map-stage {
+    height: clamp(320px, 48vh, 480px);
+  }
+}
+
+
+/* ==========================================================================
+   15 · CLOSING CTA BAND
+   ========================================================================== */
+
+.cta-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--forest-900);
+  color: #fff;
+  padding-block: clamp(3rem, 2rem + 5vw, 5rem);
+}
+.cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* z-index 0 rather than -1 — see the note on .map-pending::before. */
+  z-index: 0;
+  background-image: var(--botanical);
+  background-size: 150px 150px;
+  filter: invert(1);
+  opacity: 0.06;
+}
+.cta-band__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+}
+.cta-band__text { max-width: 40rem; }
+.cta-band h2 { color: #fff; font-size: var(--t-2xl); margin-bottom: 0.625rem; }
+.cta-band p { color: #C8D8CE; font-size: var(--t-lg); }
+.cta-band__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta-band .btn--accent { box-shadow: 0 8px 24px -8px rgba(169, 78, 40, 0.7); }
+
+
+/* ==========================================================================
+   16 · FOOTER
+   ========================================================================== */
+
+.gov-footer {
+  background: var(--forest-950);
+  color: #C8D8CE;
+  padding-block: clamp(2.5rem, 1.5rem + 3vw, 3.5rem) 0;
+  font-size: var(--t-base);
+}
+.gov-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 2rem clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding-bottom: 2.25rem;
+}
+.gov-footer h2, .gov-footer h3 { color: #fff; }
+.gov-footer__brand { display: flex; align-items: flex-start; gap: 0.875rem; margin-bottom: 1rem; }
+.gov-footer__brand img {
+  width: 46px; height: 46px;
+  flex: none;
+  border-radius: 50%;
+  background: #fff;
+  padding: 2px;
+}
+.gov-footer__org { font-family: var(--font-display); font-size: var(--t-md); font-weight: 600; color: #fff; line-height: 1.3; }
+.gov-footer__dept { font-size: var(--t-sm); color: #9FB6A7; margin-top: 0.125rem; }
+.gov-footer__addr { font-style: normal; font-size: var(--t-sm); line-height: 1.65; color: #B9CDC1; }
+
+.footer-col h3 {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #8FA697;
+  margin-bottom: 0.875rem;
+}
+.footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-col a {
+  color: #DCE8E0;
+  text-decoration: none;
+  font-size: var(--t-sm);
+  /* 44px target without visually bulking the list. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+}
+.footer-col a:hover { color: #fff; text-decoration: underline; }
+
+/* Buttons that sit in a link list (Form CSR-1, CSV download) must read and
+   behave like the links beside them while staying real <button>s. */
+.footer-linkbtn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: var(--t-sm);
+  color: #DCE8E0;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: rgba(220, 232, 224, 0.4);
+  text-underline-offset: 2px;
+}
+.footer-linkbtn:hover { color: #fff; text-decoration-color: currentColor; }
+
+.footer-contact-val {
+  font-family: var(--font-mono);
+  font-size: var(--t-md);
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+.footer-contact-val:hover { color: #E6C48A; }
+
+.gov-footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-block: 1.125rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: var(--t-xs);
+  color: #8FA697;
+}
+
+
+/* ==========================================================================
+   17 · CSR-1 MODAL & FORM
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(0rem, -1rem + 4vw, 1.5rem);
+  background: rgba(11, 36, 24, 0.62);
+  backdrop-filter: blur(4px);
+  animation: overlay-in var(--dur) var(--ease) both;
+}
+@keyframes overlay-in { from { opacity: 0; } }
+
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 62rem;
+  max-height: min(94svh, 60rem);
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-4);
+  animation: modal-in var(--dur-slow) var(--ease-out) both;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.985); }
+}
+.modal.is-single-col { max-width: 40rem; }
+
+/* The dialog is focused programmatically on open so its title is announced
+   before its fields. It is not itself an interactive control, so it takes no
+   focus ring — the first Tab lands on a real control, which does show one. */
+.modal:focus, .modal:focus-visible { outline: none; }
+
+.modal__close {
+  position: absolute;
+  top: 0.75rem; right: 0.75rem;
+  z-index: 10;
+  width: 40px; height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  color: var(--ink-1);
+  box-shadow: var(--sh-1);
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.modal__close:hover { background: var(--paper-2); }
+.modal__close:active { transform: scale(0.94); }
+.modal__close svg { width: 16px; height: 16px; }
+
+.modal__header {
+  flex: none;
+  padding: 1.25rem clamp(1.25rem, 1rem + 2vw, 2rem);
+  padding-right: 3.75rem;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
+}
+.modal__doc-title {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--terra-700);
+  margin-bottom: 0.25rem;
+}
+.modal__doc-heading { font-size: var(--t-xl); }
+
+.modal__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.modal.is-single-col .modal__grid { grid-template-columns: minmax(0, 1fr); }
+
+/* ---- Dossier (left) ---------------------------------------------------- */
+.modal__dossier {
+  padding: 1.25rem clamp(1.25rem, 1rem + 1.5vw, 1.75rem) 1.75rem;
+  background: var(--paper);
+  border-right: 1px solid var(--rule);
+}
+.dossier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.625rem;
+  margin-bottom: 0.875rem;
+  border-bottom: 1px solid var(--rule);
+}
+.dossier-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.dossier-title { font-size: var(--t-xl); margin-bottom: 0.25rem; }
+.dossier-id { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--ink-3); margin-bottom: 0.875rem; }
+.dossier-pills { display: flex; flex-wrap: wrap; gap: 0.3125rem; margin-bottom: 1.125rem; }
+
+/* Description list — the correct semantics for label/value pairs. */
+.dossier-table {
+  margin: 0 0 1.125rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.dossier-row {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, auto) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.5625rem 0.875rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--t-sm);
+}
+.dossier-row:last-child { border-bottom: 0; }
+.dossier-row dt { color: var(--ink-3); }
+.dossier-row dd { margin: 0; font-weight: 600; color: var(--forest-900); text-align: right; word-break: break-word; }
+
+/* Collapsible extras — native <details>, keyboard-operable for free. */
+.dossier-extra { margin-bottom: 1.125rem; border: 1px solid var(--rule); border-radius: var(--r-sm); background: var(--surface); }
+.dossier-extra > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  cursor: pointer;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--forest-800);
+  list-style: none;
+}
+.dossier-extra > summary::-webkit-details-marker { display: none; }
+.dossier-extra > summary::after {
+  content: "";
+  margin-left: auto;
+  width: 0.4375rem; height: 0.4375rem;
+  border-right: 1.5px solid var(--ink-2);
+  border-bottom: 1.5px solid var(--ink-2);
+  transform: rotate(45deg);
+  transition: transform var(--dur) var(--ease);
+}
+.dossier-extra[open] > summary::after { transform: rotate(225deg); }
+.dossier-extra__body { padding: 0 0.875rem 0.875rem; font-size: var(--t-sm); color: var(--ink-2); }
+
+.modal__imagery {
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  margin-bottom: 0.875rem;
+}
+.modal-mini-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.modal__imagery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+.imagery-fallback {
+  position: relative;
+  z-index: 3;
+  padding: 1.25rem;
+  text-align: center;
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+  margin-top: 2rem;
+}
+.imagery-fallback svg { width: 26px; height: 26px; margin: 0 auto 0.5rem; color: var(--rule-strong); }
+.imagery-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 5;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(16, 51, 34, 0.82);
+  color: #ffffff;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.dossier-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.dossier-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 40px;
+  padding: 0.375rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line-field);
+  border-radius: var(--r-sm);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--forest-800);
+  text-decoration: none;
+}
+.dossier-link:hover { background: var(--forest-50); border-color: var(--forest-600); color: var(--forest-900); }
+.dossier-link svg { width: 13px; height: 13px; }
+
+/* ---- Form (right) ------------------------------------------------------ */
+.modal__form { padding: 1.25rem clamp(1.25rem, 1rem + 2vw, 1.875rem) 1.875rem; background: var(--surface); }
+.form-title-wrap { padding-bottom: 0.875rem; margin-bottom: 1.125rem; border-bottom: 1px solid var(--rule); }
+.form-title-wrap h3 { font-size: var(--t-lg); margin-bottom: 0.25rem; }
+.form-sub { font-size: var(--t-sm); color: var(--ink-2); }
+
+/* <fieldset> groups the form into the three parts of the statutory form. */
+.form-fieldset { border: 0; padding: 0; margin: 0 0 1.25rem; }
+.form-fieldset > legend {
+  padding: 0;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.form-group-field { margin-bottom: 0.875rem; }
+.form-group-field > label {
+  display: block;
+  margin-bottom: 0.3125rem;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--ink-1);
+}
+/* Required marker is textual as well as visual. */
+.req { color: var(--terra-700); font-weight: 700; }
+
+.form-group-field input,
+.form-group-field select,
+.form-group-field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5625rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line-field);
+  border-radius: var(--r-sm);
+  font-size: var(--t-base);
+  /* 16px on mobile prevents iOS Safari's zoom-on-focus (a layout-shift
+     and usability trap on small screens). See §18. */
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.form-group-field textarea { min-height: 4.5rem; resize: vertical; }
+.form-group-field select { appearance: none; padding-right: 2.25rem; cursor: pointer; background-image: linear-gradient(45deg, transparent 49%, var(--ink-2) 50%, var(--ink-2) 52%, transparent 53%), linear-gradient(-45deg, transparent 49%, var(--ink-2) 50%, var(--ink-2) 52%, transparent 53%); background-position: calc(100% - 1.125rem) 55%, calc(100% - 0.75rem) 55%; background-size: 6px 6px; background-repeat: no-repeat; }
+.form-group-field :is(input, select, textarea):focus {
+  outline: none;
+  border-color: var(--forest-600);
+  box-shadow: 0 0 0 3px var(--forest-100);
+}
+/* Only flag invalid fields the user has actually interacted with. */
+.form-group-field :is(input, textarea):user-invalid {
+  border-color: var(--terra-600);
+  box-shadow: 0 0 0 3px var(--terra-100);
+}
+.input-readonly { background: var(--paper-2) !important; color: var(--forest-900); font-weight: 600; cursor: default; }
+.field-hint { display: block; margin-top: 0.25rem; font-size: var(--t-xs); color: var(--ink-3); }
+
+/* Phone input with country code badge */
+.phone-input-wrap {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--line-field);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.phone-input-wrap:focus-within {
+  border-color: var(--forest-600);
+  box-shadow: 0 0 0 3px var(--forest-100);
+}
+.phone-input-wrap:has(:user-invalid) {
+  border-color: var(--terra-600);
+  box-shadow: 0 0 0 3px var(--terra-100);
+}
+.phone-prefix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--forest-900);
+  background: var(--paper-2);
+  border-right: 1px solid var(--line-field);
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+.phone-input-wrap input {
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0 !important;
+  background: transparent !important;
+}
+
+.form-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.875rem; }
+
+/* Theme field, visually promoted as the Fast-Track entry point. */
+.form-group-field--highlight {
+  padding: 0.875rem 1rem 1rem;
+  background: var(--forest-50);
+  border: 1px solid var(--forest-200);
+  border-left: 3px solid var(--forest-600);
+  border-radius: var(--r-sm);
+}
+.field-header-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.375rem; }
+.field-header-row > label { margin-bottom: 0 !important; }
+
+/* Scope checkboxes. */
+.scope-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.125rem;
+  padding: 0.375rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+}
+.scope-item {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.375rem 0.5rem;
+  margin: 0 !important;
+  border-radius: var(--r-xs);
+  font-size: var(--t-sm) !important;
+  font-weight: 500 !important;
+  color: var(--ink-1) !important;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.scope-item:hover { background: var(--forest-50); }
+.scope-item input { width: auto !important; min-height: 0 !important; }
+input[type="checkbox"] {
+  width: 1.125rem; height: 1.125rem;
+  flex: none;
+  accent-color: var(--forest-700);
+  cursor: pointer;
+}
+
+.declaration-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6875rem;
+  padding: 0.875rem 1rem;
+  margin: 1.25rem 0;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+}
+.declaration-wrap input { margin-top: 0.1875rem; }
+.declaration-wrap label { font-size: var(--t-sm); line-height: 1.55; color: var(--ink-1); }
+
+.form-footnote { margin-top: 0.875rem; font-size: var(--t-xs); color: var(--ink-3); text-align: center; }
+
+
+/* ==========================================================================
+   18 · TOAST
+   ========================================================================== */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 1200;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: min(30rem, calc(100vw - 2rem));
+  padding: 0.875rem 1.125rem;
+  background: var(--forest-950);
+  color: #fff;
+  border-left: 3px solid var(--forest-500);
+  border-radius: var(--r-sm);
+  box-shadow: var(--sh-4);
+  font-size: var(--t-base);
+  transform: translate3d(-50%, 0, 0);
+  animation: toast-in var(--dur) var(--ease-out) both;
+}
+@keyframes toast-in { from { opacity: 0; transform: translate3d(-50%, 12px, 0); } }
+.toast svg { width: 18px; height: 18px; flex: none; margin-top: 1px; color: #8FCBA6; }
+.toast--warn { border-left-color: var(--amber-700); }
+.toast--warn svg { color: #E6C48A; }
+
+
+/* ==========================================================================
+   19 · RESPONSIVE
+   ========================================================================== */
+
+/* ---- ≤1024px: registry rail collapses to a full-width stack ------------ */
+@media (max-width: 1024px) {
+  .registry__layout { grid-template-columns: minmax(0, 1fr); }
+  .results__cards-pane { max-height: clamp(440px, 70vh, 620px); }
+  .modal__grid { grid-template-columns: minmax(0, 1fr); }
+  .modal__dossier { border-right: 0; border-bottom: 1px solid var(--rule); }
+}
+
+/* ---- ≤900px: masthead sheds its inline contact block ------------------- */
+@media (max-width: 900px) {
+  .header-contact { display: none; }
+  .gov-header__title .sub { display: none; }
+  .gov-header__title .sep { display: none; }
+}
+
+/* ---- ≤1024px: filters become a bottom sheet ---------------------------- */
+@media (max-width: 1024px) {
+  /* Sticky trigger bar. Intentionally compact (56px) so it costs little
+     vertical space on small screens. */
+  .filters__mobile-bar {
+    display: flex;
+    position: sticky;
+    top: var(--masthead-h);
+    z-index: 500;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    background: var(--paper);
+    box-shadow: 0 1px 0 var(--rule);
+  }
+  .filters__mobile-bar .btn { flex: 1; }
+  .filters__mobile-bar .filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.25rem;
+    background: var(--terra-600);
+    color: #fff;
+    border-radius: var(--r-pill);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+  .filters__mobile-bar .filter-count:empty { display: none; }
+
+  /* Scrim. */
+  .filters__scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    background: rgba(11, 36, 24, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur) var(--ease);
+  }
+  .filters__scrim.is-open { opacity: 1; pointer-events: auto; }
+
+  /* The sheet itself: slides up, caps at 85svh, scrolls internally. */
+  .filters {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    top: auto;
+    z-index: 999;
+    max-height: 85svh;
+    border: 0;
+    border-top: 1px solid var(--rule);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    box-shadow: var(--sh-4);
+    transform: translate3d(0, 100%, 0);
+    transition: transform var(--dur-slow) var(--ease-out);
+    /* Not focusable/scrollable until opened. */
+    visibility: hidden;
+  }
+  .filters.is-open { transform: none; visibility: visible; }
+  .filters__head .icon-btn { display: inline-flex; }
+  .filters__head { border-radius: var(--r-lg) var(--r-lg) 0 0; position: sticky; top: 0; z-index: 2; }
+  /* Grab handle. */
+  .filters__head::before {
+    content: "";
+    position: absolute;
+    top: 0.375rem; left: 50%;
+    transform: translateX(-50%);
+    width: 2.5rem; height: 4px;
+    background: var(--rule-strong);
+    border-radius: var(--r-pill);
+  }
+  .filters__body { padding-bottom: 1.5rem; }
+  .filters__footer {
+    position: sticky;
+    bottom: 0;
+    padding-bottom: max(0.875rem, env(safe-area-inset-bottom));
+    border-radius: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .filters { transition: none; }
+  }
+}
+
+/* ---- ≤768px: table becomes stacked records ---------------------------- */
+@media (max-width: 768px) {
+  .table-scroll { max-height: none; border: 0; background: transparent; overflow: visible; }
+  .gov-table { font-size: var(--t-base); }
+  /* Header is visually hidden but stays in the a11y tree for the cells'
+     data-label association. */
+  .gov-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .gov-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.125rem;
+    margin-bottom: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule-strong);
+    border-radius: var(--r-sm);
+  }
+  .gov-table tbody tr:hover { background: var(--surface); }
+  .gov-table td {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.3125rem 0;
+    border: 0;
+    text-align: left !important;
+  }
+  /* Row label, injected from the column header by JS via data-label. */
+  .gov-table td::before {
+    content: attr(data-label);
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  /* The name spans full width as the record's heading. */
+  .gov-table td.cell-name {
+    grid-template-columns: minmax(0, 1fr);
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .gov-table td.cell-name::before { display: none; }
+  .gov-table td.cell-action { margin-top: 0.5rem; }
+  .gov-table td.cell-action::before { display: none; }
+  .gov-table td.cell-action .btn-table-action { width: 100%; min-height: 44px; }
+}
+
+/* ---- ≤768px: form + modal go single-column and full-bleed ------------- */
+@media (max-width: 768px) {
+  .modal-overlay { padding: 0; place-items: end stretch; }
+  .modal, .modal.is-single-col {
+    max-width: none;
+    max-height: 96svh;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+  }
+  @keyframes modal-in { from { opacity: 0; transform: translate3d(0, 3%, 0); } }
+  /* 16px minimum kills iOS focus-zoom. */
+  .form-group-field input,
+  .form-group-field select,
+  .form-group-field textarea,
+  #searchInput { font-size: 1rem; }
+  .dossier-row { grid-template-columns: minmax(0, 1fr); gap: 0.125rem; }
+  .dossier-row dd { text-align: left; }
+}
+
+/* ---- ≤600px ------------------------------------------------------------ */
+@media (max-width: 600px) {
+  .gov-header__actions .btn span:not(.sr-only) { display: none; }
+  .gov-header__actions .btn { padding-inline: 0.75rem; }
+  .stats__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* The feature stat spans the full width when the grid is 2-up so it
+     never ends up orphaned in a half-row. */
+  .stat--feature { grid-column: 1 / -1; }
+  .site-list { grid-template-columns: minmax(0, 1fr); }
+  .cta-band__inner, .cta-band__actions, .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn, .cta-band__actions .btn { width: 100%; }
+}
+
+/* ---- Wide screens: cap line length in the hero ------------------------ */
+@media (min-width: 1600px) {
+  :root { --shell: 1360px; }
+}
+
+
+/* ==========================================================================
+   19B · OFFICIAL SUBMISSION RECEIPT CARD
+   ========================================================================== */
+
+.modal__receipt {
+  padding: 1.5rem clamp(1.25rem, 1rem + 2vw, 2rem) 2rem;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.receipt__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.receipt__check-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--forest-100);
+  color: var(--forest-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+.receipt__title {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  color: var(--forest-900);
+  margin: 0;
+}
+.receipt__sub {
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  max-width: 32rem;
+  margin: 0;
+}
+.receipt__ref-box {
+  background: var(--paper-2);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+.receipt__ref-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  margin-bottom: 0.375rem;
+}
+.receipt__ref-value-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.receipt__ref-value {
+  font-family: var(--font-mono);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--forest-900);
+}
+.receipt__btn-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xs);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+.receipt__btn-copy:hover {
+  background: var(--forest-50);
+  border-color: var(--forest-600);
+  color: var(--forest-900);
+}
+.receipt__timestamp {
+  display: block;
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+  margin-top: 0.375rem;
+}
+.receipt__summary {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.receipt__details {
+  margin: 0;
+}
+.receipt__row {
+  display: grid;
+  grid-template-columns: minmax(8.5rem, auto) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.5rem 0.875rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--t-sm);
+}
+.receipt__row:last-child {
+  border-bottom: 0;
+}
+.receipt__row dt {
+  color: var(--ink-3);
+}
+.receipt__row dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--forest-900);
+  text-align: right;
+  word-break: break-word;
+}
+.receipt__steps {
+  background: var(--forest-50);
+  border: 1px solid var(--forest-200);
+  border-radius: var(--r-sm);
+  padding: 1rem 1.25rem;
+}
+.receipt__steps h4 {
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--forest-900);
+  margin: 0 0 0.5rem 0;
+}
+.receipt__steps ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+.receipt__steps li {
+  margin-bottom: 0.25rem;
+}
+.receipt__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.receipt__actions .btn {
+  flex: 1;
+  min-width: 140px;
+}
+
+
+/* ==========================================================================
+   20 · PRINT  (the dossier is a document — make it printable)
+   ========================================================================== */
+
+@media print {
+  .tricolour-bar, .gov-header, .hero, .stats, .filters, .filters__mobile-bar,
+  .filters__scrim, .results__tools, .cta-band, .gis-panel, .toast,
+  .modal__close, .hero__scroll-hint, .load-more-wrap { display: none !important; }
+
+  body { background: #fff; color: #000; font-size: 10pt; }
+  .modal-overlay { position: static; background: none; padding: 0; backdrop-filter: none; animation: none; }
+  .modal { max-width: none; max-height: none; box-shadow: none; border: 1px solid #000; animation: none; }
+  .modal__grid { display: block; overflow: visible; }
+  .section { padding-block: 0.5cm; break-inside: avoid; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+}
