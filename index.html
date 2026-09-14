@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
 
-<link rel="stylesheet" href="style.css?v=5.4">
+<link rel="stylesheet" href="style.css?v=5.5">
 
 <script>
 /*
@@ -396,7 +396,241 @@
 
 
 <!-- ==========================================================================
-     04 · REGISTRY & GIS  (search · filters · cards · split/map · table · CSV)
+     04 · FAST-TRACK THEME PROGRAMME
+     Previously a modal ("Theme Guide"). Promoted to a first-class page
+     section: it is indexable, linkable (#themes), reveals on scroll, and no
+     longer hides the programme behind a click. All six categories and their
+     descriptions are unchanged, and each card still opens Form CSR-1 with
+     the theme pre-selected — identical behaviour to the old modal buttons.
+     ========================================================================== -->
+<section class="section" id="themes" aria-labelledby="themes-title">
+  <div class="shell">
+
+    <div class="section-head reveal">
+      <span class="eyebrow">Priority allotment</span>
+      <h2 class="section-title" id="themes-title">The Fast-Track theme programme</h2>
+      <p class="section-lead">
+        MCL welcomes high-impact greening, sports, environmental, and civic concepts from business entities,
+        MSMEs, corporates, and citizens. Priority models are highlighted below for inspiration, but proposals
+        are <strong>not restricted to these</strong>—applicants are actively encouraged to propose any custom innovative theme.
+      </p>
+    </div>
+
+    <!-- Theme chips: scroll to the register so user picks a park first, then applies from dossier with the theme pre-selected. -->
+    <div class="theme-chips reveal" role="group" aria-label="Browse parks to apply with a Fast-Track theme">
+      <button type="button" class="theme-chip" data-theme="Butterfly &amp; Bird Sanctuary Park">
+        <svg aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg> Butterfly &amp; Bird Sanctuary
+      </button>
+      <button type="button" class="theme-chip" data-theme="E-Waste &amp; Recycled Art Eco-Park">
+        <svg aria-hidden="true" focusable="false"><use href="#i-recycle"></use></svg> E-Waste Eco-Park
+      </button>
+      <button type="button" class="theme-chip" data-theme="Open-Air Reading &amp; Knowledge Park">
+        <svg aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> Reading Park
+      </button>
+      <button type="button" class="theme-chip" data-theme="Urban Miyawaki Micro-Forest">
+        <svg aria-hidden="true" focusable="false"><use href="#i-tree"></use></svg> Miyawaki Forest
+      </button>
+      <button type="button" class="theme-chip" data-theme="Senior Citizen Sensory &amp; Wellness Park">
+        <svg aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg> Senior Wellness
+      </button>
+      <button type="button" class="theme-chip" data-theme="Children Eco-Science &amp; Play Park">
+        <svg aria-hidden="true" focusable="false"><use href="#i-flask"></use></svg> Science &amp; Play
+      </button>
+    </div>
+
+    <div class="themes-grid">
+
+      <!-- Theme 1 -->
+      <article class="theme-card reveal" style="--i:0">
+        <div class="theme-card__media">
+          <picture>
+            <source type="image/webp" srcset="assets/park-themes/opt/butterfly-bird-sanctuary-480.webp 480w, assets/park-themes/opt/butterfly-bird-sanctuary-720.webp 720w, assets/park-themes/opt/butterfly-bird-sanctuary-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+            <img class="theme-card__img" src="assets/park-themes/opt/butterfly-bird-sanctuary-720.jpg"
+                 width="720" height="405" loading="lazy" decoding="async"
+                 alt="Flowering nectar shrubs and a shaded planted border in a municipal park, the habitat planting used for butterfly and bird sanctuary sites.">
+          </picture>
+          <span class="theme-card__badge">
+            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
+          </span>
+        </div>
+        <div class="theme-card__body">
+          <h3>Butterfly &amp; Bird Sanctuary</h3>
+          <p class="theme-card__desc">
+            Active biodiversity habitats with native nectar flora, larval host plants,
+            natural clay bird baths, feeding stations, and nature observation trails.
+          </p>
+          <ul class="theme-card__features">
+            <li>Nectar flora</li><li>Bird feeders</li><li>Biodiversity trail</li>
+          </ul>
+          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Butterfly &amp; Bird Sanctuary Park">
+            Browse parks for this theme
+            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Theme 2 -->
+      <article class="theme-card reveal" style="--i:1">
+        <div class="theme-card__media">
+          <picture>
+            <source type="image/webp" srcset="assets/park-themes/opt/ewaste-eco-park-480.webp 480w, assets/park-themes/opt/ewaste-eco-park-720.webp 720w, assets/park-themes/opt/ewaste-eco-park-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+            <img class="theme-card__img" src="assets/park-themes/opt/ewaste-eco-park-720.jpg"
+                 width="720" height="405" loading="lazy" decoding="async"
+                 alt="Sculptural installation assembled from reclaimed metal and scrap components set in a planted public space.">
+          </picture>
+          <span class="theme-card__badge">
+            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
+          </span>
+        </div>
+        <div class="theme-card__body">
+          <h3>E-Waste &amp; Recycled Eco-Park</h3>
+          <p class="theme-card__desc">
+            Circular economy showcase with creative artistic sculptures made from
+            scrap and e-waste, solar smart benches, and interactive recycling kiosks.
+          </p>
+          <ul class="theme-card__features">
+            <li>Solar smart benches</li><li>Upcycled scrap art</li><li>Eco hub</li>
+          </ul>
+          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="E-Waste &amp; Recycled Art Eco-Park">
+            Browse parks for this theme
+            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Theme 3 -->
+      <article class="theme-card reveal" style="--i:2">
+        <div class="theme-card__media">
+          <picture>
+            <source type="image/webp" srcset="assets/park-themes/opt/open-air-reading-park-480.webp 480w, assets/park-themes/opt/open-air-reading-park-720.webp 720w, assets/park-themes/opt/open-air-reading-park-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+            <img class="theme-card__img" src="assets/park-themes/opt/open-air-reading-park-720.jpg"
+                 width="720" height="405" loading="lazy" decoding="async"
+                 alt="Shaded outdoor seating alcove beneath mature trees, of the kind used for open-air reading and study areas.">
+          </picture>
+          <span class="theme-card__badge">
+            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
+          </span>
+        </div>
+        <div class="theme-card__body">
+          <h3>Open-Air Reading Park</h3>
+          <p class="theme-card__desc">
+            Tranquil shaded reading gazebos, weatherproof mini-book trees, quiet study
+            seating alcoves, and solar LED reading lights.
+          </p>
+          <ul class="theme-card__features">
+            <li>Outdoor book trees</li><li>Solar study gazebos</li><li>Study pods</li>
+          </ul>
+          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Open-Air Reading &amp; Knowledge Park">
+            Browse parks for this theme
+            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Theme 4 -->
+      <article class="theme-card reveal" style="--i:0">
+        <div class="theme-card__media">
+          <picture>
+            <source type="image/webp" srcset="assets/park-themes/opt/urban-miyawaki-microforest-480.webp 480w, assets/park-themes/opt/urban-miyawaki-microforest-720.webp 720w, assets/park-themes/opt/urban-miyawaki-microforest-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+            <img class="theme-card__img" src="assets/park-themes/opt/urban-miyawaki-microforest-720.jpg"
+                 width="720" height="405" loading="lazy" decoding="async"
+                 alt="Dense stand of young native trees planted close together, the high-density planting method used for Miyawaki micro-forests.">
+          </picture>
+          <span class="theme-card__badge">
+            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
+          </span>
+        </div>
+        <div class="theme-card__body">
+          <h3>Urban Miyawaki Micro-Forest</h3>
+          <p class="theme-card__desc">
+            High-density native tree plantation achieving up to thirty times faster
+            growth, maximum carbon sequestration, and measurable microclimate cooling.
+          </p>
+          <ul class="theme-card__features">
+            <li>100% native species</li><li>Oxygen hub</li><li>Climate cooling</li>
+          </ul>
+          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Urban Miyawaki Micro-Forest">
+            Browse parks for this theme
+            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Theme 5 -->
+      <article class="theme-card reveal" style="--i:1">
+        <div class="theme-card__media">
+          <picture>
+            <source type="image/webp" srcset="assets/park-themes/opt/senior-sensory-wellness-480.webp 480w, assets/park-themes/opt/senior-sensory-wellness-720.webp 720w, assets/park-themes/opt/senior-sensory-wellness-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+            <img class="theme-card__img" src="assets/park-themes/opt/senior-sensory-wellness-720.jpg"
+                 width="720" height="405" loading="lazy" decoding="async"
+                 alt="Level paved walking path with benches running through planted lawns, laid out for accessible senior use.">
+          </picture>
+          <span class="theme-card__badge">
+            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
+          </span>
+        </div>
+        <div class="theme-card__body">
+          <h3>Senior Sensory &amp; Wellness</h3>
+          <p class="theme-card__desc">
+            Dedicated sensory walking tracks, aromatic herbal medicinal beds,
+            ergonomic resting benches, and gentle open-air physiotherapy stations.
+          </p>
+          <ul class="theme-card__features">
+            <li>Sensory walkways</li><li>Healing herb beds</li><li>Senior benches</li>
+          </ul>
+          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Senior Citizen Sensory &amp; Wellness Park">
+            Browse parks for this theme
+            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Theme 6 -->
+      <article class="theme-card reveal" style="--i:2">
+        <div class="theme-card__media">
+          <picture>
+            <source type="image/webp" srcset="assets/park-themes/opt/children-eco-science-play-480.webp 480w, assets/park-themes/opt/children-eco-science-play-720.webp 720w, assets/park-themes/opt/children-eco-science-play-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+            <img class="theme-card__img" src="assets/park-themes/opt/children-eco-science-play-720.jpg"
+                 width="720" height="405" loading="lazy" decoding="async"
+                 alt="Children's play equipment set on open ground within a planted municipal park.">
+          </picture>
+          <span class="theme-card__badge">
+            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
+          </span>
+        </div>
+        <div class="theme-card__body">
+          <h3>Children Eco-Science &amp; Play</h3>
+          <p class="theme-card__desc">
+            Eco-friendly natural timber play equipment, interactive water and solar
+            physics demonstrators, and botanical discovery gardens.
+          </p>
+          <ul class="theme-card__features">
+            <li>Nature playscapes</li><li>Science exhibits</li><li>Nature discovery</li>
+          </ul>
+          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Children Eco-Science &amp; Play Park">
+            Browse parks for this theme
+            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="policy-note reveal">
+      <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
+      <p>
+        <strong>Fast-Track &amp; Open Innovation.</strong> In addition to the notified models above,
+        MCL actively invites innovative greening, environmental, recreational, and civic concepts.
+        The list of themes is <strong>not restricted</strong>—select <em>Other / Custom Theme Concept</em> in the Expression of Interest form to specify and submit your own project theme.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     05 · REGISTRY & GIS  (search · filters · cards · split/map · table · CSV)
      ========================================================================== -->
 <section class="section section--paper2" id="registry" aria-labelledby="registry-title">
   <!-- Anchor for direct #gis navigation links -->
@@ -663,241 +897,6 @@
   </div>
 </section>
 
-
-<!-- ==========================================================================
-     05 · FAST-TRACK THEME PROGRAMME
-     Previously a modal ("Theme Guide"). Promoted to a first-class page
-     section: it is indexable, linkable (#themes), reveals on scroll, and no
-     longer hides the programme behind a click. All six categories and their
-     descriptions are unchanged, and each card still opens Form CSR-1 with
-     the theme pre-selected — identical behaviour to the old modal buttons.
-     ========================================================================== -->
-<section class="section" id="themes" aria-labelledby="themes-title">
-  <div class="shell">
-
-    <div class="section-head reveal">
-      <span class="eyebrow">Priority allotment</span>
-      <h2 class="section-title" id="themes-title">The Fast-Track theme programme</h2>
-      <p class="section-lead">
-        MCL welcomes high-impact greening, sports, environmental, and civic concepts from business entities,
-        MSMEs, corporates, and citizens. Priority models are highlighted below for inspiration, but proposals
-        are <strong>not restricted to these</strong>—applicants are actively encouraged to propose any custom innovative theme.
-      </p>
-    </div>
-
-    <!-- Theme chips: scroll to the register so user picks a park first, then applies from dossier with the theme pre-selected. -->
-    <div class="theme-chips reveal" role="group" aria-label="Browse parks to apply with a Fast-Track theme">
-      <button type="button" class="theme-chip" data-theme="Butterfly &amp; Bird Sanctuary Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg> Butterfly &amp; Bird Sanctuary
-      </button>
-      <button type="button" class="theme-chip" data-theme="E-Waste &amp; Recycled Art Eco-Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-recycle"></use></svg> E-Waste Eco-Park
-      </button>
-      <button type="button" class="theme-chip" data-theme="Open-Air Reading &amp; Knowledge Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> Reading Park
-      </button>
-      <button type="button" class="theme-chip" data-theme="Urban Miyawaki Micro-Forest">
-        <svg aria-hidden="true" focusable="false"><use href="#i-tree"></use></svg> Miyawaki Forest
-      </button>
-      <button type="button" class="theme-chip" data-theme="Senior Citizen Sensory &amp; Wellness Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg> Senior Wellness
-      </button>
-      <button type="button" class="theme-chip" data-theme="Children Eco-Science &amp; Play Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-flask"></use></svg> Science &amp; Play
-      </button>
-    </div>
-
-    <div class="themes-grid">
-
-      <!-- Theme 1 -->
-      <article class="theme-card reveal" style="--i:0">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/butterfly-bird-sanctuary-480.webp 480w, assets/park-themes/opt/butterfly-bird-sanctuary-720.webp 720w, assets/park-themes/opt/butterfly-bird-sanctuary-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/butterfly-bird-sanctuary-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Flowering nectar shrubs and a shaded planted border in a municipal park, the habitat planting used for butterfly and bird sanctuary sites.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Butterfly &amp; Bird Sanctuary</h3>
-          <p class="theme-card__desc">
-            Active biodiversity habitats with native nectar flora, larval host plants,
-            natural clay bird baths, feeding stations, and nature observation trails.
-          </p>
-          <ul class="theme-card__features">
-            <li>Nectar flora</li><li>Bird feeders</li><li>Biodiversity trail</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Butterfly &amp; Bird Sanctuary Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 2 -->
-      <article class="theme-card reveal" style="--i:1">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/ewaste-eco-park-480.webp 480w, assets/park-themes/opt/ewaste-eco-park-720.webp 720w, assets/park-themes/opt/ewaste-eco-park-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/ewaste-eco-park-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Sculptural installation assembled from reclaimed metal and scrap components set in a planted public space.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>E-Waste &amp; Recycled Eco-Park</h3>
-          <p class="theme-card__desc">
-            Circular economy showcase with creative artistic sculptures made from
-            scrap and e-waste, solar smart benches, and interactive recycling kiosks.
-          </p>
-          <ul class="theme-card__features">
-            <li>Solar smart benches</li><li>Upcycled scrap art</li><li>Eco hub</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="E-Waste &amp; Recycled Art Eco-Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 3 -->
-      <article class="theme-card reveal" style="--i:2">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/open-air-reading-park-480.webp 480w, assets/park-themes/opt/open-air-reading-park-720.webp 720w, assets/park-themes/opt/open-air-reading-park-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/open-air-reading-park-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Shaded outdoor seating alcove beneath mature trees, of the kind used for open-air reading and study areas.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Open-Air Reading Park</h3>
-          <p class="theme-card__desc">
-            Tranquil shaded reading gazebos, weatherproof mini-book trees, quiet study
-            seating alcoves, and solar LED reading lights.
-          </p>
-          <ul class="theme-card__features">
-            <li>Outdoor book trees</li><li>Solar study gazebos</li><li>Study pods</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Open-Air Reading &amp; Knowledge Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 4 -->
-      <article class="theme-card reveal" style="--i:0">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/urban-miyawaki-microforest-480.webp 480w, assets/park-themes/opt/urban-miyawaki-microforest-720.webp 720w, assets/park-themes/opt/urban-miyawaki-microforest-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/urban-miyawaki-microforest-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Dense stand of young native trees planted close together, the high-density planting method used for Miyawaki micro-forests.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Urban Miyawaki Micro-Forest</h3>
-          <p class="theme-card__desc">
-            High-density native tree plantation achieving up to thirty times faster
-            growth, maximum carbon sequestration, and measurable microclimate cooling.
-          </p>
-          <ul class="theme-card__features">
-            <li>100% native species</li><li>Oxygen hub</li><li>Climate cooling</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Urban Miyawaki Micro-Forest">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 5 -->
-      <article class="theme-card reveal" style="--i:1">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/senior-sensory-wellness-480.webp 480w, assets/park-themes/opt/senior-sensory-wellness-720.webp 720w, assets/park-themes/opt/senior-sensory-wellness-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/senior-sensory-wellness-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Level paved walking path with benches running through planted lawns, laid out for accessible senior use.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Senior Sensory &amp; Wellness</h3>
-          <p class="theme-card__desc">
-            Dedicated sensory walking tracks, aromatic herbal medicinal beds,
-            ergonomic resting benches, and gentle open-air physiotherapy stations.
-          </p>
-          <ul class="theme-card__features">
-            <li>Sensory walkways</li><li>Healing herb beds</li><li>Senior benches</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Senior Citizen Sensory &amp; Wellness Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 6 -->
-      <article class="theme-card reveal" style="--i:2">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/children-eco-science-play-480.webp 480w, assets/park-themes/opt/children-eco-science-play-720.webp 720w, assets/park-themes/opt/children-eco-science-play-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/children-eco-science-play-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Children's play equipment set on open ground within a planted municipal park.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Children Eco-Science &amp; Play</h3>
-          <p class="theme-card__desc">
-            Eco-friendly natural timber play equipment, interactive water and solar
-            physics demonstrators, and botanical discovery gardens.
-          </p>
-          <ul class="theme-card__features">
-            <li>Nature playscapes</li><li>Science exhibits</li><li>Nature discovery</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Children Eco-Science &amp; Play Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="policy-note reveal">
-      <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-      <p>
-        <strong>Fast-Track &amp; Open Innovation.</strong> In addition to the notified models above,
-        MCL actively invites innovative greening, environmental, recreational, and civic concepts.
-        The list of themes is <strong>not restricted</strong>—select <em>Other / Custom Theme Concept</em> in the Expression of Interest form to specify and submit your own project theme.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-
 <!-- ==========================================================================
      06 · IMPACT & GREEN COVER
      All figures are derived at runtime from parks_data.json — nothing here
@@ -1009,11 +1008,11 @@
       <div class="footer-col">
         <h3>On this portal</h3>
         <ul>
-          <li><a href="#registry">Park register</a></li>
-          <li><a href="#themes">Fast-Track themes</a></li>
           <li><a href="#process">How adoption works</a></li>
-          <li><a href="#impact">Green cover data</a></li>
+          <li><a href="#themes">Fast-Track themes</a></li>
+          <li><a href="#registry">Park register</a></li>
           <li><a href="#gis">GIS visualiser</a></li>
+          <li><a href="#impact">Green cover data</a></li>
         </ul>
       </div>
 
@@ -1390,6 +1389,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
 <script defer src="motion.js?v=4.7"></script>
-<script defer src="script.js?v=5.4"></script>
+<script defer src="script.js?v=5.5"></script>
 </body>
 </html>

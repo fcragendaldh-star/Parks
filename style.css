@@ -362,7 +362,7 @@ button { cursor: pointer; }
   padding-inline: var(--gutter);
 }
 
-.section { padding-block: var(--section-y); position: relative; }
+.section { padding-block: var(--section-y); position: relative; scroll-margin-top: 4.5rem; }
 .section--paper2 { background: var(--paper-2); }
 .section--tint {
   background: linear-gradient(180deg, var(--forest-50), var(--paper) 70%);
