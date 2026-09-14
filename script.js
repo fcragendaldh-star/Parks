@@ -855,10 +855,57 @@
     renderViews();
 
     if (viewName === "split" || viewName === "map") {
+      if (!map) {
+        initGis();
+      } else if (map.invalidateSize) {
+        map.invalidateSize();
+      }
       setTimeout(() => {
         if (!map) initGis();
         else if (map.invalidateSize) map.invalidateSize();
-      }, 60);
+      }, 80);
+    }
+  }
+
+  /**
+   * Directly unclusters and opens the pin-pointed popup for a site on the first go.
+   */
+  function focusAndOpenPopup(site) {
+    if (!site || !map) return;
+    const marker = markersById[site.id];
+    if (!marker) return;
+
+    if (map.invalidateSize) {
+      map.invalidateSize();
+    }
+
+    // Ensure marker is present in cluster or map layer
+    if (markerCluster && !markerCluster.hasLayer(marker)) {
+      markerCluster.addLayer(marker);
+    } else if (!markerCluster && !map.hasLayer(marker)) {
+      map.addLayer(marker);
+    }
+
+    const doOpen = () => {
+      setTimeout(() => {
+        if (marker && marker.openPopup) {
+          marker.openPopup();
+        }
+      }, 40);
+    };
+
+    if (markerCluster && typeof markerCluster.zoomToShowLayer === "function") {
+      markerCluster.zoomToShowLayer(marker, () => {
+        if (map.getZoom() < 16) {
+          map.setView([site.lat, site.lng], 16, { animate: false });
+        } else {
+          map.panTo([site.lat, site.lng], { animate: false });
+        }
+        doOpen();
+      });
+    } else {
+      map.setView([site.lat, site.lng], 16, { animate: false });
+      doOpen();
     }
   }
 
@@ -866,33 +913,50 @@
     if (!site) return;
     selectedId = site.id;
 
-    if (currentView !== "split" && currentView !== "map") {
+    const needsViewSwitch = currentView !== "split" && currentView !== "map";
+    if (needsViewSwitch) {
       switchView("split");
     }
 
-    const reg = document.getElementById("registry");
-    if (reg) {
-      reg.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!map) {
+      initGis();
     }
 
-    setTimeout(() => {
-      if (map) {
-        if (map.setView) {
-          map.setView([site.lat, site.lng], 16, { animate: true });
-        }
-        if (markersById[site.id] && markersById[site.id].openPopup) {
-          markersById[site.id].openPopup();
-        }
-      }
+    // Scroll to the map stage on mobile so the map and popup are immediately visible
+    const targetScroll =
+      window.innerWidth <= 1024
+        ? (document.getElementById("mapStage") || document.getElementById("registry"))
+        : (document.getElementById("registry") || document.getElementById("gisSplitLayout"));
 
-      // Highlight split card if split list is present
+    if (targetScroll) {
+      targetScroll.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Highlight split card if split list is present
+    const highlightCard = () => {
       const cardEl = document.getElementById("split-card-" + site.id);
       if (cardEl) {
         cardEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
         document.querySelectorAll(".gis-split-card").forEach((c) => c.classList.remove("is-active-site"));
         cardEl.classList.add("is-active-site");
       }
-    }, 150);
+    };
+    highlightCard();
+
+    const delay = needsViewSwitch ? 140 : 30;
+
+    setTimeout(() => {
+      focusAndOpenPopup(site);
+      highlightCard();
+    }, delay);
+
+    // Safety fallback: ensure popup is open after any layout transitions settle
+    setTimeout(() => {
+      const marker = markersById[site.id];
+      if (marker && (!marker.isPopupOpen || !marker.isPopupOpen())) {
+        focusAndOpenPopup(site);
+      }
+    }, delay + 350);
   }
 
   /* ---- Mobile filter bottom sheet ------------------------------------- */
@@ -1055,7 +1119,7 @@
       });
     }
 
-    if (FILTERED_SITES.length > 0 && FILTERED_SITES.length < ALL_SITES.length) {
+    if (!selectedId && FILTERED_SITES.length > 0 && FILTERED_SITES.length < ALL_SITES.length) {
       const latlngs = FILTERED_SITES.map((s) => [s.lat, s.lng]);
       if (latlngs.length > 0) {
         map.fitBounds(latlngs, { padding: [30, 30], maxZoom: 15 });
