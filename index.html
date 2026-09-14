@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
 
-<link rel="stylesheet" href="style.css?v=5.1">
+<link rel="stylesheet" href="style.css?v=5.3">
 
 <script>
 /*
@@ -129,11 +129,10 @@
         <span class="contact-label">Municipal Corporation Helpline</span>
         <a href="tel:+919086791867" class="contact-val">90867-91867</a>
       </div>
-      <button type="button" class="btn btn--primary" id="openInterestGlobal">
-        <svg aria-hidden="true" focusable="false"><use href="#i-doc"></use></svg>
-        <span>Expression of Interest</span>
-        <span class="sr-only">Open the Expression of Interest (EOI) form</span>
-      </button>
+      <a class="btn btn--primary" href="#registry">
+        <svg aria-hidden="true" focusable="false"><use href="#i-search"></use></svg>
+        <span>Browse &amp; Apply</span>
+      </a>
     </div>
 
   </div>
@@ -414,6 +413,12 @@
         split list &amp; map, full GIS geospatial map and data table, or submit an Expression of Interest.
       </p>
     </div>
+    <!-- Theme hint: shown when user clicks a theme chip/card button; JS populates #themeHintName -->
+    <div class="theme-hint-banner" id="themeHintBanner" hidden>
+      <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
+      <p>You selected the <strong id="themeHintName"></strong> theme. Open any park dossier below and choose this theme when you submit your Expression of Interest.</p>
+      <button type="button" class="theme-hint-dismiss" id="themeHintDismiss" aria-label="Dismiss theme hint">&#x2715;</button>
+    </div>
 
     <!-- Mobile: sticky trigger for the filter bottom sheet (CSS-hidden ≥1025px) -->
     <div class="filters__mobile-bar">
@@ -680,8 +685,8 @@
       </p>
     </div>
 
-    <!-- Quick-select chips: jump straight into Form CSR-1 with a theme set. -->
-    <div class="theme-chips reveal" role="group" aria-label="Apply with a Fast-Track theme">
+    <!-- Theme chips: scroll to the register so user picks a park first, then applies from dossier with the theme pre-selected. -->
+    <div class="theme-chips reveal" role="group" aria-label="Browse parks to apply with a Fast-Track theme">
       <button type="button" class="theme-chip" data-theme="Butterfly &amp; Bird Sanctuary Park">
         <svg aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg> Butterfly &amp; Bird Sanctuary
       </button>
@@ -727,7 +732,7 @@
             <li>Nectar flora</li><li>Bird feeders</li><li>Biodiversity trail</li>
           </ul>
           <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Butterfly &amp; Bird Sanctuary Park">
-            Apply with this theme
+            Browse parks for this theme
             <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
           </button>
         </div>
@@ -756,7 +761,7 @@
             <li>Solar smart benches</li><li>Upcycled scrap art</li><li>Eco hub</li>
           </ul>
           <button type="button" class="btn btn--ghost btn-theme-select" data-theme="E-Waste &amp; Recycled Art Eco-Park">
-            Apply with this theme
+            Browse parks for this theme
             <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
           </button>
         </div>
@@ -785,7 +790,7 @@
             <li>Outdoor book trees</li><li>Solar study gazebos</li><li>Study pods</li>
           </ul>
           <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Open-Air Reading &amp; Knowledge Park">
-            Apply with this theme
+            Browse parks for this theme
             <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
           </button>
         </div>
@@ -814,7 +819,7 @@
             <li>100% native species</li><li>Oxygen hub</li><li>Climate cooling</li>
           </ul>
           <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Urban Miyawaki Micro-Forest">
-            Apply with this theme
+            Browse parks for this theme
             <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
           </button>
         </div>
@@ -843,7 +848,7 @@
             <li>Sensory walkways</li><li>Healing herb beds</li><li>Senior benches</li>
           </ul>
           <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Senior Citizen Sensory &amp; Wellness Park">
-            Apply with this theme
+            Browse parks for this theme
             <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
           </button>
         </div>
@@ -872,7 +877,7 @@
             <li>Nature playscapes</li><li>Science exhibits</li><li>Nature discovery</li>
           </ul>
           <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Children Eco-Science &amp; Play Park">
-            Apply with this theme
+            Browse parks for this theme
             <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
           </button>
         </div>
@@ -943,15 +948,15 @@
     <div class="cta-band__text">
       <h2 id="cta-title">Ready to adopt a park?</h2>
       <p>
-        Submit an Expression of Interest for a specific site, or submit a city-wide proposal
-        covering multiple wards and green corridors — open to corporates, MSMEs, traders, and organizations.
+        Browse the register, open any park dossier, and submit an Expression of Interest directly from
+        the site page — open to corporates, MSMEs, traders, and organizations.
       </p>
     </div>
     <div class="cta-band__actions">
-      <button type="button" class="btn btn--accent" id="openInterestFooter">
-        <svg aria-hidden="true" focusable="false"><use href="#i-doc"></use></svg>
-        Submit Expression of Interest
-      </button>
+      <a class="btn btn--accent" href="#registry">
+        <svg aria-hidden="true" focusable="false"><use href="#i-search"></use></svg>
+        Browse the Register
+      </a>
       <a class="btn btn--onDark" href="tel:+919086791867">
         <svg aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>
         90867-91867
@@ -1385,6 +1390,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
 <script defer src="motion.js?v=4.7"></script>
-<script defer src="script.js?v=5.2"></script>
+<script defer src="script.js?v=5.3"></script>
 </body>
 </html>

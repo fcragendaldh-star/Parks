@@ -1646,6 +1646,32 @@ html.disable-fall .hero__botanical { display: none !important; }
 .policy-note p { font-size: var(--t-base); color: #6E4708; }
 .policy-note strong { color: #56370A; }
 
+/* Theme hint banner — appears above the register when a theme chip/card is clicked */
+.theme-hint-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  margin-bottom: 1.25rem;
+  background: var(--forest-50);
+  border: 1px solid var(--forest-300);
+  border-left: 3px solid var(--forest-700);
+  border-radius: var(--r-sm);
+}
+.theme-hint-banner svg { width: 18px; height: 18px; flex: none; color: var(--forest-700); margin-top: 2px; }
+.theme-hint-banner p { flex: 1; font-size: var(--t-sm); color: var(--forest-900); }
+.theme-hint-banner p strong { color: var(--forest-800); }
+.theme-hint-dismiss {
+  flex: none;
+  background: none;
+  border: none;
+  padding: 0 0.25rem;
+  font-size: 1rem;
+  color: var(--ink-3);
+  cursor: pointer;
+  line-height: 1;
+}
+.theme-hint-dismiss:hover { color: var(--ink-1); }
 
 /* ==========================================================================
    12 · IMPACT & GREEN COVER

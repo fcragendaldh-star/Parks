@@ -1158,6 +1158,19 @@
     if (els.modalSuccessCard) els.modalSuccessCard.hidden = true;
     toggleCustomThemeInput();
 
+    // If user clicked a theme chip/card before selecting a park, pre-select that theme now.
+    if (site && pendingTheme && els.themeSelect) {
+      els.themeSelect.value = pendingTheme;
+      if (els.themeSelect.value !== pendingTheme) {
+        els.themeSelect.value = "Other Custom Theme";
+      }
+      toggleCustomThemeInput();
+      // Dismiss the hint banner since the theme is now applied.
+      const banner = document.getElementById("themeHintBanner");
+      if (banner) banner.hidden = true;
+      pendingTheme = null;
+    }
+
     els.modalOverlay.hidden = false;
     document.body.classList.add("is-locked");
 
@@ -1433,22 +1446,41 @@
     }
   }
 
-  /** Open Form CSR-1 with a Fast-Track or custom theme pre-selected. */
-  function openWithTheme(theme) {
-    openModal(selectedId);
-    if (!els.themeSelect) return;
+  /** Store the pending theme and scroll to the register so the user picks a park first. */
+  let pendingTheme = null;
 
-    els.themeSelect.value = theme;
-    // Confirm the value exists; if not, default to Other Custom Theme
-    if (els.themeSelect.value !== theme) {
-      els.themeSelect.value = "Other Custom Theme";
+  function showThemeHint(theme) {
+    pendingTheme = theme;
+    const banner = document.getElementById("themeHintBanner");
+    const nameEl = document.getElementById("themeHintName");
+    if (banner && nameEl) {
+      nameEl.textContent = theme;
+      banner.hidden = false;
     }
-    toggleCustomThemeInput();
+    const registry = document.getElementById("registry");
+    if (registry) {
+      registry.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
-    if (els.themeSelect.value === "Other Custom Theme" && els.customThemeName) {
-      setTimeout(() => els.customThemeName.focus(), 150);
+  function openWithTheme(theme) {
+    // If a specific park is already selected, open the modal and pre-select the theme directly.
+    if (selectedId) {
+      openModal(selectedId);
+      if (!els.themeSelect) return;
+      els.themeSelect.value = theme;
+      if (els.themeSelect.value !== theme) {
+        els.themeSelect.value = "Other Custom Theme";
+      }
+      toggleCustomThemeInput();
+      if (els.themeSelect.value === "Other Custom Theme" && els.customThemeName) {
+        setTimeout(() => els.customThemeName.focus(), 150);
+      } else {
+        els.themeSelect.focus({ preventScroll: false });
+      }
     } else {
-      els.themeSelect.focus({ preventScroll: false });
+      // No park selected yet — guide user to the register first.
+      showThemeHint(theme);
     }
   }
 
@@ -2076,9 +2108,26 @@
     });
 
     // ---- Form CSR-1 entry points ------------------------------------
-    [els.openInterestGlobal, els.openInterestFooter, els.openInterestFooter2].forEach((btn) => {
-      if (btn) btn.addEventListener("click", () => openModal(null));
-    });
+    // openInterestGlobal, openInterestFooter are now plain anchor → #registry;
+    // openInterestFooter2 is a footer link — scroll it to registry too.
+    const footerEoiLink = byId("openInterestFooter2");
+    if (footerEoiLink) {
+      footerEoiLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        const registry = document.getElementById("registry");
+        if (registry) registry.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    // ---- Theme hint banner dismiss ----------------------------------
+    const themeHintDismiss = byId("themeHintDismiss");
+    if (themeHintDismiss) {
+      themeHintDismiss.addEventListener("click", () => {
+        const banner = byId("themeHintBanner");
+        if (banner) banner.hidden = true;
+        pendingTheme = null;
+      });
+    }
 
     // ---- Fast-Track & custom theme selection -----------------------
     if (els.themeSelect) {
