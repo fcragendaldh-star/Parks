@@ -1215,7 +1215,24 @@
     }, 280);
   }
 
+  /**
+   * Evaluates whether a site has confirmed Google Street View coverage.
+   * Uses verified coverage flag from register data.
+   */
+  function siteHasStreetView(site) {
+    if (!site) return false;
+    if (typeof site.has_streetview === "boolean") {
+      return site.has_streetview;
+    }
+    return false;
+  }
+
   function setImageryMode(mode) {
+    // Strict rule: if Street View is requested but not available for this site, force satellite mode
+    if (mode === "street" && currentModalSite && !siteHasStreetView(currentModalSite)) {
+      mode = "satellite";
+    }
+
     currentImageryMode = mode;
     const badge = document.getElementById("modalImageryBadge");
 
@@ -1250,7 +1267,10 @@
         els.tabSatellite.classList.add("is-active");
         els.tabSatellite.setAttribute("aria-selected", "true");
       }
-      if (els.streetViewFrame) els.streetViewFrame.hidden = true;
+      if (els.streetViewFrame) {
+        els.streetViewFrame.hidden = true;
+        els.streetViewFrame.src = "about:blank";
+      }
       if (els.modalMiniMap) {
         els.modalMiniMap.hidden = false;
         if (currentModalSite) updateModalMiniMap(currentModalSite);
@@ -1261,7 +1281,29 @@
 
   function renderModalImagery(site) {
     currentModalSite = site;
-    setImageryMode("street");
+    const hasSV = siteHasStreetView(site);
+
+    if (els.tabStreetView) {
+      const labelSpan = els.tabStreetView.querySelector("span");
+      if (hasSV) {
+        els.tabStreetView.disabled = false;
+        els.tabStreetView.classList.remove("is-disabled");
+        els.tabStreetView.title = "Switch to 360° Street View";
+        if (labelSpan) labelSpan.textContent = "Street View (360°)";
+      } else {
+        els.tabStreetView.disabled = true;
+        els.tabStreetView.classList.add("is-disabled");
+        els.tabStreetView.title = "Street View imagery is not available for this site";
+        if (labelSpan) labelSpan.textContent = "Street View (Unavailable)";
+      }
+    }
+
+    if (els.modalStreetViewLink) {
+      els.modalStreetViewLink.hidden = !hasSV;
+    }
+
+    // STRICT RULE: If Street View is available -> Street View; otherwise -> Satellite View
+    setImageryMode(hasSV ? "street" : "satellite");
   }
 
   function renderGeneralEoi() {
@@ -1955,7 +1997,10 @@
     }
 
     if (els.tabStreetView) {
-      els.tabStreetView.addEventListener("click", () => setImageryMode("street"));
+      els.tabStreetView.addEventListener("click", () => {
+        if (currentModalSite && !siteHasStreetView(currentModalSite)) return;
+        setImageryMode("street");
+      });
     }
     if (els.tabSatellite) {
       els.tabSatellite.addEventListener("click", () => setImageryMode("satellite"));

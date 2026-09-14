@@ -2535,6 +2535,16 @@ html.disable-fall .hero__botanical { display: none !important; }
   border-color: var(--forest-800);
   box-shadow: var(--sh-1);
 }
+.imagery-tab:disabled,
+.imagery-tab.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: var(--paper-2);
+  color: var(--ink-3);
+  border-color: var(--rule);
+  box-shadow: none;
+}
 .imagery-tab svg {
   width: 13px;
   height: 13px;
