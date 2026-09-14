@@ -117,8 +117,6 @@
     els.meterZones = byId("meterZones");
     els.meterFootfall = byId("meterFootfall");
     els.figureStack = byId("figureStack");
-    els.stewardshipList = byId("stewardshipList");
-    els.adoptedCount = byId("adoptedCount");
 
     // GIS
     els.map = byId("map");
@@ -214,7 +212,6 @@
     updateStatistics();
     updateStatusCounts();
     buildImpactPanels();
-    buildStewardshipList();
     applyFilters();
     initGis();
   }
@@ -730,8 +727,6 @@
     setStat(els.statRwa, rwa, 0);
     setStat(els.statAdopted, adopted, 0);
     setStat(els.statArea, totalSqm / SQM_PER_ACRE, 1);
-
-    if (els.adoptedCount) els.adoptedCount.textContent = String(adopted);
   }
 
   function setStat(el, value, decimals) {
@@ -1803,56 +1798,6 @@
     }
     els.figureStack.replaceChildren(frag);
   }
-
-  /**
-   * Sites already under CSR agreement.
-   * The register records the custodianship category ("CORPORATE") but not
-   * the partner organisation, so only recorded facts are published here —
-   * no invented partner names, logos or success narratives.
-   */
-  function buildStewardshipList() {
-    if (!els.stewardshipList) return;
-
-    const adopted = ALL_SITES
-      .filter((s) => s.status === "Adopted")
-      .sort((a, b) => (b.area_sqm || 0) - (a.area_sqm || 0))
-      .slice(0, 12);
-
-    if (!adopted.length) {
-      els.stewardshipList.replaceChildren();
-      return;
-    }
-
-    const frag = document.createDocumentFragment();
-    adopted.forEach((s, i) => {
-      const card = document.createElement("button");
-      card.type = "button";
-      card.className = "steward-card card--lift reveal";
-      card.style.setProperty("--i", String(i % 4));
-      card.dataset.id = s.id;
-      card.setAttribute("aria-label", "Open dossier for " + s.name);
-
-      const name = document.createElement("span");
-      name.className = "steward-card__name";
-      name.textContent = s.name;
-
-      const meta = document.createElement("span");
-      meta.className = "steward-card__meta";
-      meta.append(
-        tag("", "Zone " + s.zone),
-        tag("", s.ward ? "Ward " + s.ward : "Ward —"),
-        tag("", formatArea(s.area_sqm)),
-        tag("", s.contract_end ? "Until " + s.contract_end : "Active")
-      );
-
-      card.append(name, meta);
-      frag.appendChild(card);
-    });
-
-    els.stewardshipList.replaceChildren(frag);
-    if (window.Motion) window.Motion.armReveals(els.stewardshipList);
-  }
-
   /* ======================================================================
      12 · TOAST
      ====================================================================== */
@@ -1937,12 +1882,6 @@
       els.tableBody.addEventListener("click", (e) => {
         const btn = e.target.closest(".btn-table-action");
         if (btn && btn.dataset.id) openModal(btn.dataset.id);
-      });
-    }
-    if (els.stewardshipList) {
-      els.stewardshipList.addEventListener("click", (e) => {
-        const card = e.target.closest(".steward-card");
-        if (card && card.dataset.id) openModal(card.dataset.id);
       });
     }
 

@@ -31,7 +31,7 @@ dependencies to install.
 so a section of the page maps to one numbered block of each file:
 
 ```
-hero → stats → process → registry → themes → impact → stewardship → GIS → footer
+hero → stats → process → registry → themes → impact → GIS → footer
 ```
 
 `motion.js` is deliberately separate and entirely optional. **Deleting it
