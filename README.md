@@ -118,19 +118,13 @@ present so the page is correct before JavaScript runs.
   "zone": "A", "ward": 2, "area_sqm": 231.7,
   "lat": 30.940707, "lng": 75.856457,
   "authority": "MCL SELF MANAGED", "status": "Available",
-  "footfall": "0-50", "contract_end": null, "condition": "Average"
+  "footfall": "0-50", "contract_end": null
 }
 ```
 
 `category` is `PARK` or `GREEN BELT`. `status` is `Available`, `RWA Managed` or
 `Adopted`. `footfall` is one of `0-50`, `50-200`, `200-500+`. Renaming any of
 these breaks filtering and CSV export.
-
-**Data caveat:** `condition` is `"Average"` for all 918 records, so the
-"Recorded condition" dossier row currently carries no distinguishing
-information. The field is retained because the schema and the dossier layout
-expect it; it becomes useful as soon as the Horticulture Wing records real
-assessments.
 
 ---
 

@@ -6,7 +6,7 @@
    ------------------------------
    1. parks_data.json schema. Fields consumed here, unchanged:
         id, name, category, zone, ward, area_sqm, lat, lng,
-        authority, status, footfall, contract_end, condition
+        authority, status, footfall, contract_end
    2. Form CSR-1 payload. Field names, option values, the Netlify
       `form-name`, the POST to "/" and the mailto fallback are all
       byte-for-byte as they were. Downstream systems (Netlify Forms
@@ -141,7 +141,6 @@
     els.modalArea = byId("modalArea");
     els.modalAuthority = byId("modalAuthority");
     els.modalContract = byId("modalContract");
-    els.modalCondition = byId("modalCondition");
     els.modalCoords = byId("modalCoords");
     els.streetViewImg = byId("streetViewImg");
     els.imageryFallback = byId("imageryFallback");
@@ -1194,7 +1193,6 @@
     els.modalContract.textContent = site.contract_end
       ? "Under agreement until " + site.contract_end
       : "Open for immediate adoption (CSR & Business)";
-    els.modalCondition.textContent = site.condition || "Average";
     els.modalCoords.textContent =
       site.lat.toFixed(6) + "° N, " + site.lng.toFixed(6) + "° E";
 
