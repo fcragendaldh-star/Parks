@@ -138,8 +138,10 @@
     els.modalAuthority = byId("modalAuthority");
     els.modalContract = byId("modalContract");
     els.modalCoords = byId("modalCoords");
-    els.streetViewImg = byId("streetViewImg");
-    els.imageryFallback = byId("imageryFallback");
+    els.streetViewFrame = byId("streetViewFrame");
+    els.modalMiniMap = byId("modalMiniMap");
+    els.tabStreetView = byId("tabStreetView");
+    els.tabSatellite = byId("tabSatellite");
     els.modalLocateGis = byId("modalLocateGis");
     els.modalMapsLink = byId("modalMapsLink");
     els.modalStreetViewLink = byId("modalStreetViewLink");
@@ -1139,7 +1141,7 @@
     els.modalStreetViewLink.href =
       "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" + site.lat + "," + site.lng;
 
-    renderStreetView(site);
+    renderModalImagery(site);
 
     els.siteOfInterest.value =
       site.name + " (" + site.id + " · Ward " + (site.ward || "—") + " · Zone " + site.zone + ")";
@@ -1170,6 +1172,8 @@
 
   let miniMap = null;
   let miniMapMarker = null;
+  let currentModalSite = null;
+  let currentImageryMode = "street";
 
   function updateModalMiniMap(site) {
     if (typeof L === "undefined") return;
@@ -1212,32 +1216,53 @@
     }, 280);
   }
 
-  function renderStreetView(site) {
+  function setImageryMode(mode) {
+    currentImageryMode = mode;
     const badge = document.getElementById("modalImageryBadge");
-    updateModalMiniMap(site);
 
-    const key = getMapsApiKey();
-    if (!key) {
-      if (els.streetViewImg) {
-        els.streetViewImg.hidden = true;
-        els.streetViewImg.removeAttribute("src");
+    if (mode === "street") {
+      if (els.tabStreetView) {
+        els.tabStreetView.classList.add("is-active");
+        els.tabStreetView.setAttribute("aria-selected", "true");
+      }
+      if (els.tabSatellite) {
+        els.tabSatellite.classList.remove("is-active");
+        els.tabSatellite.setAttribute("aria-selected", "false");
+      }
+      if (els.streetViewFrame) els.streetViewFrame.hidden = false;
+      if (els.modalMiniMap) els.modalMiniMap.hidden = true;
+      if (badge) badge.textContent = "Street View 360°";
+
+      if (currentModalSite && els.streetViewFrame) {
+        const targetSrc =
+          "https://maps.google.com/maps?q=&layer=c&cbll=" +
+          currentModalSite.lat + "," + currentModalSite.lng +
+          "&cbp=11,0,0,0,0&output=svembed";
+        if (els.streetViewFrame.src !== targetSrc) {
+          els.streetViewFrame.src = targetSrc;
+        }
+      }
+    } else {
+      if (els.tabStreetView) {
+        els.tabStreetView.classList.remove("is-active");
+        els.tabStreetView.setAttribute("aria-selected", "false");
+      }
+      if (els.tabSatellite) {
+        els.tabSatellite.classList.add("is-active");
+        els.tabSatellite.setAttribute("aria-selected", "true");
+      }
+      if (els.streetViewFrame) els.streetViewFrame.hidden = true;
+      if (els.modalMiniMap) {
+        els.modalMiniMap.hidden = false;
+        if (currentModalSite) updateModalMiniMap(currentModalSite);
       }
       if (badge) badge.textContent = "Satellite View";
-      return;
     }
+  }
 
-    els.streetViewImg.alt = "Street View photograph looking towards " + site.name;
-    els.streetViewImg.onerror = function () {
-      els.streetViewImg.hidden = true;
-      if (badge) badge.textContent = "Satellite Imagery (No Street View coverage)";
-    };
-    els.streetViewImg.onload = function () {
-      els.streetViewImg.hidden = false;
-      if (badge) badge.textContent = "Google Street View";
-    };
-    els.streetViewImg.src =
-      "https://maps.googleapis.com/maps/api/streetview?size=640x480&location=" +
-      site.lat + "," + site.lng + "&fov=90&return_error_code=true&key=" + encodeURIComponent(key);
+  function renderModalImagery(site) {
+    currentModalSite = site;
+    setImageryMode("street");
   }
 
   function renderGeneralEoi() {
@@ -1257,6 +1282,7 @@
     document.body.classList.remove("is-locked");
     document.removeEventListener("keydown", onModalKeydown, true);
 
+    if (els.streetViewFrame) els.streetViewFrame.src = "about:blank";
     if (lastModalTrigger && document.contains(lastModalTrigger)) {
       lastModalTrigger.focus({ preventScroll: true });
     }
@@ -1927,6 +1953,13 @@
         closeModal();
         if (site) focusSiteOnMap(site);
       });
+    }
+
+    if (els.tabStreetView) {
+      els.tabStreetView.addEventListener("click", () => setImageryMode("street"));
+    }
+    if (els.tabSatellite) {
+      els.tabSatellite.addEventListener("click", () => setImageryMode("satellite"));
     }
 
     // Global Escape: closes whichever layer is open (modal handles its own).

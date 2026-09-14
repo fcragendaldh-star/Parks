@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
 
-<link rel="stylesheet" href="style.css?v=4.9">
+<link rel="stylesheet" href="style.css?v=5.0">
 
 <script>
 /*
@@ -1091,14 +1091,22 @@
           </div>
         </details>
 
-        <div class="modal__imagery" id="modalImagery">
-          <div id="modalMiniMap" class="modal-mini-map"></div>
-          <img id="streetViewImg" width="640" height="480" alt="" hidden>
-          <div id="imageryFallback" class="imagery-fallback" hidden>
+        <!-- View Mode Switcher: Street View vs Satellite -->
+        <div class="imagery-tabs" role="tablist" aria-label="Asset imagery view">
+          <button type="button" class="imagery-tab is-active" id="tabStreetView" role="tab" aria-selected="true">
             <svg aria-hidden="true" focusable="false"><use href="#i-camera"></use></svg>
-            <p>Street View preview unavailable for this location.</p>
-          </div>
-          <div class="imagery-badge" id="modalImageryBadge">Satellite View</div>
+            <span>Street View (360°)</span>
+          </button>
+          <button type="button" class="imagery-tab" id="tabSatellite" role="tab" aria-selected="false">
+            <svg aria-hidden="true" focusable="false"><use href="#i-map"></use></svg>
+            <span>Satellite View</span>
+          </button>
+        </div>
+
+        <div class="modal__imagery" id="modalImagery">
+          <div id="modalMiniMap" class="modal-mini-map" hidden></div>
+          <iframe id="streetViewFrame" class="modal-streetview-frame" title="Google Street View" loading="lazy" allowfullscreen></iframe>
+          <div class="imagery-badge" id="modalImageryBadge">Street View 360°</div>
         </div>
 
         <div class="dossier-links">
@@ -1377,6 +1385,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
 <script defer src="motion.js?v=4.7"></script>
-<script defer src="script.js?v=4.8"></script>
+<script defer src="script.js?v=4.9"></script>
 </body>
 </html>
