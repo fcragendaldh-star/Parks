@@ -160,6 +160,8 @@
     els.contactPhone = byId("contactPhone");
     els.siteOfInterest = byId("siteOfInterest");
     els.themeSelect = byId("themeSelect");
+    els.customThemeWrap = byId("customThemeWrap");
+    els.customThemeName = byId("customThemeName");
     els.budgetRange = byId("budgetRange");
     els.proposedDuration = byId("proposedDuration");
     els.contactMessage = byId("contactMessage");
@@ -1154,6 +1156,7 @@
 
     if (els.interestForm) els.interestForm.hidden = false;
     if (els.modalSuccessCard) els.modalSuccessCard.hidden = true;
+    toggleCustomThemeInput();
 
     els.modalOverlay.hidden = false;
     document.body.classList.add("is-locked");
@@ -1347,19 +1350,35 @@
     }
   }
 
-  /** Open Form CSR-1 with a Fast-Track theme pre-selected. */
+  function toggleCustomThemeInput() {
+    if (!els.themeSelect || !els.customThemeWrap) return;
+    const isOther = els.themeSelect.value === "Other Custom Theme" || els.themeSelect.value === "Custom Innovative Theme Concept";
+    els.customThemeWrap.hidden = !isOther;
+    if (els.customThemeName) {
+      els.customThemeName.required = isOther;
+      if (!isOther) {
+        els.customThemeName.value = "";
+      }
+    }
+  }
+
+  /** Open Form CSR-1 with a Fast-Track or custom theme pre-selected. */
   function openWithTheme(theme) {
     openModal(selectedId);
     if (!els.themeSelect) return;
 
     els.themeSelect.value = theme;
-    // Confirm the value actually exists in the <select>; a mismatch between
-    // a data-theme attribute and an <option value> would silently no-op.
+    // Confirm the value exists; if not, default to Other Custom Theme
     if (els.themeSelect.value !== theme) {
-      console.warn("Unknown theme value:", theme);
-      return;
+      els.themeSelect.value = "Other Custom Theme";
     }
-    els.themeSelect.focus({ preventScroll: false });
+    toggleCustomThemeInput();
+
+    if (els.themeSelect.value === "Other Custom Theme" && els.customThemeName) {
+      setTimeout(() => els.customThemeName.focus(), 150);
+    } else {
+      els.themeSelect.focus({ preventScroll: false });
+    }
   }
 
   /* ======================================================================
@@ -1459,6 +1478,17 @@
       els.contactPhone.setCustomValidity("");
     }
 
+    // 2. Validate custom theme input if 'Other Custom Theme' is chosen
+    const rawTheme = els.themeSelect ? els.themeSelect.value : "Standard Civic Beautification";
+    const isOtherTheme = rawTheme === "Other Custom Theme" || rawTheme === "Custom Innovative Theme Concept";
+    if (isOtherTheme && els.customThemeName && !els.customThemeName.value.trim()) {
+      els.customThemeName.setCustomValidity("Please specify your proposed custom theme.");
+      els.customThemeName.reportValidity();
+      return;
+    } else if (els.customThemeName) {
+      els.customThemeName.setCustomValidity("");
+    }
+
     // Let the browser surface its own validation messages for other fields first.
     if (!els.interestForm.checkValidity()) {
       els.interestForm.reportValidity();
@@ -1478,12 +1508,16 @@
     const email = els.contactEmail.value.trim();
     const phone = "+91 " + phoneVal;
     const site = els.siteOfInterest.value.trim();
-    const theme = els.themeSelect ? els.themeSelect.value : "Standard Civic Beautification";
+
+    let theme = rawTheme;
+    if (isOtherTheme) {
+      const customName = els.customThemeName ? els.customThemeName.value.trim() : "";
+      theme = customName ? "Custom: " + customName : "Custom Innovative Concept";
+    }
+    const isPriorityTheme = rawTheme !== "Standard Civic Beautification";
     const budget = els.budgetRange ? els.budgetRange.value : "₹5L–10L";
     const tenure = els.proposedDuration ? els.proposedDuration.value : "3 Years";
     const message = els.contactMessage.value.trim();
-
-    const isPriorityTheme = theme !== "Standard Civic Beautification";
 
     const scopes = [];
     document.querySelectorAll("input[name='scope[]']:checked").forEach((cb) => {
@@ -2023,7 +2057,16 @@
       if (btn) btn.addEventListener("click", () => openModal(null));
     });
 
-    // ---- Fast-Track theme selection ---------------------------------
+    // ---- Fast-Track & custom theme selection -----------------------
+    if (els.themeSelect) {
+      els.themeSelect.addEventListener("change", toggleCustomThemeInput);
+    }
+    if (els.customThemeName) {
+      els.customThemeName.addEventListener("input", () => {
+        els.customThemeName.setCustomValidity("");
+      });
+    }
+
     document.querySelectorAll(".btn-theme-select, .theme-chip").forEach((btn) => {
       btn.addEventListener("click", () => openWithTheme(btn.dataset.theme));
     });

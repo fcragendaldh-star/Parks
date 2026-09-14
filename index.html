@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
 
-<link rel="stylesheet" href="style.css?v=4.6">
+<link rel="stylesheet" href="style.css?v=4.7">
 
 <script>
 /*
@@ -678,9 +678,9 @@
       <span class="eyebrow">Priority allotment</span>
       <h2 class="section-title" id="themes-title">The Fast-Track theme programme</h2>
       <p class="section-lead">
-        MCL gives priority review and allotment to CSR and business adoption proposals that go beyond
-        routine landscaping. Six thematic models have been notified; a proposal
-        built around any of them is taken up on a fast-track basis.
+        MCL welcomes high-impact greening, sports, environmental, and civic concepts from business entities,
+        MSMEs, corporates, and citizens. Priority models are highlighted below for inspiration, but proposals
+        are <strong>not restricted to these</strong>—applicants are actively encouraged to propose any custom innovative theme.
       </p>
     </div>
 
@@ -703,6 +703,9 @@
       </button>
       <button type="button" class="theme-chip" data-theme="Children Eco-Science &amp; Play Park">
         <svg aria-hidden="true" focusable="false"><use href="#i-flask"></use></svg> Science &amp; Play
+      </button>
+      <button type="button" class="theme-chip" data-theme="Other Custom Theme">
+        <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Other / Custom Concept
       </button>
     </div>
 
@@ -882,16 +885,41 @@
         </div>
       </article>
 
+      <!-- Theme 7 · Custom / Open Innovation Concept -->
+      <article class="theme-card reveal" style="--i:0; border: 2px dashed var(--forest-300); background: var(--surface);">
+        <div class="theme-card__media" style="background: linear-gradient(135deg, var(--forest-900), var(--forest-800)); display: flex; align-items: center; justify-content: center; min-height: 200px; color: #ffffff;">
+          <div style="text-align: center; padding: 1.5rem;">
+            <svg aria-hidden="true" focusable="false" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto 0.75rem; display: block; color: var(--gold);"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <span style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; display: block; color: #ffffff;">Custom Theme Concept</span>
+            <span style="font-family: var(--font-mono); font-size: var(--t-xs); opacity: 0.9; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold);">Open Innovation</span>
+          </div>
+          <span class="theme-card__badge" style="background: var(--gold); color: var(--forest-900);">Open Theme</span>
+        </div>
+        <div class="theme-card__body">
+          <h3>Propose Your Own Custom Theme</h3>
+          <p class="theme-card__desc">
+            Proposals are not restricted to predefined models. Propose your own innovative concepts: medicinal herbal gardens, fitness/badminton hubs, solar-lit corridors, or cultural green spaces.
+          </p>
+          <ul class="theme-card__features">
+            <li>Tailored to your organisation's vision</li>
+            <li>Qualifies for Fast-Track technical review</li>
+            <li>Custom branding &amp; signage permitted under MCL rules</li>
+          </ul>
+          <button type="button" class="btn btn--primary btn-theme-select" data-theme="Other Custom Theme">
+            Propose custom theme
+            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </article>
+
     </div>
 
     <div class="policy-note reveal">
       <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
       <p>
-        <strong>Fast-Track allotment.</strong> Proposals featuring a notified theme
-        concept are placed ahead of standard beautification proposals in the review
-        queue. A custom innovative concept of comparable ambition may also be
-        submitted — select <em>Other custom innovative theme</em> in the Expression of Interest form and
-        describe it in the notes.
+        <strong>Fast-Track &amp; Open Innovation.</strong> In addition to the notified models above,
+        MCL actively invites innovative greening, environmental, recreational, and civic concepts.
+        The list of themes is <strong>not restricted</strong>—select <em>Other / Custom Theme Concept</em> in the Expression of Interest form to specify and submit your own project theme.
       </p>
     </div>
 
@@ -1264,9 +1292,20 @@
               <option value="Urban Miyawaki Micro-Forest">Urban Miyawaki Micro-Forest &amp; Oxygen Hub (priority)</option>
               <option value="Senior Citizen Sensory &amp; Wellness Park">Senior Citizen &amp; Sensory Wellness Park (priority)</option>
               <option value="Children Eco-Science &amp; Play Park">Children's Eco-Science &amp; Play Park (priority)</option>
-              <option value="Custom Innovative Theme Concept">Other custom innovative theme (describe below)</option>
+              <option value="Other Custom Theme">Other / Custom Theme Concept (specify below)</option>
             </select>
-            <span class="field-hint">A notified theme concept qualifies the proposal for Fast-Track review.</span>
+            <span class="field-hint">Any priority or custom innovative theme concept qualifies for Fast-Track review.</span>
+
+            <!-- Dynamic Custom Theme Input (revealed when 'Other Custom Theme' is chosen) -->
+            <div id="customThemeWrap" class="custom-theme-wrap" hidden style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--forest-300);">
+              <label for="customThemeName" style="display: block; margin-bottom: 0.25rem; font-size: var(--t-xs); font-weight: 700; color: var(--forest-900);">
+                Specify your proposed custom theme <span class="req" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="customThemeName" name="custom_theme_name"
+                     placeholder="e.g. Herbal &amp; Medicinal Botanical Garden, Sports / Fitness Hub, Solar Eco-Park…"
+                     style="background: var(--surface);">
+              <span class="field-hint">Enter the title of your proposed custom theme or project.</span>
+            </div>
           </div>
 
           <div class="form-group-field">
@@ -1405,7 +1444,7 @@
 <!-- Leaflet & MarkerCluster JS for fast, reliable, zero-dependency GIS mapping -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
-<script defer src="motion.js?v=4.6"></script>
-<script defer src="script.js?v=4.6"></script>
+<script defer src="motion.js?v=4.7"></script>
+<script defer src="script.js?v=4.7"></script>
 </body>
 </html>
