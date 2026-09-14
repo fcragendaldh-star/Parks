@@ -56,6 +56,9 @@
 
   const SQM_PER_ACRE = 4046.86;
 
+  const byId = (id) => document.getElementById(id);
+  let pendingTheme = null;
+
   const els = {};
 
   /* ======================================================================
@@ -63,7 +66,7 @@
      ====================================================================== */
 
   function cacheEls() {
-    const byId = (id) => document.getElementById(id);
+
 
     // Registry views
     els.resultsCardsPane = byId("resultsCardsPane");
@@ -1447,8 +1450,6 @@
   }
 
   /** Store the pending theme and scroll to the register so the user picks a park first. */
-  let pendingTheme = null;
-
   function showThemeHint(theme) {
     pendingTheme = theme;
     const banner = document.getElementById("themeHintBanner");
