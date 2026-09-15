@@ -77,6 +77,6 @@ const CONTACT_EMAIL = "commissionermcl@gmail.com";
 // If left empty or invalid, the portal falls back gracefully to the backup
 // submission channel without disrupting the applicant.
 // ===========================================================================
-const SUPABASE_URL = "https://jkcwxixqwtxrlbfhtntn.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImprY3d4aXhxd3R4cmxiZmh0bnRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0ODMyOTEsImV4cCI6MjEwNTA1OTI5MX0.FKjaRP7tRbQ9gWyd6eIJo_w94Pn39IrkRpjtpOfBx-w";
+const SUPABASE_URL = (typeof process !== "undefined" && process.env && process.env.SUPABASE_URL) || (typeof window !== "undefined" && window.SUPABASE_URL) || "";
+const SUPABASE_ANON_KEY = (typeof process !== "undefined" && process.env && process.env.SUPABASE_ANON_KEY) || (typeof window !== "undefined" && window.SUPABASE_ANON_KEY) || "";
 
