@@ -1415,20 +1415,24 @@
       <!-- ---- Official Acknowledgment Receipt Card ------------------------- -->
       <div class="modal__receipt" id="modalSuccessCard" hidden>
         <div class="receipt__header">
-          <div class="receipt__check-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
+          <div class="receipt__seal" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
+              <circle cx="32" cy="32" r="30" stroke="var(--forest-200)" stroke-width="2" fill="var(--forest-50)"/>
+              <circle cx="32" cy="32" r="24" stroke="var(--forest-300)" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
+              <path d="M32 14l2.5 5.2 5.7.8-4.1 4 1 5.6L32 27l-5.1 2.6 1-5.6-4.1-4 5.7-.8L32 14Z" fill="var(--forest-600)" opacity="0.9"/>
+              <path d="M22 38c0-2.5 4.5-4 10-4s10 1.5 10 4" stroke="var(--forest-500)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M24 42h16M26 45h12" stroke="var(--forest-400)" stroke-width="1.2" stroke-linecap="round"/>
             </svg>
           </div>
-          <span class="tag tag--status tag--status-available">Application Recorded</span>
-          <h3 class="receipt__title">Expression of Interest Submitted</h3>
+          <span class="receipt__badge">✓ Successfully Recorded</span>
+          <h3 class="receipt__title">Thank You for Adopting a Green Space</h3>
           <p class="receipt__sub">
-            Your proposal has been registered with Municipal Corporation Ludhiana's Estate &amp; Horticulture Wing.
+            Your Expression of Interest has been officially registered with the <strong>Estate &amp; Horticulture Wing</strong> of Municipal Corporation Ludhiana. A unique application reference has been assigned for tracking.
           </p>
         </div>
 
         <div class="receipt__ref-box">
-          <span class="receipt__ref-label">Application Reference Number</span>
+          <span class="receipt__ref-label">Your Application Reference</span>
           <div class="receipt__ref-value-wrap">
             <strong class="receipt__ref-value" id="receiptRef">MCL/CSR/2026/MCL_000-0000</strong>
             <button type="button" class="receipt__btn-copy" id="receiptCopyBtn" title="Copy Reference">
@@ -1440,32 +1444,44 @@
         </div>
 
         <div class="receipt__summary">
+          <div class="receipt__summary-title">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5"/></svg>
+            Submission Summary
+          </div>
           <dl class="receipt__details">
             <div class="receipt__row"><dt>Subject Site</dt><dd id="receiptSite">—</dd></div>
             <div class="receipt__row"><dt>Applicant Entity</dt><dd id="receiptOrg">—</dd></div>
-            <div class="receipt__row"><dt>Signatory</dt><dd id="receiptSignatory">—</dd></div>
+            <div class="receipt__row"><dt>Authorised Signatory</dt><dd id="receiptSignatory">—</dd></div>
             <div class="receipt__row"><dt>Contact Details</dt><dd id="receiptContact">—</dd></div>
-            <div class="receipt__row"><dt>Theme Concept</dt><dd id="receiptTheme">—</dd></div>
-            <div class="receipt__row"><dt>Review Status</dt><dd><span class="tag tag--status tag--status-available">Under Review · Horticulture Wing</span></dd></div>
+            <div class="receipt__row"><dt>Theme &amp; Proposal</dt><dd id="receiptTheme">—</dd></div>
+            <div class="receipt__row receipt__row--status"><dt>Review Status</dt><dd><span class="receipt__status-pill">Submitted · Awaiting Review</span></dd></div>
           </dl>
         </div>
 
         <div class="receipt__steps">
-          <h4>Next Steps in the Adoption Workflow:</h4>
+          <h4>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            What Happens Next
+          </h4>
           <ol>
-            <li><strong>Technical Evaluation</strong>: The Horticulture Cell validates municipal asset boundaries and proposal viability.</li>
-            <li><strong>Joint Site Inspection</strong>: An MCL field officer contacts the applicant to coordinate an on-site survey within 7 working days.</li>
-            <li><strong>MoU Execution</strong>: On recommendation, a standard tripartite Park Stewardship Agreement is executed as per MCL policy.</li>
+            <li><strong>Technical Evaluation</strong> — The Horticulture Cell verifies municipal asset boundaries and reviews your proposal for viability within 3–5 working days.</li>
+            <li><strong>Joint Site Inspection</strong> — An MCL field officer will contact you to coordinate an on-site survey and discuss implementation requirements.</li>
+            <li><strong>MoU &amp; Agreement</strong> — Upon recommendation, a standard tripartite Park Stewardship Agreement is executed under MCL's Green Adoption Policy.</li>
           </ol>
+        </div>
+
+        <div class="receipt__note">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/></svg>
+          <p>Please save or print this receipt for your records. Quote your reference number <strong id="receiptRefInline">—</strong> in all future correspondence with MCL.</p>
         </div>
 
         <div class="receipt__actions">
           <button type="button" class="btn btn--primary" id="receiptPrintBtn">
             <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-            Print / Save Official Receipt
+            Print / Save Receipt
           </button>
           <button type="button" class="btn btn--secondary" id="receiptCloseBtn">
-            Close Window
+            Close &amp; Return to Portal
           </button>
         </div>
       </div>

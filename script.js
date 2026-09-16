@@ -1530,6 +1530,9 @@
     if (els.receiptContact) els.receiptContact.textContent = data.contact;
     if (els.receiptTheme) els.receiptTheme.textContent = data.theme;
 
+    const refInline = document.getElementById("receiptRefInline");
+    if (refInline) refInline.textContent = data.appRef;
+
     if (els.interestForm) els.interestForm.hidden = true;
     els.modalSuccessCard.hidden = false;
 
@@ -1720,7 +1723,7 @@
         timestamp: new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })
       });
 
-      showToast("Proposal " + appRef + " securely recorded in database.");
+      showToast("✓ Application " + appRef + " submitted successfully — your receipt is ready above.");
       return;
     }
 
