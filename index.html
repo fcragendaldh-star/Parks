@@ -1250,7 +1250,7 @@
 
           <div class="form-group-field">
             <label for="orgName">Organisation / business / entity name <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="orgName" name="organization" required autocomplete="organization"
+            <input type="text" id="orgName" name="organization" required autocomplete="organization" maxlength="200"
                    placeholder="Registered name of applicant company, MSME, or business">
           </div>
 
@@ -1274,12 +1274,12 @@
           <div class="form-row-2">
             <div class="form-group-field">
               <label for="contactPerson">Authorised signatory <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="contactPerson" name="contact_person" required autocomplete="name"
+              <input type="text" id="contactPerson" name="contact_person" required autocomplete="name" maxlength="100"
                      placeholder="Full name">
             </div>
             <div class="form-group-field">
               <label for="contactRole">Designation / role <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="contactRole" name="contact_role" required
+              <input type="text" id="contactRole" name="contact_role" required maxlength="100"
                      placeholder="e.g. Managing Director, Partner, Proprietor, CSR Head, Secretary">
             </div>
           </div>
@@ -1287,7 +1287,7 @@
           <div class="form-row-2">
             <div class="form-group-field">
               <label for="contactEmail">Official email <span class="req" aria-hidden="true">*</span></label>
-              <input type="email" id="contactEmail" name="email" required autocomplete="email"
+              <input type="email" id="contactEmail" name="email" required autocomplete="email" maxlength="254"
                      inputmode="email" placeholder="name@organisation.com">
             </div>
             <div class="form-group-field">
@@ -1338,7 +1338,7 @@
               <label for="customThemeName" style="display: block; margin-bottom: 0.25rem; font-size: var(--t-xs); font-weight: 700; color: var(--forest-900);">
                 Specify your proposed custom theme <span class="req" aria-hidden="true">*</span>
               </label>
-              <input type="text" id="customThemeName" name="custom_theme_name"
+              <input type="text" id="customThemeName" name="custom_theme_name" maxlength="200"
                      placeholder="e.g. Herbal &amp; Medicinal Botanical Garden, Sports / Fitness Hub, Solar Eco-Park…"
                      style="background: var(--surface);">
               <span class="field-hint">Enter the title of your proposed custom theme or project.</span>
@@ -1385,7 +1385,7 @@
 
           <div class="form-group-field">
             <label for="contactMessage">Additional notes / implementation details</label>
-            <textarea id="contactMessage" name="message" rows="3"
+            <textarea id="contactMessage" name="message" rows="3" maxlength="1000"
                       placeholder="Specific business or corporate requirements, permitted signage/branding preferences, proposed maintenance plan, expected commencement date, or custom theme concept…"></textarea>
           </div>
         </fieldset>

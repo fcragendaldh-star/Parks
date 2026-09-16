@@ -1623,14 +1623,34 @@
     const tenure = els.proposedDuration ? els.proposedDuration.value : "3 Years";
     const message = els.contactMessage.value.trim();
 
+    // 3. Server-side length enforcement (defence-in-depth against bypassed HTML maxlength)
+    const lengthLimits = {
+      org:     { val: org,     max: 200, label: "Organisation name" },
+      contact: { val: contact, max: 100, label: "Contact person" },
+      role:    { val: role,    max: 100, label: "Contact role" },
+      email:   { val: email,   max: 254, label: "Email address" },
+      message: { val: message, max: 1000, label: "Message" },
+    };
+    for (const [, { val, max, label }] of Object.entries(lengthLimits)) {
+      if (val.length > max) {
+        showToast(`${label} must be ${max} characters or fewer.`);
+        submitting = false;
+        els.submitBtn.classList.remove("is-busy");
+        els.submitBtn.removeAttribute("aria-busy");
+        els.submitBtnLabel.textContent = originalLabel;
+        return;
+      }
+    }
+
     const scopes = [];
     document.querySelectorAll("input[name='scope[]']:checked").forEach((cb) => {
       scopes.push(cb.value);
     });
 
-    const appRef =
-      "MCL/CSR/" + new Date().getFullYear() + "/" + (selectedId || "GEN") + "-" +
-      Math.floor(1000 + Math.random() * 9000);
+    const uniqueSuffix = Date.now().toString(36).toUpperCase() +
+      Math.random().toString(36).substring(2, 6).toUpperCase();
+    const appRef = "MCL/CSR/" + new Date().getFullYear() + "/" +
+      (selectedId || "GEN") + "-" + uniqueSuffix;
 
     const siteObj = selectedId ? ALL_SITES.find((s) => s.id === selectedId) : null;
     const dbPayload = {
