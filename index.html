@@ -1227,6 +1227,24 @@
 
       </div>
 
+      <!-- ---- Right panel with tabs ---------------------------------------- -->
+      <div class="modal__right-panel">
+
+        <!-- Tab bar -->
+        <div class="modal__tabs" role="tablist" aria-label="Modal form tabs">
+          <button type="button" class="modal__tab-btn is-active" id="tabApplicationForm" role="tab" aria-selected="true" aria-controls="panelApplicationForm">
+            <svg aria-hidden="true" focusable="false"><use href="#i-book"></use></svg>
+            Application Form
+          </button>
+          <button type="button" class="modal__tab-btn" id="tabComplaint" role="tab" aria-selected="false" aria-controls="panelComplaint">
+            <svg aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>
+            Complaint / Suggestion
+          </button>
+        </div>
+
+        <!-- Tab Panel 1: Application Form (existing EOI form) -->
+        <div class="modal__tab-panel is-active" id="panelApplicationForm" role="tabpanel" aria-labelledby="tabApplicationForm">
+
       <!-- ---- Proposal form ------------------------------------------------ -->
       <form class="modal__form" id="interestForm" name="mcl-csr-form-1" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
         <!-- Netlify Forms identifier — must match the form's name attribute. -->
@@ -1485,6 +1503,96 @@
           </button>
         </div>
       </div>
+
+        </div><!-- /panelApplicationForm -->
+
+        <!-- Tab Panel 2: Complaint / Suggestion -->
+        <div class="modal__tab-panel" id="panelComplaint" role="tabpanel" aria-labelledby="tabComplaint">
+          <div class="complaint-form" id="complaintFormContainer">
+
+            <div class="complaint-form__header">
+              <h3>Raise a complaint or suggestion</h3>
+              <p>Help us keep our parks clean, safe and better for everyone. You can report an issue or share a suggestion.</p>
+            </div>
+
+            <!-- Type selector -->
+            <div class="complaint-type-group">
+              <label class="complaint-type-label">Type <span class="req" aria-hidden="true">*</span></label>
+              <div class="complaint-type-cards">
+                <label class="complaint-type-card is-complaint">
+                  <input type="radio" name="complaint_type" value="Complaint" checked>
+                  <span class="card-radio"></span>
+                  <span class="card-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+                  </span>
+                  <span class="card-body">
+                    <span class="card-title">Complaint</span>
+                    <span class="card-desc">Report an issue or problem</span>
+                  </span>
+                </label>
+                <label class="complaint-type-card is-suggestion">
+                  <input type="radio" name="complaint_type" value="Suggestion">
+                  <span class="card-radio"></span>
+                  <span class="card-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547Z"/></svg>
+                  </span>
+                  <span class="card-body">
+                    <span class="card-title">Suggestion</span>
+                    <span class="card-desc">Share an idea or improvement</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="complaint-desc-group">
+              <label for="complaintDescription">Description <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="complaintDescription" maxlength="500" rows="4"
+                        placeholder="Please describe the issue or suggestion in detail…"></textarea>
+              <span class="complaint-char-counter" id="complaintCharCounter">0/500</span>
+            </div>
+
+            <!-- Image upload -->
+            <div class="complaint-upload-group">
+              <label>Upload Image (Optional)</label>
+              <div class="complaint-upload-zone" id="complaintUploadZone">
+                <input type="file" id="complaintImageInput" accept="image/jpeg,image/png,image/webp" aria-label="Upload an image">
+                <svg class="upload-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 16V4m0 0-4 4m4-4 4 4"/>
+                  <path d="M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"/>
+                </svg>
+                <span class="upload-text">Drag and drop an image here, or <strong>click to browse</strong></span>
+                <span class="upload-hint">Supported formats: JPG, PNG, WEBP (Max size: 5 MB)</span>
+              </div>
+              <div class="complaint-image-preview" id="complaintImagePreview">
+                <img id="complaintPreviewImg" src="" alt="Preview">
+                <div class="preview-info">
+                  <span class="preview-name" id="complaintPreviewName"></span>
+                  <span class="preview-size" id="complaintPreviewSize"></span>
+                </div>
+                <button type="button" class="preview-remove" id="complaintRemoveImage" title="Remove image">
+                  <svg aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Hidden fields for park context -->
+            <input type="hidden" id="complaintParkId" value="">
+            <input type="hidden" id="complaintParkName" value="">
+
+            <!-- Actions -->
+            <div class="complaint-actions">
+              <button type="button" class="btn btn--secondary" id="complaintCancelBtn">Cancel</button>
+              <button type="button" class="btn btn--primary" id="complaintSubmitBtn">
+                <span class="btn__spinner" aria-hidden="true"></span>
+                <span id="complaintSubmitLabel">Submit →</span>
+              </button>
+            </div>
+
+          </div>
+        </div><!-- /panelComplaint -->
+
+      </div><!-- /modal__right-panel -->
 
     </div>
   </div>

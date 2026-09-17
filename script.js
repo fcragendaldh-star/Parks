@@ -182,6 +182,28 @@
     els.receiptPrintBtn = byId("receiptPrintBtn");
     els.receiptCloseBtn = byId("receiptCloseBtn");
 
+    // Modal · tab switching
+    els.tabApplicationForm = byId("tabApplicationForm");
+    els.tabComplaint = byId("tabComplaint");
+    els.panelApplicationForm = byId("panelApplicationForm");
+    els.panelComplaint = byId("panelComplaint");
+
+    // Modal · complaint form
+    els.complaintDescription = byId("complaintDescription");
+    els.complaintCharCounter = byId("complaintCharCounter");
+    els.complaintUploadZone = byId("complaintUploadZone");
+    els.complaintImageInput = byId("complaintImageInput");
+    els.complaintImagePreview = byId("complaintImagePreview");
+    els.complaintPreviewImg = byId("complaintPreviewImg");
+    els.complaintPreviewName = byId("complaintPreviewName");
+    els.complaintPreviewSize = byId("complaintPreviewSize");
+    els.complaintRemoveImage = byId("complaintRemoveImage");
+    els.complaintParkId = byId("complaintParkId");
+    els.complaintParkName = byId("complaintParkName");
+    els.complaintCancelBtn = byId("complaintCancelBtn");
+    els.complaintSubmitBtn = byId("complaintSubmitBtn");
+    els.complaintSubmitLabel = byId("complaintSubmitLabel");
+
     // Entry points & misc
     els.openInterestGlobal = byId("openInterestGlobal");
     els.openInterestFooter = byId("openInterestFooter");
@@ -1160,6 +1182,7 @@
     if (els.interestForm) els.interestForm.hidden = false;
     if (els.modalSuccessCard) els.modalSuccessCard.hidden = true;
     toggleCustomThemeInput();
+    switchModalTab("application"); // Always reset to Application Form tab
 
     // If user clicked a theme chip/card before selecting a park, pre-select that theme now.
     if (site && pendingTheme && els.themeSelect) {
@@ -1234,6 +1257,10 @@
           "). Expressions for co-development or renewal are accepted.";
 
     focusMapOn(site);
+
+    // Populate complaint form context
+    if (els.complaintParkId) els.complaintParkId.value = site.id;
+    if (els.complaintParkName) els.complaintParkName.value = site.name;
   }
 
   function getMapsApiKey() {
@@ -1784,6 +1811,248 @@
   }
 
   /* ======================================================================
+     10B · MODAL TAB SWITCHING & COMPLAINT / SUGGESTION FORM
+     ====================================================================== */
+
+  /**
+   * Switch between Application Form and Complaint/Suggestion tabs.
+   * @param {"application"|"complaint"} tab
+   */
+  function switchModalTab(tab) {
+    const isApp = tab === "application";
+
+    if (els.tabApplicationForm) {
+      els.tabApplicationForm.classList.toggle("is-active", isApp);
+      els.tabApplicationForm.setAttribute("aria-selected", String(isApp));
+    }
+    if (els.tabComplaint) {
+      els.tabComplaint.classList.toggle("is-active", !isApp);
+      els.tabComplaint.setAttribute("aria-selected", String(!isApp));
+    }
+    if (els.panelApplicationForm) {
+      els.panelApplicationForm.classList.toggle("is-active", isApp);
+    }
+    if (els.panelComplaint) {
+      els.panelComplaint.classList.toggle("is-active", !isApp);
+    }
+  }
+
+  /* ---- Complaint form: Image upload ------------------------------------ */
+
+  let complaintImageFile = null;
+
+  function showComplaintImagePreview(file) {
+    complaintImageFile = file;
+    if (!els.complaintImagePreview) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      if (els.complaintPreviewImg) els.complaintPreviewImg.src = e.target.result;
+      if (els.complaintPreviewName) els.complaintPreviewName.textContent = file.name;
+      if (els.complaintPreviewSize) {
+        const sizeKB = (file.size / 1024).toFixed(1);
+        els.complaintPreviewSize.textContent = sizeKB > 1024
+          ? (file.size / (1024 * 1024)).toFixed(2) + " MB"
+          : sizeKB + " KB";
+      }
+      els.complaintImagePreview.classList.add("is-visible");
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function clearComplaintImage() {
+    complaintImageFile = null;
+    if (els.complaintImageInput) els.complaintImageInput.value = "";
+    if (els.complaintImagePreview) els.complaintImagePreview.classList.remove("is-visible");
+    if (els.complaintPreviewImg) els.complaintPreviewImg.src = "";
+  }
+
+  function validateComplaintFile(file) {
+    const ALLOWED = ["image/jpeg", "image/png", "image/webp"];
+    const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
+
+    if (!ALLOWED.includes(file.type)) {
+      showToast("Please upload a JPG, PNG, or WEBP image.");
+      return false;
+    }
+    if (file.size > MAX_SIZE) {
+      showToast("Image must be 5 MB or smaller.");
+      return false;
+    }
+    return true;
+  }
+
+  /* ---- Complaint form: Character counter ------------------------------- */
+
+  function updateComplaintCharCounter() {
+    if (!els.complaintDescription || !els.complaintCharCounter) return;
+    const len = els.complaintDescription.value.length;
+    const max = 500;
+    els.complaintCharCounter.textContent = len + "/" + max;
+    els.complaintCharCounter.classList.remove("is-near-limit", "is-at-limit");
+    if (len >= max) {
+      els.complaintCharCounter.classList.add("is-at-limit");
+    } else if (len >= max * 0.85) {
+      els.complaintCharCounter.classList.add("is-near-limit");
+    }
+  }
+
+  /* ---- Complaint form: Reset ------------------------------------------- */
+
+  function resetComplaintForm() {
+    if (els.complaintDescription) els.complaintDescription.value = "";
+    updateComplaintCharCounter();
+    clearComplaintImage();
+    // Reset type to Complaint
+    const radios = document.querySelectorAll("input[name='complaint_type']");
+    radios.forEach(function (r) { r.checked = r.value === "Complaint"; });
+  }
+
+  /* ---- Complaint form: Supabase Storage upload ------------------------- */
+
+  async function uploadComplaintImage(file, refNumber) {
+    if (typeof SUPABASE_URL !== "string" || !SUPABASE_URL.trim() ||
+        typeof SUPABASE_ANON_KEY !== "string" || !SUPABASE_ANON_KEY.trim()) {
+      console.warn("Supabase not configured — skipping image upload.");
+      return null;
+    }
+
+    const ext = file.name.split(".").pop().toLowerCase() || "jpg";
+    const filename = refNumber.replace(/\//g, "_") + "_" + Date.now() + "." + ext;
+    const storageUrl = SUPABASE_URL.replace(/\/+$/, "") +
+      "/storage/v1/object/complaint-images/" + encodeURIComponent(filename);
+
+    const res = await fetch(storageUrl, {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_ANON_KEY.trim(),
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY.trim(),
+        "Content-Type": file.type,
+        "x-upsert": "true"
+      },
+      body: file
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(function () { return ""; });
+      console.warn("Supabase Storage upload error:", res.status, errText);
+      return null;
+    }
+
+    // Build the public URL
+    return SUPABASE_URL.replace(/\/+$/, "") +
+      "/storage/v1/object/public/complaint-images/" + encodeURIComponent(filename);
+  }
+
+  /* ---- Complaint form: Submit ------------------------------------------ */
+
+  let complaintSubmitting = false;
+
+  async function handleComplaintSubmit() {
+    if (complaintSubmitting) return;
+
+    // Validate type
+    const typeRadio = document.querySelector("input[name='complaint_type']:checked");
+    if (!typeRadio) {
+      showToast("Please select Complaint or Suggestion.");
+      return;
+    }
+    const type = typeRadio.value;
+
+    // Validate description
+    const description = els.complaintDescription ? els.complaintDescription.value.trim() : "";
+    if (!description) {
+      showToast("Please describe your " + type.toLowerCase() + ".");
+      if (els.complaintDescription) els.complaintDescription.focus();
+      return;
+    }
+    if (description.length > 500) {
+      showToast("Description must be 500 characters or fewer.");
+      return;
+    }
+
+    complaintSubmitting = true;
+    if (els.complaintSubmitBtn) {
+      els.complaintSubmitBtn.classList.add("is-busy");
+      els.complaintSubmitBtn.setAttribute("aria-busy", "true");
+    }
+    if (els.complaintSubmitLabel) {
+      els.complaintSubmitLabel.textContent = "Submitting…";
+    }
+
+    const parkId = els.complaintParkId ? els.complaintParkId.value : null;
+    const parkName = els.complaintParkName ? els.complaintParkName.value : null;
+    const siteObj = parkId ? ALL_SITES.find(function (s) { return s.id === parkId; }) : null;
+
+    const uniqueSuffix = Date.now().toString(36).toUpperCase() +
+      Math.random().toString(36).substring(2, 6).toUpperCase();
+    const refNumber = "MCL/" + type.substring(0, 3).toUpperCase() + "/" +
+      new Date().getFullYear() + "/" + (parkId || "GEN") + "-" + uniqueSuffix;
+
+    try {
+      // Step 1: Upload image (if present)
+      let imageUrl = null;
+      if (complaintImageFile) {
+        imageUrl = await uploadComplaintImage(complaintImageFile, refNumber);
+      }
+
+      // Step 2: Insert into park_complaints table
+      if (typeof SUPABASE_URL === "string" && SUPABASE_URL.trim() &&
+          typeof SUPABASE_ANON_KEY === "string" && SUPABASE_ANON_KEY.trim()) {
+
+        const endpoint = SUPABASE_URL.replace(/\/+$/, "") + "/rest/v1/park_complaints";
+        const payload = {
+          reference_number: refNumber,
+          park_id: parkId || null,
+          park_name: parkName || null,
+          zone: siteObj ? siteObj.zone : null,
+          ward: siteObj && siteObj.ward ? String(siteObj.ward) : null,
+          type: type,
+          description: description,
+          image_url: imageUrl,
+          status: "Submitted"
+        };
+
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_ANON_KEY.trim(),
+            "Authorization": "Bearer " + SUPABASE_ANON_KEY.trim(),
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const errText = await res.text().catch(function () { return ""; });
+          throw new Error("Supabase insert status " + res.status + ": " + errText);
+        }
+
+        showToast("✓ " + type + " " + refNumber + " submitted successfully. Thank you!");
+        resetComplaintForm();
+        closeModal();
+      } else {
+        showToast(type + " recorded (ref: " + refNumber + "). Database not configured.");
+        resetComplaintForm();
+        closeModal();
+      }
+    } catch (err) {
+      console.error("Complaint submission error:", err);
+      showToast("Something went wrong. Please try again.");
+    } finally {
+      complaintSubmitting = false;
+      if (els.complaintSubmitBtn) {
+        els.complaintSubmitBtn.classList.remove("is-busy");
+        els.complaintSubmitBtn.removeAttribute("aria-busy");
+      }
+      if (els.complaintSubmitLabel) {
+        els.complaintSubmitLabel.textContent = "Submit →";
+      }
+    }
+  }
+
+  /* ======================================================================
      11 · DERIVED PANELS  (impact meters, stewardship list)
      Every figure below is computed from parks_data.json. Nothing is
      hand-authored, so these panels cannot drift from the register.
@@ -2073,6 +2342,60 @@
     }
     if (els.receiptCloseBtn) {
       els.receiptCloseBtn.addEventListener("click", closeModal);
+    }
+
+    // ---- Modal tab switching ------------------------------------------
+    if (els.tabApplicationForm) {
+      els.tabApplicationForm.addEventListener("click", () => switchModalTab("application"));
+    }
+    if (els.tabComplaint) {
+      els.tabComplaint.addEventListener("click", () => switchModalTab("complaint"));
+    }
+
+    // ---- Complaint form interactions ----------------------------------
+    if (els.complaintDescription) {
+      els.complaintDescription.addEventListener("input", updateComplaintCharCounter);
+    }
+
+    // Image upload: click-to-browse + drag-and-drop
+    if (els.complaintImageInput) {
+      els.complaintImageInput.addEventListener("change", (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file && validateComplaintFile(file)) {
+          showComplaintImagePreview(file);
+        }
+      });
+    }
+    if (els.complaintUploadZone) {
+      els.complaintUploadZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        els.complaintUploadZone.classList.add("is-dragover");
+      });
+      els.complaintUploadZone.addEventListener("dragleave", () => {
+        els.complaintUploadZone.classList.remove("is-dragover");
+      });
+      els.complaintUploadZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        els.complaintUploadZone.classList.remove("is-dragover");
+        const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (file && validateComplaintFile(file)) {
+          showComplaintImagePreview(file);
+        }
+      });
+    }
+    if (els.complaintRemoveImage) {
+      els.complaintRemoveImage.addEventListener("click", clearComplaintImage);
+    }
+
+    // Complaint form buttons
+    if (els.complaintCancelBtn) {
+      els.complaintCancelBtn.addEventListener("click", () => {
+        resetComplaintForm();
+        closeModal();
+      });
+    }
+    if (els.complaintSubmitBtn) {
+      els.complaintSubmitBtn.addEventListener("click", handleComplaintSubmit);
     }
 
     // Strict Indian mobile phone formatting & live input validation
