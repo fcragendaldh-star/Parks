@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Park &amp; Green Belt Adoption Portal — Municipal Corporation Ludhiana</title>
-<meta name="description" content="Official Park &amp; Green Belt Adoption Portal of Municipal Corporation Ludhiana. Open to Corporates (CSR), MSMEs, Local Businesses, Industry Associations, Trusts &amp; Citizens. Browse 918 municipal green sites and apply online.">
-<meta name="theme-color" content="#0B2418">
-<link rel="canonical" href="https://parksldh.in/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Park &amp; Green Belt Adoption Portal — Municipal Corporation Ludhiana</title>
+  <meta name="description"
+    content="Official Park &amp; Green Belt Adoption Portal of Municipal Corporation Ludhiana. Open to Corporates (CSR), MSMEs, Local Businesses, Industry Associations, Trusts &amp; Citizens. Browse 918 municipal green sites and apply online.">
+  <meta name="theme-color" content="#0B2418">
+  <link rel="canonical" href="https://parksldh.in/">
 
-<!-- OpenGraph / social previews -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Municipal Corporation Ludhiana">
-<meta property="og:title" content="Park &amp; Green Belt Adoption Portal — Municipal Corporation Ludhiana">
-<meta property="og:description" content="918 municipal parks and green belts across Ludhiana. 266 open for immediate CSR &amp; business adoption. Submit an Expression of Interest (EOI) online.">
-<meta property="og:image" content="assets/logo.jpg">
-<meta name="twitter:card" content="summary">
+  <!-- OpenGraph / social previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Municipal Corporation Ludhiana">
+  <meta property="og:title" content="Park &amp; Green Belt Adoption Portal — Municipal Corporation Ludhiana">
+  <meta property="og:description"
+    content="918 municipal parks and green belts across Ludhiana. 266 open for immediate CSR &amp; business adoption. Submit an Expression of Interest (EOI) online.">
+  <meta property="og:image" content="assets/logo.jpg">
+  <meta name="twitter:card" content="summary">
 
-<link rel="icon" href="assets/logo.jpg">
-<link rel="apple-touch-icon" href="assets/logo.jpg">
+  <link rel="icon" href="assets/logo.jpg">
+  <link rel="apple-touch-icon" href="assets/logo.jpg">
 
-<!--
+  <!--
   NOTE: the previous build carried Cache-Control/Pragma/Expires "no-store"
   meta tags. They have been removed deliberately: they disabled browser
   caching for every visitor on every visit (a direct Lighthouse Performance
@@ -27,124 +30,234 @@
   cache-busting on deploy. Bump ?v= when you ship.
 -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!--
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--
   Source Serif 4 — institutional serif for headings.
   Inter            — data-dense UI, tables, forms.
   IBM Plex Mono    — identifiers, coordinates, statistics (official-record feel).
   Only the weights actually used are requested.
 -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,700&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,700&display=swap">
 
-<!-- Leaflet & MarkerCluster for instant, zero-dependency GIS mapping -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
+  <!-- Leaflet & MarkerCluster for instant, zero-dependency GIS mapping -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    crossorigin="">
 
-<link rel="stylesheet" href="style.css?v=5.6">
+  <link rel="stylesheet" href="style.css?v=5.6">
 
-<script>
-/*
-  Sets html.js-reveal before first paint. Scroll reveals are opt-IN via this
-  class, so:
-    · if JS is disabled or fails, no element is ever hidden;
-    · because the class lands before paint, content never flashes in and
-      then out again.
-  Reduced-motion users skip it entirely — nothing to animate, nothing to hide.
-*/
-(function () {
-  try {
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        && "IntersectionObserver" in window) {
-      document.documentElement.className += " js-reveal";
-    }
-  } catch (e) { /* leave everything visible */ }
-})();
-</script>
+  <script>
+    /*
+      Sets html.js-reveal before first paint. Scroll reveals are opt-IN via this
+      class, so:
+        · if JS is disabled or fails, no element is ever hidden;
+        · because the class lands before paint, content never flashes in and
+          then out again.
+      Reduced-motion users skip it entirely — nothing to animate, nothing to hide.
+    */
+    (function () {
+      try {
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          && "IntersectionObserver" in window) {
+          document.documentElement.className += " js-reveal";
+        }
+      } catch (e) { /* leave everything visible */ }
+    })();
+  </script>
 </head>
+
 <body>
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      ICON SPRITE
      Inline <symbol> definitions referenced with <use>. Replaces the emoji
      glyphs used previously: emoji render inconsistently across platforms,
      are announced verbatim by screen readers, and cannot inherit colour.
      Every <use> below is aria-hidden — icons are always paired with text.
      ========================================================================== -->
-<svg class="sprite" aria-hidden="true" focusable="false">
-  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
-  <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></symbol>
-  <symbol id="i-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.5h18M3 15h18M9 9.5V20"/></symbol>
-  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
-  <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
-  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.6 2.86 5.98 6.54.9-4.78 4.55 1.18 6.48L12 17.4l-5.8 3.11 1.18-6.48L2.6 9.48l6.54-.9L12 2.6Z"/></symbol>
-  <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8.5 5.2-14.2 16-15-.6 10.6-6.2 15.8-14.4 15.8"/><path d="M5 19C8.5 14.2 12.6 11 18 9"/></symbol>
-  <symbol id="i-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 6.5 11h11L12 3Z"/><path d="M12 8.5 7 16h10l-5-7.5Z"/><path d="M12 16v5"/></symbol>
-  <symbol id="i-recycle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.2 4.9 12 3l3.8 1.9"/><path d="m5 10.6 1.4-4.1 4.2.7"/><path d="m19 10.6-1.4-4.1-4.2.7"/><path d="M16.5 20H20l-1.8-3.6"/><path d="M7.5 20H4l1.8-3.6"/><path d="M9.6 20h4.8"/></symbol>
-  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 4.8 7.4 4.2 4 4.5v13c3.4-.3 6 .3 8 2 2-1.7 4.6-2.3 8-2v-13c-3.4-.3-6 .3-8 2Z"/><path d="M12 6.5v12"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></symbol>
-  <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5v5.2l4.3 8.3A2.5 2.5 0 0 1 16.6 20H7.4a2.5 2.5 0 0 1-2.2-3.5L9.5 8.2V3Z"/><path d="M6.6 14.5h10.8"/></symbol>
-  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16 9.7"/></symbol>
-  <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14.5V19a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19V7.5A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
-  <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A2 2 0 0 1 5 6.5h1.8l1.3-2h7.8l1.3 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9Z"/><circle cx="12" cy="13" r="3.4"/></symbol>
-  <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3.6 5.9v13.5L9 17.5l6 2 5.4-1.9V4.1L15 6 9 4Z"/><path d="M9 4v13.5M15 6v13.5"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4.7-2 7-5.4 7-10V5.6L12 3 5 5.6V11c0 4.6 2.3 8 7 10Z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
-  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.3"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 5.6a3.3 3.3 0 0 1 0 5.8M17.5 14.9c2 .6 3.3 2.4 3.3 4.6"/></symbol>
-  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15m0 0-5.5-5.5M19.5 12 14 17.5"/></symbol>
-  <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v15m0 0L6.5 14M12 19.5 17.5 14"/></symbol>
-  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.3 3.5h3l1.5 4-2 1.4a11 11 0 0 0 5.3 5.3l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.3 5.7a2 2 0 0 1 2-2.2Z"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.8 7 8.2 6 8.2-6"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5"/></symbol>
-</svg>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M6 6l12 12M18 6L6 18" />
+    </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+      <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+      <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+      <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+      <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+    </symbol>
+    <symbol id="i-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 9.5h18M3 15h18M9 9.5V20" />
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" />
+      <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+    </symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round">
+      <path d="M4 7h10M18 7h2M4 17h4M12 17h8" />
+      <circle cx="16" cy="7" r="2.2" />
+      <circle cx="10" cy="17" r="2.2" />
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor">
+      <path d="m12 2.6 2.86 5.98 6.54.9-4.78 4.55 1.18 6.48L12 17.4l-5.8 3.11 1.18-6.48L2.6 9.48l6.54-.9L12 2.6Z" />
+    </symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M4 20c0-8.5 5.2-14.2 16-15-.6 10.6-6.2 15.8-14.4 15.8" />
+      <path d="M5 19C8.5 14.2 12.6 11 18 9" />
+    </symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 3 6.5 11h11L12 3Z" />
+      <path d="M12 8.5 7 16h10l-5-7.5Z" />
+      <path d="M12 16v5" />
+    </symbol>
+    <symbol id="i-recycle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8.2 4.9 12 3l3.8 1.9" />
+      <path d="m5 10.6 1.4-4.1 4.2.7" />
+      <path d="m19 10.6-1.4-4.1-4.2.7" />
+      <path d="M16.5 20H20l-1.8-3.6" />
+      <path d="M7.5 20H4l1.8-3.6" />
+      <path d="M9.6 20h4.8" />
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 6.5C10 4.8 7.4 4.2 4 4.5v13c3.4-.3 6 .3 8 2 2-1.7 4.6-2.3 8-2v-13c-3.4-.3-6 .3-8 2Z" />
+      <path d="M12 6.5v12" />
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z" />
+    </symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M9.5 3h5v5.2l4.3 8.3A2.5 2.5 0 0 1 16.6 20H7.4a2.5 2.5 0 0 1-2.2-3.5L9.5 8.2V3Z" />
+      <path d="M6.6 14.5h10.8" />
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5.5" />
+      <circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12.3 2.7 2.7L16 9.7" />
+    </symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 4h6v6" />
+      <path d="M20 4 11 13" />
+      <path d="M18 14.5V19a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19V7.5A1.5 1.5 0 0 1 5.5 6H10" />
+    </symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 8.5A2 2 0 0 1 5 6.5h1.8l1.3-2h7.8l1.3 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9Z" />
+      <circle cx="12" cy="13" r="3.4" />
+    </symbol>
+    <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M9 4 3.6 5.9v13.5L9 17.5l6 2 5.4-1.9V4.1L15 6 9 4Z" />
+      <path d="M9 4v13.5M15 6v13.5" />
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21c4.7-2 7-5.4 7-10V5.6L12 3 5 5.6V11c0 4.6 2.3 8 7 10Z" />
+      <path d="m9 12 2.2 2.2L15.5 10" />
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <circle cx="9" cy="8.5" r="3.3" />
+      <path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5" />
+      <path d="M16 5.6a3.3 3.3 0 0 1 0 5.8M17.5 14.9c2 .6 3.3 2.4 3.3 4.6" />
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.5 12h15m0 0-5.5-5.5M19.5 12 14 17.5" />
+    </symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 4.5v15m0 0L6.5 14M12 19.5 17.5 14" />
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path
+        d="M6.3 3.5h3l1.5 4-2 1.4a11 11 0 0 0 5.3 5.3l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.3 5.7a2 2 0 0 1 2-2.2Z" />
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+      stroke-linejoin="round">
+      <rect x="3" y="5.5" width="18" height="13" rx="2" />
+      <path d="m3.8 7 8.2 6 8.2-6" />
+    </symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5" />
+    </symbol>
+  </svg>
 
-<a class="skip-link" href="#registry">Skip to the park registry</a>
+  <a class="skip-link" href="#registry">Skip to the park registry</a>
 
-<!-- National tricolour rule -->
-<div class="tricolour-bar" role="presentation"></div>
+  <!-- National tricolour rule -->
+  <div class="tricolour-bar" role="presentation"></div>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      MASTHEAD
      ========================================================================== -->
-<header class="gov-header" id="masthead">
-  <div class="shell gov-header__inner">
+  <header class="gov-header" id="masthead">
+    <div class="shell gov-header__inner">
 
-    <div class="gov-header__brand">
-      <img src="assets/logo.jpg" alt="Official seal of Municipal Corporation Ludhiana" class="gov-header__logo" width="44" height="44" decoding="async">
-      <div class="gov-header__text">
-        <p class="gov-header__title">
-          Municipal Corporation Ludhiana
-          <span class="sep">|</span>
-          <span class="sub">Park Adoption Portal</span>
-        </p>
+      <div class="gov-header__brand">
+        <img src="assets/logo.jpg" alt="Official seal of Municipal Corporation Ludhiana" class="gov-header__logo"
+          width="44" height="44" decoding="async">
+        <div class="gov-header__text">
+          <p class="gov-header__title">
+            Municipal Corporation Ludhiana
+            <span class="sep">|</span>
+            <span class="sub">Park Adoption Portal</span>
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="gov-header__actions">
-      <div class="header-contact">
-        <span class="contact-label">Municipal Corporation Helpline</span>
-        <a href="tel:+919086791867" class="contact-val">90867-91867</a>
+      <div class="gov-header__actions">
+        <div class="header-contact">
+          <span class="contact-label">Municipal Corporation Helpline</span>
+          <a href="tel:+919086791867" class="contact-val">90867-91867</a>
+        </div>
+        <a class="btn btn--primary" href="#registry">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-search"></use>
+          </svg>
+          <span>Browse &amp; Apply</span>
+        </a>
       </div>
-      <a class="btn btn--primary" href="#registry">
-        <svg aria-hidden="true" focusable="false"><use href="#i-search"></use></svg>
-        <span>Browse &amp; Apply</span>
-      </a>
+
     </div>
-
-  </div>
-</header>
+  </header>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      01 · HERO  (layered parallax: photo → wash → botanical → canopy)
      ========================================================================== -->
-<section class="hero" id="hero" aria-labelledby="hero-title">
+  <section class="hero" id="hero" aria-labelledby="hero-title">
 
-  <!--
+    <!--
     Decorative backdrop.
 
     All decorative layers live inside ONE wrapper and use POSITIVE z-index.
@@ -158,337 +271,418 @@
     so even if these decorative layers fail to composite, the white hero
     text still sits on a dark background and stays legible.
   -->
-  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__bg" aria-hidden="true">
 
-    <!-- Photographic base. Decorative: the tonal wash renders it
+      <!-- Photographic base. Decorative: the tonal wash renders it
          near-abstract, so alt="" is correct. -->
-    <picture>
-      <source type="image/webp"
-              srcset="assets/hero/canopy-900.webp 900w, assets/hero/canopy-1280.webp 1280w"
-              sizes="100vw">
-      <img class="hero__photo parallax" src="assets/hero/canopy-1280.jpg"
-           width="1280" height="640" alt="" decoding="async"
-           fetchpriority="low">
-    </picture>
+      <picture>
+        <source type="image/webp" srcset="assets/hero/canopy-900.webp 900w, assets/hero/canopy-1280.webp 1280w"
+          sizes="100vw">
+        <img class="hero__photo parallax" src="assets/hero/canopy-1280.jpg" width="1280" height="640" alt=""
+          decoding="async" fetchpriority="low">
+      </picture>
 
-    <div class="hero__botanical parallax"></div>
+      <div class="hero__botanical parallax"></div>
 
-    <div class="hero__canopy parallax">
-      <svg viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path fill="currentColor" opacity=".55" d="M0 0h1440v104q-45 34-90 0-45 26-90 0-45 40-90 0-45 22-90 0-45 36-90 0-45 28-90 0-45 44-90 0-45 24-90 0-45 38-90 0-45 30-90 0-45 46-90 0-45 26-90 0-45 34-90 0-45 42-90 0-45 28-90 0V0Z"/>
-        <path fill="currentColor" d="M0 0h1440v72q-40 30-80 2-40 24-80-2-40 34-80 2-40 20-80-2-40 32-80 2-40 26-80-2-40 38-80 2-40 22-80-2-40 34-80 2-40 28-80-2-40 40-80 2-40 24-80-2-40 30-80 2-40 36-80-2-40 26-80 2V0Z"/>
-      </svg>
+      <div class="hero__canopy parallax">
+        <svg viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path fill="currentColor" opacity=".55"
+            d="M0 0h1440v104q-45 34-90 0-45 26-90 0-45 40-90 0-45 22-90 0-45 36-90 0-45 28-90 0-45 44-90 0-45 24-90 0-45 38-90 0-45 30-90 0-45 46-90 0-45 26-90 0-45 34-90 0-45 42-90 0-45 28-90 0V0Z" />
+          <path fill="currentColor"
+            d="M0 0h1440v72q-40 30-80 2-40 24-80-2-40 34-80 2-40 20-80-2-40 32-80 2-40 26-80-2-40 38-80 2-40 22-80-2-40 34-80 2-40 28-80-2-40 40-80 2-40 24-80-2-40 30-80 2-40 36-80-2-40 26-80 2V0Z" />
+        </svg>
+      </div>
+
+      <div class="hero__base"></div>
+
     </div>
 
-    <div class="hero__base"></div>
-
-  </div>
-
-  <!-- .shell owns the page grid; .hero__inner owns the measure. Keeping them
+    <!-- .shell owns the page grid; .hero__inner owns the measure. Keeping them
        as separate elements means the hero text aligns to the same left edge
        as every other section (combining both on one element made
        .hero__inner's max-width win and centred the block instead). -->
-  <div class="shell">
-   <div class="hero__inner">
+    <div class="shell">
+      <div class="hero__inner">
 
-    <p class="hero__crest">
-      <img src="assets/logo.jpg" alt="" aria-hidden="true" width="26" height="26" decoding="async">
-      <span>Our Ludhiana · Our Responsibility</span>
-    </p>
+        <p class="hero__crest">
+          <img src="assets/logo.jpg" alt="" aria-hidden="true" width="26" height="26" decoding="async">
+          <span>Our Ludhiana · Our Responsibility</span>
+        </p>
 
-    <h1 class="hero__title" id="hero-title">
-      Ludhiana's parks &amp; Green Belts are open for <em>partnership</em>.
-    </h1>
+        <h1 class="hero__title" id="hero-title">
+          Ludhiana's parks &amp; Green Belts are open for <em>partnership</em>.
+        </h1>
 
-    <p class="hero__lead">
-      Municipal Corporation Ludhiana invites organizations and businesses of all scales — corporate
-      CSR partners, MSMEs, local enterprises, industrial units, trade associations, registered
-      trusts, and resident welfare associations — to adopt, green, and steward the city's parks
-      and green belts. Browse 918 municipal green assets, study site dossiers, and submit an Expression of Interest online.
-    </p>
+        <p class="hero__lead">
+          Municipal Corporation Ludhiana invites organizations and businesses of all scales — corporate
+          CSR partners, MSMEs, local enterprises, industrial units, trade associations, registered
+          trusts, and resident welfare associations — to adopt, green, and steward the city's parks
+          and green belts. Browse 918 municipal green assets, study site dossiers, and submit an Expression of Interest
+          online.
+        </p>
 
-    <div class="hero__actions">
-      <a class="btn btn--accent" href="#registry">
-        <svg aria-hidden="true" focusable="false"><use href="#i-search"></use></svg>
-        Browse the register
-      </a>
-      <a class="btn btn--onDark" href="#themes">
-        <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-        Fast-Track theme programme
-      </a>
+        <div class="hero__actions">
+          <a class="btn btn--accent" href="#registry">
+            <svg aria-hidden="true" focusable="false">
+              <use href="#i-search"></use>
+            </svg>
+            Browse the register
+          </a>
+          <a class="btn btn--onDark" href="#themes">
+            <svg aria-hidden="true" focusable="false">
+              <use href="#i-star"></use>
+            </svg>
+            Fast-Track theme programme
+          </a>
+        </div>
+
+      </div>
     </div>
 
-   </div>
-  </div>
+    <a class="hero__scroll-hint" href="#stats" aria-hidden="true" tabindex="-1">
+      <span>Scroll</span>
+      <svg aria-hidden="true" focusable="false">
+        <use href="#i-arrow-down"></use>
+      </svg>
+    </a>
 
-  <a class="hero__scroll-hint" href="#stats" aria-hidden="true" tabindex="-1">
-    <span>Scroll</span>
-    <svg aria-hidden="true" focusable="false"><use href="#i-arrow-down"></use></svg>
-  </a>
-
-</section>
+  </section>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      02 · STATISTICS BAND  (values count up on first scroll into view)
      ========================================================================== -->
-<section class="stats" id="stats" aria-labelledby="stats-title">
-  <div class="shell">
-    <h2 class="sr-only" id="stats-title">Municipal green asset register at a glance</h2>
+  <section class="stats" id="stats" aria-labelledby="stats-title">
+    <div class="shell">
+      <h2 class="sr-only" id="stats-title">Municipal green asset register at a glance</h2>
 
-    <!--
+      <!--
       Every figure is rendered server-side in the markup as its final value,
       then re-confirmed from parks_data.json at runtime. The count-up is
       purely presentational: with JS disabled or reduced-motion active the
       correct number is already on screen.
     -->
-    <div class="stats__grid">
+      <div class="stats__grid">
 
-      <div class="stat">
-        <span class="stat__value num" id="statTotal" data-count-to="918">918</span>
-        <span class="stat__label">Total municipal sites</span>
-        <span class="stat__note">812 parks · 106 green belts</span>
+        <div class="stat">
+          <span class="stat__value num" id="statTotal" data-count-to="918">918</span>
+          <span class="stat__label">Total municipal sites</span>
+          <span class="stat__note">812 parks · 106 green belts</span>
+        </div>
+
+        <div class="stat stat--feature">
+          <span class="stat__value num" id="statAvailable" data-count-to="266">266</span>
+          <span class="stat__label">Open for adoption</span>
+          <span class="stat__note">MCL self-managed</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat__value num" id="statRwa" data-count-to="613">613</span>
+          <span class="stat__label">RWA managed</span>
+          <span class="stat__note">Co-development invited</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat__value num" id="statAdopted" data-count-to="39">39</span>
+          <span class="stat__label">Already adopted</span>
+          <span class="stat__note">Under CSR &amp; partner agreements</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat__value num"><span id="statArea" data-count-to="546.5"
+              data-count-decimals="1">546.5</span><span class="unit">acres</span></span>
+          <span class="stat__label">Total green cover</span>
+          <span class="stat__note">≈ 22.1 lakh m²</span>
+        </div>
+
       </div>
 
-      <div class="stat stat--feature">
-        <span class="stat__value num" id="statAvailable" data-count-to="266">266</span>
-        <span class="stat__label">Open for adoption</span>
-        <span class="stat__note">MCL self-managed</span>
-      </div>
-
-      <div class="stat">
-        <span class="stat__value num" id="statRwa" data-count-to="613">613</span>
-        <span class="stat__label">RWA managed</span>
-        <span class="stat__note">Co-development invited</span>
-      </div>
-
-      <div class="stat">
-        <span class="stat__value num" id="statAdopted" data-count-to="39">39</span>
-        <span class="stat__label">Already adopted</span>
-        <span class="stat__note">Under CSR &amp; partner agreements</span>
-      </div>
-
-      <div class="stat">
-        <span class="stat__value num"><span id="statArea" data-count-to="546.5" data-count-decimals="1">546.5</span><span class="unit">acres</span></span>
-        <span class="stat__label">Total green cover</span>
-        <span class="stat__note">≈ 22.1 lakh m²</span>
-      </div>
-
+      <p class="stats__footnote">
+        Source: MCL Horticulture Wing park register. Figures are computed live from
+        the published dataset on this page.
+      </p>
     </div>
-
-    <p class="stats__footnote">
-      Source: MCL Horticulture Wing park register. Figures are computed live from
-      the published dataset on this page.
-    </p>
-  </div>
-</section>
+  </section>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      03 · HOW ADOPTION WORKS & WHO CAN ADOPT
      ========================================================================== -->
-<section class="section" id="process" aria-labelledby="process-title">
-  <div class="shell">
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="shell">
 
-    <div class="section-head reveal">
-      <span class="eyebrow">Who can adopt &amp; how</span>
-      <h2 class="section-title" id="process-title">Open for CSR &amp; all business entities</h2>
-      <p class="section-lead">
-        Under the MCL Public Park Adoption Policy, greening and stewardship are open to
-        corporates under mandatory CSR, as well as MSMEs, commercial establishments, trade bodies,
-        trusts, and resident associations who want to adopt and transform public green spaces.
-      </p>
+      <div class="section-head reveal">
+        <span class="eyebrow">Who can adopt &amp; how</span>
+        <h2 class="section-title" id="process-title">Open for CSR &amp; all business entities</h2>
+        <p class="section-lead">
+          Under the MCL Public Park Adoption Policy, greening and stewardship are open to
+          corporates under mandatory CSR, as well as MSMEs, commercial establishments, trade bodies,
+          trusts, and resident associations who want to adopt and transform public green spaces.
+        </p>
+      </div>
+
+      <!-- 4 Pathways grid -->
+      <div class="pathways-grid reveal">
+        <div class="pathway-card pathway-card--csr">
+          <span class="pathway-card__badge">
+            <svg aria-hidden="true" focusable="false" style="width:12px;height:12px">
+              <use href="#i-shield"></use>
+            </svg>
+            Corporate CSR
+          </span>
+          <h4>Mandated Companies &amp; PSUs</h4>
+          <p>For corporates fulfilling Section 135 requirements under the Companies Act 2013 with formal municipal
+            reporting.</p>
+          <ul class="pathway-card__points">
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Eligible under Schedule VII (Environment)</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Ideal for large parks &amp; green corridors</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Fast-Track thematic model support</li>
+          </ul>
+        </div>
+
+        <div class="pathway-card pathway-card--msme">
+          <span class="pathway-card__badge">
+            <svg aria-hidden="true" focusable="false" style="width:12px;height:12px">
+              <use href="#i-star"></use>
+            </svg>
+            MSME &amp; Business
+          </span>
+          <h4>Small &amp; Medium Enterprises</h4>
+          <p>For non-CSR businesses, proprietary units, LLPs, local factories, and commercial shops adopting
+            neighborhood spaces.</p>
+          <ul class="pathway-card__points">
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Adopt pocket parks &amp; local greens</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Permitted civic acknowledgment boards</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Direct community goodwill &amp; impact</li>
+          </ul>
+        </div>
+
+        <div class="pathway-card pathway-card--trade">
+          <span class="pathway-card__badge">
+            <svg aria-hidden="true" focusable="false" style="width:12px;height:12px">
+              <use href="#i-users"></use>
+            </svg>
+            Trade &amp; Industry
+          </span>
+          <h4>Chambers &amp; Market Bodies</h4>
+          <p>For market committees, focal point industrial associations, and merchant chambers greening commercial
+            belts.</p>
+          <ul class="pathway-card__points">
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Cluster-level green belt maintenance</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Industrial perimeter rejuvenation</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Collective trade body stewardship</li>
+          </ul>
+        </div>
+
+        <div class="pathway-card pathway-card--trust">
+          <span class="pathway-card__badge">
+            <svg aria-hidden="true" focusable="false" style="width:12px;height:12px">
+              <use href="#i-heart"></use>
+            </svg>
+            Trusts &amp; RWAs
+          </span>
+          <h4>Societies &amp; Citizen Groups</h4>
+          <p>For registered philanthropic trusts, resident welfare associations, and citizen groups co-developing parks.
+          </p>
+          <ul class="pathway-card__points">
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Active community co-development</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Neighborhood botanical care</li>
+            <li><svg aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg> Multi-year renewable partnerships</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 Steps Roadmap -->
+      <div class="steps-heading reveal">
+        <h3
+          style="font-size:var(--t-xl);margin-bottom:1.25rem;color:var(--forest-900);font-family:var(--font-display);">
+          Adoption roadmap: four steps from interest to agreement</h3>
+      </div>
+
+      <ol class="steps">
+        <li class="step card reveal" style="--i:0">
+          <span class="step__num" aria-hidden="true">1</span>
+          <h3>Identify a site</h3>
+          <p>Filter the register by zone, ward, type, area or adoption status. Open any
+            site to read its full municipal asset dossier.</p>
+        </li>
+        <li class="step card reveal" style="--i:1">
+          <span class="step__num" aria-hidden="true">2</span>
+          <h3>Submit Expression of Interest</h3>
+          <p>Submit your organisation/business details, adoption pathway, proposed theme,
+            scope of intervention, indicative budget and preferred tenure.</p>
+        </li>
+        <li class="step card reveal" style="--i:2">
+          <span class="step__num" aria-hidden="true">3</span>
+          <h3>Site inspection</h3>
+          <p>The Horticulture Wing verifies the site, confirms the scope and shares the
+            maintenance schedule and permitted branding norms.</p>
+        </li>
+        <li class="step card reveal" style="--i:3">
+          <span class="step__num" aria-hidden="true">4</span>
+          <h3>Adoption agreement</h3>
+          <p>A formal agreement is executed for the agreed tenure — one, three or five
+            years — and handover of maintenance follows.</p>
+        </li>
+      </ol>
+
     </div>
-
-    <!-- 4 Pathways grid -->
-    <div class="pathways-grid reveal">
-      <div class="pathway-card pathway-card--csr">
-        <span class="pathway-card__badge">
-          <svg aria-hidden="true" focusable="false" style="width:12px;height:12px"><use href="#i-shield"></use></svg>
-          Corporate CSR
-        </span>
-        <h4>Mandated Companies &amp; PSUs</h4>
-        <p>For corporates fulfilling Section 135 requirements under the Companies Act 2013 with formal municipal reporting.</p>
-        <ul class="pathway-card__points">
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Eligible under Schedule VII (Environment)</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Ideal for large parks &amp; green corridors</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Fast-Track thematic model support</li>
-        </ul>
-      </div>
-
-      <div class="pathway-card pathway-card--msme">
-        <span class="pathway-card__badge">
-          <svg aria-hidden="true" focusable="false" style="width:12px;height:12px"><use href="#i-star"></use></svg>
-          MSME &amp; Business
-        </span>
-        <h4>Small &amp; Medium Enterprises</h4>
-        <p>For non-CSR businesses, proprietary units, LLPs, local factories, and commercial shops adopting neighborhood spaces.</p>
-        <ul class="pathway-card__points">
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Adopt pocket parks &amp; local greens</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Permitted civic acknowledgment boards</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Direct community goodwill &amp; impact</li>
-        </ul>
-      </div>
-
-      <div class="pathway-card pathway-card--trade">
-        <span class="pathway-card__badge">
-          <svg aria-hidden="true" focusable="false" style="width:12px;height:12px"><use href="#i-users"></use></svg>
-          Trade &amp; Industry
-        </span>
-        <h4>Chambers &amp; Market Bodies</h4>
-        <p>For market committees, focal point industrial associations, and merchant chambers greening commercial belts.</p>
-        <ul class="pathway-card__points">
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Cluster-level green belt maintenance</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Industrial perimeter rejuvenation</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Collective trade body stewardship</li>
-        </ul>
-      </div>
-
-      <div class="pathway-card pathway-card--trust">
-        <span class="pathway-card__badge">
-          <svg aria-hidden="true" focusable="false" style="width:12px;height:12px"><use href="#i-heart"></use></svg>
-          Trusts &amp; RWAs
-        </span>
-        <h4>Societies &amp; Citizen Groups</h4>
-        <p>For registered philanthropic trusts, resident welfare associations, and citizen groups co-developing parks.</p>
-        <ul class="pathway-card__points">
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Active community co-development</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Neighborhood botanical care</li>
-          <li><svg aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> Multi-year renewable partnerships</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 4 Steps Roadmap -->
-    <div class="steps-heading reveal">
-      <h3 style="font-size:var(--t-xl);margin-bottom:1.25rem;color:var(--forest-900);font-family:var(--font-display);">Adoption roadmap: four steps from interest to agreement</h3>
-    </div>
-
-    <ol class="steps">
-      <li class="step card reveal" style="--i:0">
-        <span class="step__num" aria-hidden="true">1</span>
-        <h3>Identify a site</h3>
-        <p>Filter the register by zone, ward, type, area or adoption status. Open any
-           site to read its full municipal asset dossier.</p>
-      </li>
-      <li class="step card reveal" style="--i:1">
-        <span class="step__num" aria-hidden="true">2</span>
-        <h3>Submit Expression of Interest</h3>
-        <p>Submit your organisation/business details, adoption pathway, proposed theme,
-           scope of intervention, indicative budget and preferred tenure.</p>
-      </li>
-      <li class="step card reveal" style="--i:2">
-        <span class="step__num" aria-hidden="true">3</span>
-        <h3>Site inspection</h3>
-        <p>The Horticulture Wing verifies the site, confirms the scope and shares the
-           maintenance schedule and permitted branding norms.</p>
-      </li>
-      <li class="step card reveal" style="--i:3">
-        <span class="step__num" aria-hidden="true">4</span>
-        <h3>Adoption agreement</h3>
-        <p>A formal agreement is executed for the agreed tenure — one, three or five
-           years — and handover of maintenance follows.</p>
-      </li>
-    </ol>
-
-  </div>
-</section>
+  </section>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      03B · WHAT ADOPTION MEANS — FOR ADOPTERS & FOR CITIZENS/CITY
      ========================================================================== -->
-<section class="section section--compact section--paper2" id="what-it-means" aria-labelledby="what-it-means-title">
-  <div class="shell">
+  <section class="section section--compact section--paper2" id="what-it-means" aria-labelledby="what-it-means-title">
+    <div class="shell">
 
-    <div class="section-head section-head--compact reveal">
-      <span class="eyebrow">Mutual Civic Dividend</span>
-      <h2 class="section-title" id="what-it-means-title">What adoption means for Ludhiana</h2>
-      <p class="section-lead">
-        A structured, performance-linked partnership delivering business visibility for sponsors while restoring green cover and civic amenities for citizens.
-      </p>
+      <div class="section-head section-head--compact reveal">
+        <span class="eyebrow">Mutual Civic Dividend</span>
+        <h2 class="section-title" id="what-it-means-title">What adoption means for Ludhiana</h2>
+        <p class="section-lead">
+          A structured, performance-linked partnership delivering business visibility for sponsors while restoring green
+          cover and civic amenities for citizens.
+        </p>
+      </div>
+
+      <div class="meaning-grid reveal">
+
+        <!-- Column 1: For Adopters -->
+        <article class="meaning-card meaning-card--adopters">
+          <div class="meaning-card__head">
+            <span class="meaning-card__badge meaning-card__badge--adopters">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-shield"></use>
+              </svg>
+              For Adopters &amp; Sponsors
+            </span>
+            <a href="#registry" class="meaning-card__link">Browse 266 open parks &rarr;</a>
+          </div>
+
+          <ul class="meaning-list">
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg>
+              <div><strong>Exclusive Signage &amp; Advertising:</strong> Permitted entrance gate acknowledgment boards
+                &amp; brand logo displays under MCL norms.</div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false">
+                <use href="#i-shield"></use>
+              </svg>
+              <div><strong>100% Statutory CSR &amp; ESG:</strong> Qualifies under Section 135 (Sched. VII Environment)
+                with verified municipal audit documentation.</div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false">
+                <use href="#i-heart"></use>
+              </svg>
+              <div><strong>Grassroots Community Goodwill:</strong> Authentic brand resonance and trust among
+                neighborhood families and daily park visitors.</div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <div><strong>Priority Renewals &amp; Civic Honors:</strong> Commissioner commendations on national days
+                and priority renewals.</div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false">
+                <use href="#i-doc"></use>
+              </svg>
+              <div><strong>Single-Window Ease:</strong> Zero red tape with a dedicated Horticulture Cell nodal officer
+                for joint survey, allotment, and fast MOU.</div>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Column 2: For Citizens & City -->
+        <article class="meaning-card meaning-card--citizens">
+          <div class="meaning-card__head">
+            <span class="meaning-card__badge meaning-card__badge--citizens">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-users"></use>
+              </svg>
+              For Citizens &amp; The City
+            </span>
+            <a href="#registry" class="meaning-card__link">Find your ward's park &rarr;</a>
+          </div>
+
+          <ul class="meaning-list">
+            <li class="meaning-item meaning-item--highlight">
+              <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg>
+              <div>
+                <strong>Public Rating of Parks:</strong> Direct citizen ratings on upkeep; top-rated parks and managing
+                authorities earn public honors, priority renewals, and favorable terms.
+                <span class="tag tag--priority meaning-pill">Phase 2</span>
+              </div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false">
+                <use href="#i-leaf"></use>
+              </svg>
+              <div><strong>Cleaner Air &amp; Cooler Neighborhoods:</strong> Protected urban green buffers that filter
+                ambient dust, reduce heat, and provide healthy breathing spaces across city wards.</div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false">
+                <use href="#i-heart"></use>
+              </svg>
+              <div><strong>Safe, Illuminated Spaces:</strong> Paved walking tracks, reliable solar LED illumination, and
+                secure perimeter fencing for families and seniors.</div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false">
+                <use href="#i-flask"></use>
+              </svg>
+              <div><strong>Active Play &amp; Youth Fitness:</strong> Free neighborhood access to open-air gym equipment,
+                fitness tracks, and safe children's playscapes.</div>
+            </li>
+            <li class="meaning-item">
+              <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false">
+                <use href="#i-map"></use>
+              </svg>
+              <div><strong>Civic Transparency:</strong> Open digital inventory across all 918 sites with clear
+                custodianship (MCL/RWA/Corporate) and direct accountability.</div>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+
     </div>
-
-    <div class="meaning-grid reveal">
-
-      <!-- Column 1: For Adopters -->
-      <article class="meaning-card meaning-card--adopters">
-        <div class="meaning-card__head">
-          <span class="meaning-card__badge meaning-card__badge--adopters">
-            <svg aria-hidden="true" focusable="false"><use href="#i-shield"></use></svg>
-            For Adopters &amp; Sponsors
-          </span>
-          <a href="#registry" class="meaning-card__link">Browse 266 open parks &rarr;</a>
-        </div>
-
-        <ul class="meaning-list">
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-            <div><strong>Exclusive Signage &amp; Advertising:</strong> Permitted entrance gate acknowledgment boards &amp; brand logo displays under MCL norms.</div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false"><use href="#i-shield"></use></svg>
-            <div><strong>100% Statutory CSR &amp; ESG:</strong> Qualifies under Section 135 (Sched. VII Environment) with verified municipal audit documentation.</div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg>
-            <div><strong>Grassroots Community Goodwill:</strong> Authentic brand resonance and trust among neighborhood families and daily park visitors.</div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>
-            <div><strong>Priority Renewals &amp; Civic Honors:</strong> Commissioner commendations on national days and priority renewals.</div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--adopters" aria-hidden="true" focusable="false"><use href="#i-doc"></use></svg>
-            <div><strong>Single-Window Ease:</strong> Zero red tape with a dedicated Horticulture Cell nodal officer for joint survey, allotment, and fast MOU.</div>
-          </li>
-        </ul>
-      </article>
-
-      <!-- Column 2: For Citizens & City -->
-      <article class="meaning-card meaning-card--citizens">
-        <div class="meaning-card__head">
-          <span class="meaning-card__badge meaning-card__badge--citizens">
-            <svg aria-hidden="true" focusable="false"><use href="#i-users"></use></svg>
-            For Citizens &amp; The City
-          </span>
-          <a href="#registry" class="meaning-card__link">Find your ward's park &rarr;</a>
-        </div>
-
-        <ul class="meaning-list">
-          <li class="meaning-item meaning-item--highlight">
-            <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-            <div>
-              <strong>Public Rating of Parks:</strong> Direct citizen ratings on upkeep; top-rated parks and managing authorities earn public honors, priority renewals, and favorable terms.
-              <span class="tag tag--priority meaning-pill">Phase 2</span>
-            </div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg>
-            <div><strong>Cleaner Air &amp; Cooler Neighborhoods:</strong> Protected urban green buffers that filter ambient dust, reduce heat, and provide healthy breathing spaces across city wards.</div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg>
-            <div><strong>Safe, Illuminated Spaces:</strong> Paved walking tracks, reliable solar LED illumination, and secure perimeter fencing for families and seniors.</div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false"><use href="#i-flask"></use></svg>
-            <div><strong>Active Play &amp; Youth Fitness:</strong> Free neighborhood access to open-air gym equipment, fitness tracks, and safe children's playscapes.</div>
-          </li>
-          <li class="meaning-item">
-            <svg class="meaning-item__dot meaning-item__dot--citizens" aria-hidden="true" focusable="false"><use href="#i-map"></use></svg>
-            <div><strong>Civic Transparency:</strong> Open digital inventory across all 918 sites with clear custodianship (MCL/RWA/Corporate) and direct accountability.</div>
-          </li>
-        </ul>
-      </article>
-
-    </div>
-
-  </div>
-</section>
+  </section>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      04 · FAST-TRACK THEME PROGRAMME
      Previously a modal ("Theme Guide"). Promoted to a first-class page
      section: it is indexable, linkable (#themes), reveals on scroll, and no
@@ -496,1042 +690,1261 @@
      descriptions are unchanged, and each card still opens Form CSR-1 with
      the theme pre-selected — identical behaviour to the old modal buttons.
      ========================================================================== -->
-<section class="section" id="themes" aria-labelledby="themes-title">
-  <div class="shell">
+  <section class="section" id="themes" aria-labelledby="themes-title">
+    <div class="shell">
 
-    <div class="section-head reveal">
-      <span class="eyebrow">Priority allotment</span>
-      <h2 class="section-title" id="themes-title">The Fast-Track theme programme</h2>
-      <p class="section-lead">
-        MCL welcomes high-impact greening, sports, environmental, and civic concepts from business entities,
-        MSMEs, corporates, and citizens. Priority models are highlighted below for inspiration, but proposals
-        are <strong>not restricted to these</strong>—applicants are actively encouraged to propose any custom innovative theme.
-      </p>
-    </div>
+      <div class="section-head reveal">
+        <span class="eyebrow">Priority allotment</span>
+        <h2 class="section-title" id="themes-title">The Fast-Track theme programme</h2>
+        <p class="section-lead">
+          MCL welcomes high-impact greening, sports, environmental, and civic concepts from business entities,
+          MSMEs, corporates, and citizens. Priority models are highlighted below for inspiration, but proposals
+          are <strong>not restricted to these</strong>—applicants are actively encouraged to propose any custom
+          innovative theme.
+        </p>
+      </div>
 
-    <!-- Theme chips: scroll to the register so user picks a park first, then applies from dossier with the theme pre-selected. -->
-    <div class="theme-chips reveal" role="group" aria-label="Browse parks to apply with a Fast-Track theme">
-      <button type="button" class="theme-chip" data-theme="Butterfly &amp; Bird Sanctuary Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg> Butterfly &amp; Bird Sanctuary
-      </button>
-      <button type="button" class="theme-chip" data-theme="E-Waste &amp; Recycled Art Eco-Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-recycle"></use></svg> E-Waste Eco-Park
-      </button>
-      <button type="button" class="theme-chip" data-theme="Open-Air Reading &amp; Knowledge Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> Reading Park
-      </button>
-      <button type="button" class="theme-chip" data-theme="Urban Miyawaki Micro-Forest">
-        <svg aria-hidden="true" focusable="false"><use href="#i-tree"></use></svg> Miyawaki Forest
-      </button>
-      <button type="button" class="theme-chip" data-theme="Senior Citizen Sensory &amp; Wellness Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg> Senior Wellness
-      </button>
-      <button type="button" class="theme-chip" data-theme="Children Eco-Science &amp; Play Park">
-        <svg aria-hidden="true" focusable="false"><use href="#i-flask"></use></svg> Science &amp; Play
-      </button>
-    </div>
+      <!-- Theme chips: scroll to the register so user picks a park first, then applies from dossier with the theme pre-selected. -->
+      <div class="theme-chips reveal" role="group" aria-label="Browse parks to apply with a Fast-Track theme">
+        <button type="button" class="theme-chip" data-theme="Butterfly &amp; Bird Sanctuary Park">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-leaf"></use>
+          </svg> Butterfly &amp; Bird Sanctuary
+        </button>
+        <button type="button" class="theme-chip" data-theme="E-Waste &amp; Recycled Art Eco-Park">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-recycle"></use>
+          </svg> E-Waste Eco-Park
+        </button>
+        <button type="button" class="theme-chip" data-theme="Open-Air Reading &amp; Knowledge Park">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-book"></use>
+          </svg> Reading Park
+        </button>
+        <button type="button" class="theme-chip" data-theme="Urban Miyawaki Micro-Forest">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-tree"></use>
+          </svg> Miyawaki Forest
+        </button>
+        <button type="button" class="theme-chip" data-theme="Senior Citizen Sensory &amp; Wellness Park">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-heart"></use>
+          </svg> Senior Wellness
+        </button>
+        <button type="button" class="theme-chip" data-theme="Children Eco-Science &amp; Play Park">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-flask"></use>
+          </svg> Science &amp; Play
+        </button>
+      </div>
 
-    <div class="themes-grid">
+      <div class="themes-grid">
 
-      <!-- Theme 1 -->
-      <article class="theme-card reveal" style="--i:0">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/butterfly-bird-sanctuary-480.webp 480w, assets/park-themes/opt/butterfly-bird-sanctuary-720.webp 720w, assets/park-themes/opt/butterfly-bird-sanctuary-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/butterfly-bird-sanctuary-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Flowering nectar shrubs and a shaded planted border in a municipal park, the habitat planting used for butterfly and bird sanctuary sites.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Butterfly &amp; Bird Sanctuary</h3>
-          <p class="theme-card__desc">
-            Active biodiversity habitats with native nectar flora, larval host plants,
-            natural clay bird baths, feeding stations, and nature observation trails.
-          </p>
-          <ul class="theme-card__features">
-            <li>Nectar flora</li><li>Bird feeders</li><li>Biodiversity trail</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Butterfly &amp; Bird Sanctuary Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 2 -->
-      <article class="theme-card reveal" style="--i:1">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/ewaste-eco-park-480.webp 480w, assets/park-themes/opt/ewaste-eco-park-720.webp 720w, assets/park-themes/opt/ewaste-eco-park-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/ewaste-eco-park-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Sculptural installation assembled from reclaimed metal and scrap components set in a planted public space.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>E-Waste &amp; Recycled Eco-Park</h3>
-          <p class="theme-card__desc">
-            Circular economy showcase with creative artistic sculptures made from
-            scrap and e-waste, solar smart benches, and interactive recycling kiosks.
-          </p>
-          <ul class="theme-card__features">
-            <li>Solar smart benches</li><li>Upcycled scrap art</li><li>Eco hub</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="E-Waste &amp; Recycled Art Eco-Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 3 -->
-      <article class="theme-card reveal" style="--i:2">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/open-air-reading-park-480.webp 480w, assets/park-themes/opt/open-air-reading-park-720.webp 720w, assets/park-themes/opt/open-air-reading-park-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/open-air-reading-park-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Shaded outdoor seating alcove beneath mature trees, of the kind used for open-air reading and study areas.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Open-Air Reading Park</h3>
-          <p class="theme-card__desc">
-            Tranquil shaded reading gazebos, weatherproof mini-book trees, quiet study
-            seating alcoves, and solar LED reading lights.
-          </p>
-          <ul class="theme-card__features">
-            <li>Outdoor book trees</li><li>Solar study gazebos</li><li>Study pods</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Open-Air Reading &amp; Knowledge Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 4 -->
-      <article class="theme-card reveal" style="--i:0">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/urban-miyawaki-microforest-480.webp 480w, assets/park-themes/opt/urban-miyawaki-microforest-720.webp 720w, assets/park-themes/opt/urban-miyawaki-microforest-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/urban-miyawaki-microforest-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Dense stand of young native trees planted close together, the high-density planting method used for Miyawaki micro-forests.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Urban Miyawaki Micro-Forest</h3>
-          <p class="theme-card__desc">
-            High-density native tree plantation achieving up to thirty times faster
-            growth, maximum carbon sequestration, and measurable microclimate cooling.
-          </p>
-          <ul class="theme-card__features">
-            <li>100% native species</li><li>Oxygen hub</li><li>Climate cooling</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Urban Miyawaki Micro-Forest">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 5 -->
-      <article class="theme-card reveal" style="--i:1">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/senior-sensory-wellness-480.webp 480w, assets/park-themes/opt/senior-sensory-wellness-720.webp 720w, assets/park-themes/opt/senior-sensory-wellness-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/senior-sensory-wellness-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Level paved walking path with benches running through planted lawns, laid out for accessible senior use.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Senior Sensory &amp; Wellness</h3>
-          <p class="theme-card__desc">
-            Dedicated sensory walking tracks, aromatic herbal medicinal beds,
-            ergonomic resting benches, and gentle open-air physiotherapy stations.
-          </p>
-          <ul class="theme-card__features">
-            <li>Sensory walkways</li><li>Healing herb beds</li><li>Senior benches</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Senior Citizen Sensory &amp; Wellness Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-      <!-- Theme 6 -->
-      <article class="theme-card reveal" style="--i:2">
-        <div class="theme-card__media">
-          <picture>
-            <source type="image/webp" srcset="assets/park-themes/opt/children-eco-science-play-480.webp 480w, assets/park-themes/opt/children-eco-science-play-720.webp 720w, assets/park-themes/opt/children-eco-science-play-1080.webp 1080w" sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
-            <img class="theme-card__img" src="assets/park-themes/opt/children-eco-science-play-720.jpg"
-                 width="720" height="405" loading="lazy" decoding="async"
-                 alt="Children's play equipment set on open ground within a planted municipal park.">
-          </picture>
-          <span class="theme-card__badge">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Priority concept
-          </span>
-        </div>
-        <div class="theme-card__body">
-          <h3>Children Eco-Science &amp; Play</h3>
-          <p class="theme-card__desc">
-            Eco-friendly natural timber play equipment, interactive water and solar
-            physics demonstrators, and botanical discovery gardens.
-          </p>
-          <ul class="theme-card__features">
-            <li>Nature playscapes</li><li>Science exhibits</li><li>Nature discovery</li>
-          </ul>
-          <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Children Eco-Science &amp; Play Park">
-            Browse parks for this theme
-            <svg aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
-          </button>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="policy-note reveal">
-      <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-      <p>
-        <strong>Fast-Track &amp; Open Innovation.</strong> In addition to the notified models above,
-        MCL actively invites innovative greening, environmental, recreational, and civic concepts.
-        The list of themes is <strong>not restricted</strong>—select <em>Other / Custom Theme Concept</em> in the Expression of Interest form to specify and submit your own project theme.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ==========================================================================
-     05 · REGISTRY & GIS  (search · filters · cards · split/map · table · CSV)
-     ========================================================================== -->
-<section class="section section--paper2" id="registry" aria-labelledby="registry-title">
-  <!-- Anchor for direct #gis navigation links -->
-  <div id="gis" style="position: relative; top: -80px; visibility: hidden;"></div>
-
-  <div class="shell">
-
-    <div class="section-head reveal">
-      <span class="eyebrow">Municipal register &amp; GIS</span>
-      <h2 class="section-title" id="registry-title">Browse all 918 parks &amp; interactive GIS map</h2>
-      <p class="section-lead">
-        The complete Ludhiana municipal green asset register. Search by name or locality,
-        filter by zone, ward and adoption status, switch seamlessly between cards,
-        split list &amp; map, full GIS geospatial map and data table, or submit an Expression of Interest.
-      </p>
-    </div>
-    <!-- Theme hint: shown when user clicks a theme chip/card button; JS populates #themeHintName -->
-    <div class="theme-hint-banner" id="themeHintBanner" hidden>
-      <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-      <p>You selected the <strong id="themeHintName"></strong> theme. Open any park dossier below and choose this theme when you submit your Expression of Interest.</p>
-      <button type="button" class="theme-hint-dismiss" id="themeHintDismiss" aria-label="Dismiss theme hint">&#x2715;</button>
-    </div>
-
-    <!-- Mobile: sticky trigger for the filter bottom sheet (CSS-hidden ≥1025px) -->
-    <div class="filters__mobile-bar">
-      <button type="button" class="btn btn--ghost" id="filtersOpenBtn"
-              aria-expanded="false" aria-controls="filtersPanel">
-        <svg aria-hidden="true" focusable="false"><use href="#i-sliders"></use></svg>
-        <span>Search &amp; filters</span>
-        <span class="filter-count" id="filterCountBadge" aria-hidden="true"></span>
-      </button>
-    </div>
-    <div class="filters__scrim" id="filtersScrim" hidden></div>
-
-    <div class="registry__layout">
-
-      <!-- ---- Filter rail / bottom sheet -------------------------------- -->
-      <aside class="filters" id="filtersPanel" aria-labelledby="filters-title">
-        <div class="filters__head">
-          <h3 id="filters-title">Search &amp; filters</h3>
-          <button type="button" class="icon-btn" id="filtersCloseBtn">
-            <svg aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
-            <span class="sr-only">Close filters</span>
-          </button>
-        </div>
-
-        <div class="filters__body">
-
-          <!-- Keyword search -->
-          <div class="filter-group">
-            <label class="filter-group__label" for="searchInput">Keyword search</label>
-            <div class="search-wrap">
-              <svg class="search-icon" aria-hidden="true" focusable="false"><use href="#i-search"></use></svg>
-              <input type="search" id="searchInput" autocomplete="off" spellcheck="false"
-                     placeholder="Park name, MCL ID, ward, locality…"
-                     aria-describedby="searchHint">
-              <button type="button" class="search-clear" id="searchClear" hidden>
-                <svg aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
-                <span class="sr-only">Clear search</span>
-              </button>
-            </div>
-            <span class="field-hint" id="searchHint">
-              Try <code>MCL_942</code>, <code>ward 12</code> or a colony name.
+        <!-- Theme 1 -->
+        <article class="theme-card reveal" style="--i:0">
+          <div class="theme-card__media">
+            <picture>
+              <source type="image/webp"
+                srcset="assets/park-themes/opt/butterfly-bird-sanctuary-480.webp 480w, assets/park-themes/opt/butterfly-bird-sanctuary-720.webp 720w, assets/park-themes/opt/butterfly-bird-sanctuary-1080.webp 1080w"
+                sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+              <img class="theme-card__img" src="assets/park-themes/opt/butterfly-bird-sanctuary-720.jpg" width="720"
+                height="405" loading="lazy" decoding="async"
+                alt="Flowering nectar shrubs and a shaded planted border in a municipal park, the habitat planting used for butterfly and bird sanctuary sites.">
+            </picture>
+            <span class="theme-card__badge">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg> Priority concept
             </span>
           </div>
-
-          <!-- Adoption status. role=radiogroup (not tablist) — these are
-               mutually exclusive filters, not tabs with panels. Arrow-key
-               navigation is wired up in script.js. -->
-          <div class="filter-group">
-            <span class="filter-group__label" id="statusLabel">Adoption status</span>
-            <div class="status-tabs" id="statusTabs" role="radiogroup" aria-labelledby="statusLabel">
-              <button type="button" class="status-tab" role="radio" aria-checked="true" data-status="ALL">
-                <span class="tab-label"><span class="swatch" aria-hidden="true"></span>All sites</span>
-                <span class="tab-count" data-count-for="ALL">918</span>
-              </button>
-              <button type="button" class="status-tab status-tab--available" role="radio" aria-checked="false" data-status="Available" tabindex="-1">
-                <span class="tab-label"><span class="swatch" aria-hidden="true"></span>Available</span>
-                <span class="tab-count" data-count-for="Available">266</span>
-              </button>
-              <button type="button" class="status-tab status-tab--rwa" role="radio" aria-checked="false" data-status="RWA Managed" tabindex="-1">
-                <span class="tab-label"><span class="swatch" aria-hidden="true"></span>RWA managed</span>
-                <span class="tab-count" data-count-for="RWA Managed">613</span>
-              </button>
-              <button type="button" class="status-tab status-tab--adopted" role="radio" aria-checked="false" data-status="Adopted" tabindex="-1">
-                <span class="tab-label"><span class="swatch" aria-hidden="true"></span>Already adopted</span>
-                <span class="tab-count" data-count-for="Adopted">39</span>
-              </button>
-            </div>
+          <div class="theme-card__body">
+            <h3>Butterfly &amp; Bird Sanctuary</h3>
+            <p class="theme-card__desc">
+              Active biodiversity habitats with native nectar flora, larval host plants,
+              natural clay bird baths, feeding stations, and nature observation trails.
+            </p>
+            <ul class="theme-card__features">
+              <li>Nectar flora</li>
+              <li>Bird feeders</li>
+              <li>Biodiversity trail</li>
+            </ul>
+            <button type="button" class="btn btn--ghost btn-theme-select"
+              data-theme="Butterfly &amp; Bird Sanctuary Park">
+              Browse parks for this theme
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
           </div>
+        </article>
 
-          <!-- Zone -->
-          <div class="filter-group">
-            <label class="filter-group__label" for="zoneSelect">Municipal zone</label>
-            <div class="field-select">
-              <select id="zoneSelect">
-                <option value="ALL">All zones (A–D)</option>
-                <option value="A">Zone A — 76 sites</option>
-                <option value="B">Zone B — 232 sites</option>
-                <option value="C">Zone C — 56 sites</option>
-                <option value="D">Zone D — 554 sites</option>
-              </select>
-            </div>
+        <!-- Theme 2 -->
+        <article class="theme-card reveal" style="--i:1">
+          <div class="theme-card__media">
+            <picture>
+              <source type="image/webp"
+                srcset="assets/park-themes/opt/ewaste-eco-park-480.webp 480w, assets/park-themes/opt/ewaste-eco-park-720.webp 720w, assets/park-themes/opt/ewaste-eco-park-1080.webp 1080w"
+                sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+              <img class="theme-card__img" src="assets/park-themes/opt/ewaste-eco-park-720.jpg" width="720" height="405"
+                loading="lazy" decoding="async"
+                alt="Sculptural installation assembled from reclaimed metal and scrap components set in a planted public space.">
+            </picture>
+            <span class="theme-card__badge">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg> Priority concept
+            </span>
           </div>
-
-          <!-- Ward (options injected from the dataset) -->
-          <div class="filter-group">
-            <label class="filter-group__label" for="wardSelect">Ward</label>
-            <div class="field-select">
-              <select id="wardSelect">
-                <option value="ALL">All wards</option>
-              </select>
-            </div>
+          <div class="theme-card__body">
+            <h3>E-Waste &amp; Recycled Eco-Park</h3>
+            <p class="theme-card__desc">
+              Circular economy showcase with creative artistic sculptures made from
+              scrap and e-waste, solar smart benches, and interactive recycling kiosks.
+            </p>
+            <ul class="theme-card__features">
+              <li>Solar smart benches</li>
+              <li>Upcycled scrap art</li>
+              <li>Eco hub</li>
+            </ul>
+            <button type="button" class="btn btn--ghost btn-theme-select"
+              data-theme="E-Waste &amp; Recycled Art Eco-Park">
+              Browse parks for this theme
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
           </div>
+        </article>
 
-          <!-- Type -->
-          <div class="filter-group">
-            <label class="filter-group__label" for="categorySelect">Asset type</label>
-            <div class="field-select">
-              <select id="categorySelect">
-                <option value="ALL">All types</option>
-                <option value="PARK">Parks only — 812</option>
-                <option value="GREEN BELT">Green belts — 106</option>
-              </select>
-            </div>
+        <!-- Theme 3 -->
+        <article class="theme-card reveal" style="--i:2">
+          <div class="theme-card__media">
+            <picture>
+              <source type="image/webp"
+                srcset="assets/park-themes/opt/open-air-reading-park-480.webp 480w, assets/park-themes/opt/open-air-reading-park-720.webp 720w, assets/park-themes/opt/open-air-reading-park-1080.webp 1080w"
+                sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+              <img class="theme-card__img" src="assets/park-themes/opt/open-air-reading-park-720.jpg" width="720"
+                height="405" loading="lazy" decoding="async"
+                alt="Shaded outdoor seating alcove beneath mature trees, of the kind used for open-air reading and study areas.">
+            </picture>
+            <span class="theme-card__badge">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg> Priority concept
+            </span>
           </div>
-
-          <!-- Sort -->
-          <div class="filter-group">
-            <label class="filter-group__label" for="sortSelect">Sort order</label>
-            <div class="field-select">
-              <select id="sortSelect">
-                <option value="name">Name (A–Z)</option>
-                <option value="area-desc">Largest area first</option>
-                <option value="area-asc">Smallest area first</option>
-                <option value="ward">Ward number</option>
-                <option value="zone">Zone</option>
-              </select>
-            </div>
+          <div class="theme-card__body">
+            <h3>Open-Air Reading Park</h3>
+            <p class="theme-card__desc">
+              Tranquil shaded reading gazebos, weatherproof mini-book trees, quiet study
+              seating alcoves, and solar LED reading lights.
+            </p>
+            <ul class="theme-card__features">
+              <li>Outdoor book trees</li>
+              <li>Solar study gazebos</li>
+              <li>Study pods</li>
+            </ul>
+            <button type="button" class="btn btn--ghost btn-theme-select"
+              data-theme="Open-Air Reading &amp; Knowledge Park">
+              Browse parks for this theme
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
           </div>
+        </article>
 
-        </div>
-
-        <div class="filters__footer">
-          <button type="button" class="btn btn--ghost btn--block btn--sm" id="resetFilters" hidden>
-            <svg aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
-            Reset all filters
-          </button>
-          <button type="button" class="btn btn--primary btn--block" id="filtersApplyBtn" hidden>
-            Show <span id="filtersApplyCount">918</span> results
-          </button>
-        </div>
-      </aside>
-
-      <!-- ---- Results --------------------------------------------------- -->
-      <div class="results" id="resultsContainer">
-
-        <div class="results__toolbar">
-          <p class="results__count" id="resultCount" role="status" aria-live="polite">
-            Showing <strong>918</strong> of 918 sites
-          </p>
-
-          <div class="results__tools">
-            <div class="view-switch" role="group" aria-label="Result view">
-              <button type="button" class="view-btn" id="viewCardsBtn" aria-pressed="true" title="Grid cards view">
-                <svg aria-hidden="true" focusable="false"><use href="#i-grid"></use></svg>
-                <span>Cards</span>
-              </button>
-              <button type="button" class="view-btn" id="viewSplitBtn" aria-pressed="false" title="Interactive split list and GIS map">
-                <svg aria-hidden="true" focusable="false"><use href="#i-sliders"></use></svg>
-                <span>Split / Map</span>
-              </button>
-              <button type="button" class="view-btn" id="viewMapBtn" aria-pressed="false" title="Full geospatial GIS map">
-                <svg aria-hidden="true" focusable="false"><use href="#i-map"></use></svg>
-                <span>Full Map</span>
-              </button>
-              <button type="button" class="view-btn" id="viewTableBtn" aria-pressed="false" title="Data table view">
-                <svg aria-hidden="true" focusable="false"><use href="#i-table"></use></svg>
-                <span>Table</span>
-              </button>
-            </div>
+        <!-- Theme 4 -->
+        <article class="theme-card reveal" style="--i:0">
+          <div class="theme-card__media">
+            <picture>
+              <source type="image/webp"
+                srcset="assets/park-themes/opt/urban-miyawaki-microforest-480.webp 480w, assets/park-themes/opt/urban-miyawaki-microforest-720.webp 720w, assets/park-themes/opt/urban-miyawaki-microforest-1080.webp 1080w"
+                sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+              <img class="theme-card__img" src="assets/park-themes/opt/urban-miyawaki-microforest-720.jpg" width="720"
+                height="405" loading="lazy" decoding="async"
+                alt="Dense stand of young native trees planted close together, the high-density planting method used for Miyawaki micro-forests.">
+            </picture>
+            <span class="theme-card__badge">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg> Priority concept
+            </span>
           </div>
-        </div>
-
-        <!-- Dismissible summary of what is currently filtered -->
-        <div class="active-filters" id="activeFilters"></div>
-
-        <!-- 1. Cards view (internally scrollable container without moving main page) -->
-        <div class="results__cards-pane" id="resultsCardsPane">
-          <div class="site-list" id="siteList"></div>
-          <!-- Progressive rendering control -->
-          <div class="load-more-wrap" id="loadMoreWrap"></div>
-        </div>
-
-        <!-- 2. Unified GIS Area (handles both Split View and Full Map View) -->
-        <div class="results__gis-area" id="gisArea" hidden>
-          <div class="gis-split-layout" id="gisSplitLayout">
-            
-            <!-- Split Left Pane: List of sites with quick focus buttons -->
-            <div class="gis-split__list-pane" id="gisSplitListPane">
-              <div class="gis-split__list-head">
-                <span class="gis-split__count" id="gisSplitCount">918 sites in view</span>
-                <span class="gis-split__hint">Click card to pan &amp; zoom</span>
-              </div>
-              <div class="gis-split__list" id="gisSplitList"></div>
-            </div>
-
-            <!-- Split Right Pane / Full Map Pane -->
-            <div class="gis-split__map-pane" id="gisSplitMapPane">
-              <div class="gis-panel" id="gisPanel">
-                <div class="gis-panel__bar">
-                  <div class="gis-panel__title">
-                    <span class="gis-badge">GIS</span>
-                    <h3>Interactive Municipal Park Map</h3>
-                  </div>
-                  <div class="map-legend" id="mapLegend">
-                    <span class="legend-chip"><span class="dot dot--a" aria-hidden="true"></span>Zone A</span>
-                    <span class="legend-chip"><span class="dot dot--b" aria-hidden="true"></span>Zone B</span>
-                    <span class="legend-chip"><span class="dot dot--c" aria-hidden="true"></span>Zone C</span>
-                    <span class="legend-chip"><span class="dot dot--d" aria-hidden="true"></span>Zone D</span>
-                    <span class="legend-chip legend-chip--avail"><span class="dot dot--avail" aria-hidden="true"></span>Open for Adoption</span>
-                  </div>
-                </div>
-
-                <div class="map-stage" id="mapStage">
-                  <div id="map" class="map" role="application" aria-label="Interactive map of municipal parks in Ludhiana"></div>
-                </div>
-
-                <p class="gis-panel__foot" id="gisFoot">
-                  Zone-coded municipal centroids recorded by MCL Horticulture Wing. Click any marker for instant park details, dossier access, and Expression of Interest.
-                </p>
-              </div>
-            </div>
-
+          <div class="theme-card__body">
+            <h3>Urban Miyawaki Micro-Forest</h3>
+            <p class="theme-card__desc">
+              High-density native tree plantation achieving up to thirty times faster
+              growth, maximum carbon sequestration, and measurable microclimate cooling.
+            </p>
+            <ul class="theme-card__features">
+              <li>100% native species</li>
+              <li>Oxygen hub</li>
+              <li>Climate cooling</li>
+            </ul>
+            <button type="button" class="btn btn--ghost btn-theme-select" data-theme="Urban Miyawaki Micro-Forest">
+              Browse parks for this theme
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
           </div>
-        </div>
+        </article>
 
-        <!-- 3. Table view. Becomes stacked records below 768px -->
-        <div class="table-scroll" id="tableContainer" hidden>
-          <table class="gov-table" id="govTable">
-            <caption class="sr-only">
-              Filtered municipal park register. Each row links to the site's asset
-              dossier and Expression of Interest form.
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">MCL ID</th>
-                <th scope="col">Site name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Zone</th>
-                <th scope="col">Ward</th>
-                <th scope="col">Area</th>
-                <th scope="col">Authority</th>
-                <th scope="col">Status</th>
-                <th scope="col"><span class="sr-only">Action</span></th>
-              </tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
-          </table>
-        </div>
+        <!-- Theme 5 -->
+        <article class="theme-card reveal" style="--i:1">
+          <div class="theme-card__media">
+            <picture>
+              <source type="image/webp"
+                srcset="assets/park-themes/opt/senior-sensory-wellness-480.webp 480w, assets/park-themes/opt/senior-sensory-wellness-720.webp 720w, assets/park-themes/opt/senior-sensory-wellness-1080.webp 1080w"
+                sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+              <img class="theme-card__img" src="assets/park-themes/opt/senior-sensory-wellness-720.jpg" width="720"
+                height="405" loading="lazy" decoding="async"
+                alt="Level paved walking path with benches running through planted lawns, laid out for accessible senior use.">
+            </picture>
+            <span class="theme-card__badge">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg> Priority concept
+            </span>
+          </div>
+          <div class="theme-card__body">
+            <h3>Senior Sensory &amp; Wellness</h3>
+            <p class="theme-card__desc">
+              Dedicated sensory walking tracks, aromatic herbal medicinal beds,
+              ergonomic resting benches, and gentle open-air physiotherapy stations.
+            </p>
+            <ul class="theme-card__features">
+              <li>Sensory walkways</li>
+              <li>Healing herb beds</li>
+              <li>Senior benches</li>
+            </ul>
+            <button type="button" class="btn btn--ghost btn-theme-select"
+              data-theme="Senior Citizen Sensory &amp; Wellness Park">
+              Browse parks for this theme
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Theme 6 -->
+        <article class="theme-card reveal" style="--i:2">
+          <div class="theme-card__media">
+            <picture>
+              <source type="image/webp"
+                srcset="assets/park-themes/opt/children-eco-science-play-480.webp 480w, assets/park-themes/opt/children-eco-science-play-720.webp 720w, assets/park-themes/opt/children-eco-science-play-1080.webp 1080w"
+                sizes="(min-width:1100px) 380px, (min-width:700px) 45vw, 92vw">
+              <img class="theme-card__img" src="assets/park-themes/opt/children-eco-science-play-720.jpg" width="720"
+                height="405" loading="lazy" decoding="async"
+                alt="Children's play equipment set on open ground within a planted municipal park.">
+            </picture>
+            <span class="theme-card__badge">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-star"></use>
+              </svg> Priority concept
+            </span>
+          </div>
+          <div class="theme-card__body">
+            <h3>Children Eco-Science &amp; Play</h3>
+            <p class="theme-card__desc">
+              Eco-friendly natural timber play equipment, interactive water and solar
+              physics demonstrators, and botanical discovery gardens.
+            </p>
+            <ul class="theme-card__features">
+              <li>Nature playscapes</li>
+              <li>Science exhibits</li>
+              <li>Nature discovery</li>
+            </ul>
+            <button type="button" class="btn btn--ghost btn-theme-select"
+              data-theme="Children Eco-Science &amp; Play Park">
+              Browse parks for this theme
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="policy-note reveal">
+        <svg aria-hidden="true" focusable="false">
+          <use href="#i-star"></use>
+        </svg>
+        <p>
+          <strong>Fast-Track &amp; Open Innovation.</strong> In addition to the notified models above,
+          MCL actively invites innovative greening, environmental, recreational, and civic concepts.
+          The list of themes is <strong>not restricted</strong>—select <em>Other / Custom Theme Concept</em> in the
+          Expression of Interest form to specify and submit your own project theme.
+        </p>
       </div>
 
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ==========================================================================
+
+  <!-- ==========================================================================
+     05 · REGISTRY & GIS  (search · filters · cards · split/map · table · CSV)
+     ========================================================================== -->
+  <section class="section section--paper2" id="registry" aria-labelledby="registry-title">
+    <!-- Anchor for direct #gis navigation links -->
+    <div id="gis" style="position: relative; top: -80px; visibility: hidden;"></div>
+
+    <div class="shell">
+
+      <div class="section-head reveal">
+        <span class="eyebrow">Municipal register &amp; GIS</span>
+        <h2 class="section-title" id="registry-title">Browse all 918 parks &amp; interactive GIS map</h2>
+        <p class="section-lead">
+          The complete Ludhiana municipal green asset register. Search by name or locality,
+          filter by zone, ward and adoption status, switch seamlessly between cards,
+          split list &amp; map, full GIS geospatial map and data table, or submit an Expression of Interest.
+        </p>
+      </div>
+      <!-- Theme hint: shown when user clicks a theme chip/card button; JS populates #themeHintName -->
+      <div class="theme-hint-banner" id="themeHintBanner" hidden>
+        <svg aria-hidden="true" focusable="false">
+          <use href="#i-star"></use>
+        </svg>
+        <p>You selected the <strong id="themeHintName"></strong> theme. Open any park dossier below and choose this
+          theme when you submit your Expression of Interest.</p>
+        <button type="button" class="theme-hint-dismiss" id="themeHintDismiss"
+          aria-label="Dismiss theme hint">&#x2715;</button>
+      </div>
+
+      <!-- Mobile: sticky trigger for the filter bottom sheet (CSS-hidden ≥1025px) -->
+      <div class="filters__mobile-bar">
+        <button type="button" class="btn btn--ghost" id="filtersOpenBtn" aria-expanded="false"
+          aria-controls="filtersPanel">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-sliders"></use>
+          </svg>
+          <span>Search &amp; filters</span>
+          <span class="filter-count" id="filterCountBadge" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="filters__scrim" id="filtersScrim" hidden></div>
+
+      <div class="registry__layout">
+
+        <!-- ---- Filter rail / bottom sheet -------------------------------- -->
+        <aside class="filters" id="filtersPanel" aria-labelledby="filters-title">
+          <div class="filters__head">
+            <h3 id="filters-title">Search &amp; filters</h3>
+            <button type="button" class="icon-btn" id="filtersCloseBtn">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-close"></use>
+              </svg>
+              <span class="sr-only">Close filters</span>
+            </button>
+          </div>
+
+          <div class="filters__body">
+
+            <!-- Keyword search -->
+            <div class="filter-group">
+              <label class="filter-group__label" for="searchInput">Keyword search</label>
+              <div class="search-wrap">
+                <svg class="search-icon" aria-hidden="true" focusable="false">
+                  <use href="#i-search"></use>
+                </svg>
+                <input type="search" id="searchInput" autocomplete="off" spellcheck="false"
+                  placeholder="Park name, MCL ID, ward, locality…" aria-describedby="searchHint">
+                <button type="button" class="search-clear" id="searchClear" hidden>
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-close"></use>
+                  </svg>
+                  <span class="sr-only">Clear search</span>
+                </button>
+              </div>
+              <span class="field-hint" id="searchHint">
+                Try <code>MCL_942</code>, <code>ward 12</code> or a colony name.
+              </span>
+            </div>
+
+            <!-- Adoption status. role=radiogroup (not tablist) — these are
+               mutually exclusive filters, not tabs with panels. Arrow-key
+               navigation is wired up in script.js. -->
+            <div class="filter-group">
+              <span class="filter-group__label" id="statusLabel">Adoption status</span>
+              <div class="status-tabs" id="statusTabs" role="radiogroup" aria-labelledby="statusLabel">
+                <button type="button" class="status-tab" role="radio" aria-checked="true" data-status="ALL">
+                  <span class="tab-label"><span class="swatch" aria-hidden="true"></span>All sites</span>
+                  <span class="tab-count" data-count-for="ALL">918</span>
+                </button>
+                <button type="button" class="status-tab status-tab--available" role="radio" aria-checked="false"
+                  data-status="Available" tabindex="-1">
+                  <span class="tab-label"><span class="swatch" aria-hidden="true"></span>Available</span>
+                  <span class="tab-count" data-count-for="Available">266</span>
+                </button>
+                <button type="button" class="status-tab status-tab--rwa" role="radio" aria-checked="false"
+                  data-status="RWA Managed" tabindex="-1">
+                  <span class="tab-label"><span class="swatch" aria-hidden="true"></span>RWA managed</span>
+                  <span class="tab-count" data-count-for="RWA Managed">613</span>
+                </button>
+                <button type="button" class="status-tab status-tab--adopted" role="radio" aria-checked="false"
+                  data-status="Adopted" tabindex="-1">
+                  <span class="tab-label"><span class="swatch" aria-hidden="true"></span>Already adopted</span>
+                  <span class="tab-count" data-count-for="Adopted">39</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Zone -->
+            <div class="filter-group">
+              <label class="filter-group__label" for="zoneSelect">Municipal zone</label>
+              <div class="field-select">
+                <select id="zoneSelect">
+                  <option value="ALL">All zones (A–D)</option>
+                  <option value="A">Zone A — 76 sites</option>
+                  <option value="B">Zone B — 232 sites</option>
+                  <option value="C">Zone C — 56 sites</option>
+                  <option value="D">Zone D — 554 sites</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Ward (options injected from the dataset) -->
+            <div class="filter-group">
+              <label class="filter-group__label" for="wardSelect">Ward</label>
+              <div class="field-select">
+                <select id="wardSelect">
+                  <option value="ALL">All wards</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Type -->
+            <div class="filter-group">
+              <label class="filter-group__label" for="categorySelect">Asset type</label>
+              <div class="field-select">
+                <select id="categorySelect">
+                  <option value="ALL">All types</option>
+                  <option value="PARK">Parks only — 812</option>
+                  <option value="GREEN BELT">Green belts — 106</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Sort -->
+            <div class="filter-group">
+              <label class="filter-group__label" for="sortSelect">Sort order</label>
+              <div class="field-select">
+                <select id="sortSelect">
+                  <option value="name">Name (A–Z)</option>
+                  <option value="area-desc">Largest area first</option>
+                  <option value="area-asc">Smallest area first</option>
+                  <option value="ward">Ward number</option>
+                  <option value="zone">Zone</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="filters__footer">
+            <button type="button" class="btn btn--ghost btn--block btn--sm" id="resetFilters" hidden>
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-close"></use>
+              </svg>
+              Reset all filters
+            </button>
+            <button type="button" class="btn btn--primary btn--block" id="filtersApplyBtn" hidden>
+              Show <span id="filtersApplyCount">918</span> results
+            </button>
+          </div>
+        </aside>
+
+        <!-- ---- Results --------------------------------------------------- -->
+        <div class="results" id="resultsContainer">
+
+          <div class="results__toolbar">
+            <p class="results__count" id="resultCount" role="status" aria-live="polite">
+              Showing <strong>918</strong> of 918 sites
+            </p>
+
+            <div class="results__tools">
+              <div class="view-switch" role="group" aria-label="Result view">
+                <button type="button" class="view-btn" id="viewCardsBtn" aria-pressed="true" title="Grid cards view">
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-grid"></use>
+                  </svg>
+                  <span>Cards</span>
+                </button>
+                <button type="button" class="view-btn" id="viewSplitBtn" aria-pressed="false"
+                  title="Interactive split list and GIS map">
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-sliders"></use>
+                  </svg>
+                  <span>Split / Map</span>
+                </button>
+                <button type="button" class="view-btn" id="viewMapBtn" aria-pressed="false"
+                  title="Full geospatial GIS map">
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-map"></use>
+                  </svg>
+                  <span>Full Map</span>
+                </button>
+                <button type="button" class="view-btn" id="viewTableBtn" aria-pressed="false" title="Data table view">
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#i-table"></use>
+                  </svg>
+                  <span>Table</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dismissible summary of what is currently filtered -->
+          <div class="active-filters" id="activeFilters"></div>
+
+          <!-- 1. Cards view (internally scrollable container without moving main page) -->
+          <div class="results__cards-pane" id="resultsCardsPane">
+            <div class="site-list" id="siteList"></div>
+            <!-- Progressive rendering control -->
+            <div class="load-more-wrap" id="loadMoreWrap"></div>
+          </div>
+
+          <!-- 2. Unified GIS Area (handles both Split View and Full Map View) -->
+          <div class="results__gis-area" id="gisArea" hidden>
+            <div class="gis-split-layout" id="gisSplitLayout">
+
+              <!-- Split Left Pane: List of sites with quick focus buttons -->
+              <div class="gis-split__list-pane" id="gisSplitListPane">
+                <div class="gis-split__list-head">
+                  <span class="gis-split__count" id="gisSplitCount">918 sites in view</span>
+                  <span class="gis-split__hint">Click card to pan &amp; zoom</span>
+                </div>
+                <div class="gis-split__list" id="gisSplitList"></div>
+              </div>
+
+              <!-- Split Right Pane / Full Map Pane -->
+              <div class="gis-split__map-pane" id="gisSplitMapPane">
+                <div class="gis-panel" id="gisPanel">
+                  <div class="gis-panel__bar">
+                    <div class="gis-panel__title">
+                      <span class="gis-badge">GIS</span>
+                      <h3>Interactive Municipal Park Map</h3>
+                    </div>
+                    <div class="map-legend" id="mapLegend">
+                      <span class="legend-chip"><span class="dot dot--a" aria-hidden="true"></span>Zone A</span>
+                      <span class="legend-chip"><span class="dot dot--b" aria-hidden="true"></span>Zone B</span>
+                      <span class="legend-chip"><span class="dot dot--c" aria-hidden="true"></span>Zone C</span>
+                      <span class="legend-chip"><span class="dot dot--d" aria-hidden="true"></span>Zone D</span>
+                      <span class="legend-chip legend-chip--avail"><span class="dot dot--avail"
+                          aria-hidden="true"></span>Open for Adoption</span>
+                    </div>
+                  </div>
+
+                  <div class="map-stage" id="mapStage">
+                    <div id="map" class="map" role="application"
+                      aria-label="Interactive map of municipal parks in Ludhiana"></div>
+                  </div>
+
+                  <p class="gis-panel__foot" id="gisFoot">
+                    Zone-coded municipal centroids recorded by MCL Horticulture Wing. Click any marker for instant park
+                    details, dossier access, and Expression of Interest.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 3. Table view. Becomes stacked records below 768px -->
+          <div class="table-scroll" id="tableContainer" hidden>
+            <table class="gov-table" id="govTable">
+              <caption class="sr-only">
+                Filtered municipal park register. Each row links to the site's asset
+                dossier and Expression of Interest form.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">MCL ID</th>
+                  <th scope="col">Site name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Zone</th>
+                  <th scope="col">Ward</th>
+                  <th scope="col">Area</th>
+                  <th scope="col">Authority</th>
+                  <th scope="col">Status</th>
+                  <th scope="col"><span class="sr-only">Action</span></th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
      06 · IMPACT & GREEN COVER
      All figures are derived at runtime from parks_data.json — nothing here
      is a hand-entered claim.
      ========================================================================== -->
-<section class="section section--tint" id="impact" aria-labelledby="impact-title">
-  <div class="shell">
+  <section class="section section--tint" id="impact" aria-labelledby="impact-title">
+    <div class="shell">
 
-    <div class="section-head reveal">
-      <span class="eyebrow">Green cover</span>
-      <h2 class="section-title" id="impact-title">What the register holds</h2>
-      <p class="section-lead">
-        A breakdown of Ludhiana's municipal green estate by zone, custodianship and
-        daily public use, to help you target greening and sponsorship spend where it reaches most people.
-      </p>
+      <div class="section-head reveal">
+        <span class="eyebrow">Green cover</span>
+        <h2 class="section-title" id="impact-title">What the register holds</h2>
+        <p class="section-lead">
+          A breakdown of Ludhiana's municipal green estate by zone, custodianship and
+          daily public use, to help you target greening and sponsorship spend where it reaches most people.
+        </p>
+      </div>
+
+      <div class="impact-grid">
+
+        <div class="impact-card card reveal" style="--i:0">
+          <h3>Sites by municipal zone</h3>
+          <div class="meter" id="meterZones"></div>
+        </div>
+
+        <div class="impact-card card reveal" style="--i:1">
+          <h3>Daily public footfall</h3>
+          <div class="meter" id="meterFootfall"></div>
+        </div>
+
+        <div class="impact-card card reveal" style="--i:2">
+          <h3>Scale of the opportunity</h3>
+          <div class="figure-stack" id="figureStack"></div>
+        </div>
+
+      </div>
+
     </div>
-
-    <div class="impact-grid">
-
-      <div class="impact-card card reveal" style="--i:0">
-        <h3>Sites by municipal zone</h3>
-        <div class="meter" id="meterZones"></div>
-      </div>
-
-      <div class="impact-card card reveal" style="--i:1">
-        <h3>Daily public footfall</h3>
-        <div class="meter" id="meterFootfall"></div>
-      </div>
-
-      <div class="impact-card card reveal" style="--i:2">
-        <h3>Scale of the opportunity</h3>
-        <div class="figure-stack" id="figureStack"></div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
+  </section>
 
 
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      09 · CLOSING CTA
      ========================================================================== -->
-<section class="cta-band" aria-labelledby="cta-title">
-  <div class="shell cta-band__inner">
-    <div class="cta-band__text">
-      <h2 id="cta-title">Ready to adopt a park?</h2>
-      <p>
-        Browse the register, open any park dossier, and submit an Expression of Interest directly from
-        the site page — open to corporates, MSMEs, traders, and organizations.
-      </p>
+  <section class="cta-band" aria-labelledby="cta-title">
+    <div class="shell cta-band__inner">
+      <div class="cta-band__text">
+        <h2 id="cta-title">Ready to adopt a park?</h2>
+        <p>
+          Browse the register, open any park dossier, and submit an Expression of Interest directly from
+          the site page — open to corporates, MSMEs, traders, and organizations.
+        </p>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--accent" href="#registry">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-search"></use>
+          </svg>
+          Browse the Register
+        </a>
+        <a class="btn btn--onDark" href="tel:+919086791867">
+          <svg aria-hidden="true" focusable="false">
+            <use href="#i-phone"></use>
+          </svg>
+          90867-91867
+        </a>
+      </div>
     </div>
-    <div class="cta-band__actions">
-      <a class="btn btn--accent" href="#registry">
-        <svg aria-hidden="true" focusable="false"><use href="#i-search"></use></svg>
-        Browse the Register
-      </a>
-      <a class="btn btn--onDark" href="tel:+919086791867">
-        <svg aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg>
-        90867-91867
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      10 · FOOTER
      ========================================================================== -->
-<footer class="gov-footer">
-  <div class="shell">
+  <footer class="gov-footer">
+    <div class="shell">
 
-    <h2 class="sr-only">Contact and site information</h2>
+      <h2 class="sr-only">Contact and site information</h2>
 
-    <div class="gov-footer__grid">
+      <div class="gov-footer__grid">
 
-      <div class="footer-col">
-        <div class="gov-footer__brand">
-          <img src="assets/logo.jpg" alt="Official seal of Municipal Corporation Ludhiana" width="32" height="32" loading="lazy" decoding="async">
-          <div>
-            <p class="gov-footer__org">Municipal Corporation Ludhiana</p>
-            <p class="gov-footer__dept">Estate &amp; Horticulture Wing</p>
+        <div class="footer-col">
+          <div class="gov-footer__brand">
+            <img src="assets/logo.jpg" alt="Official seal of Municipal Corporation Ludhiana" width="32" height="32"
+              loading="lazy" decoding="async">
+            <div>
+              <p class="gov-footer__org">Municipal Corporation Ludhiana</p>
+              <p class="gov-footer__dept">Estate &amp; Horticulture Wing</p>
+            </div>
           </div>
+          <address class="gov-footer__addr">
+            Zone-D, Sarabha Nagar<br>
+            Ludhiana, Punjab
+          </address>
         </div>
-        <address class="gov-footer__addr">
-          Zone-D, Sarabha Nagar<br>
-          Ludhiana, Punjab
-        </address>
+
+        <div class="footer-col">
+          <h3>Horticulture Cell</h3>
+          <ul>
+            <li>
+              <a class="footer-contact-val" href="tel:+919086791867">90867-91867</a>
+            </li>
+            <li>
+              <a href="mailto:commissionermcl@gmail.com">
+                <svg aria-hidden="true" focusable="false">
+                  <use href="#i-mail"></use>
+                </svg>
+                commissionermcl@gmail.com
+              </a>
+            </li>
+            <li><span class="gov-footer__dept">Mon–Fri, 9:30 – 17:00</span></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>On this portal</h3>
+          <ul>
+            <li><a href="#process">How adoption works</a></li>
+            <li><a href="#what-it-means">What adoption means</a></li>
+            <li><a href="#themes">Fast-Track themes</a></li>
+            <li><a href="#registry">Park register</a></li>
+            <li><a href="#gis">GIS visualiser</a></li>
+            <li><a href="#impact">Green cover data</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Apply</h3>
+          <ul>
+            <li><button type="button" class="footer-linkbtn" id="openInterestFooter2">Expression of Interest
+                (EOI)</button></li>
+          </ul>
+        </div>
+
       </div>
 
-      <div class="footer-col">
-        <h3>Horticulture Cell</h3>
-        <ul>
-          <li>
-            <a class="footer-contact-val" href="tel:+919086791867">90867-91867</a>
-          </li>
-          <li>
-            <a href="mailto:commissionermcl@gmail.com">
-              <svg aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg>
-              commissionermcl@gmail.com
-            </a>
-          </li>
-          <li><span class="gov-footer__dept">Mon–Fri, 9:30 – 17:00</span></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>On this portal</h3>
-        <ul>
-          <li><a href="#process">How adoption works</a></li>
-          <li><a href="#what-it-means">What adoption means</a></li>
-          <li><a href="#themes">Fast-Track themes</a></li>
-          <li><a href="#registry">Park register</a></li>
-          <li><a href="#gis">GIS visualiser</a></li>
-          <li><a href="#impact">Green cover data</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>Apply</h3>
-        <ul>
-          <li><button type="button" class="footer-linkbtn" id="openInterestFooter2">Expression of Interest (EOI)</button></li>
-        </ul>
+      <div class="gov-footer__bar">
+        <p>Content maintained by the Estate &amp; Horticulture Wing, Municipal Corporation Ludhiana.</p>
+        <p>Register last compiled from the MCL park inventory · <span id="siteYear">2026</span></p>
       </div>
 
     </div>
-
-    <div class="gov-footer__bar">
-      <p>Content maintained by the Estate &amp; Horticulture Wing, Municipal Corporation Ludhiana.</p>
-      <p>Register last compiled from the MCL park inventory · <span id="siteYear">2026</span></p>
-    </div>
-
-  </div>
-</footer>
+  </footer>
 
 
-<!-- ==========================================================================
+  <!-- ==========================================================================
      FORM CSR-1 — ASSET DOSSIER + PROPOSAL
      IMPORTANT: field names, the Netlify form-name, the option values and the
      submission flow are unchanged from the previous build. Downstream systems
      depend on this payload — do not rename anything below without checking
      the Netlify Forms dashboard and the Horticulture Cell mailbox parser.
      ========================================================================== -->
-<div class="modal-overlay" id="modalOverlay" hidden>
-  <div class="modal" id="modalContainer" role="dialog" aria-modal="true" aria-labelledby="modalDocHeading">
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" id="modalContainer" role="dialog" aria-modal="true" aria-labelledby="modalDocHeading">
 
-    <button type="button" class="modal__close" id="modalClose">
-      <svg aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
-      <span class="sr-only">Close Expression of Interest form</span>
-    </button>
+      <button type="button" class="modal__close" id="modalClose">
+        <svg aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+        <span class="sr-only">Close Expression of Interest form</span>
+      </button>
 
-    <div class="modal__header">
-      <span class="modal__doc-title">Municipal Corporation Ludhiana · Expression of Interest (Park Adoption)</span>
-      <h2 class="modal__doc-heading" id="modalDocHeading">Expression of Interest for Park Adoption</h2>
-    </div>
-
-    <div class="modal__grid">
-
-      <!-- ---- Municipal asset dossier -------------------------------------- -->
-      <div class="modal__dossier" id="modalSiteBlock">
-
-        <div class="dossier-header">
-          <span class="dossier-label">Municipal asset dossier</span>
-          <span class="tag tag--status tag--status-available" id="modalStatusBadge">Available</span>
-        </div>
-
-        <h3 id="modalTitle" class="dossier-title">Park name</h3>
-        <p class="dossier-id" id="modalId">Municipal asset ID: MCL_000</p>
-
-        <div class="dossier-pills">
-          <span class="tag tag--zone" id="modalZone">Zone A</span>
-          <span class="tag tag--ward" id="modalWard">Ward —</span>
-          <span class="tag" id="modalCategory">Park</span>
-          <span class="tag" id="modalFootfall">Footfall —</span>
-        </div>
-
-        <dl class="dossier-table">
-          <div class="dossier-row"><dt>Survey area</dt><dd id="modalArea">—</dd></div>
-          <div class="dossier-row"><dt>Current authority</dt><dd id="modalAuthority">—</dd></div>
-          <div class="dossier-row"><dt>Contract status</dt><dd id="modalContract">—</dd></div>
-          <div class="dossier-row"><dt>Coordinates</dt><dd class="font-mono" id="modalCoords">—</dd></div>
-        </dl>
-
-        <!-- Native <details>: keyboard-operable and animatable for free. -->
-        <details class="dossier-extra">
-          <summary>About this dossier</summary>
-          <div class="dossier-extra__body">
-            <p>
-              Figures are taken from the MCL Horticulture Wing park inventory. Survey
-              area is the recorded plot extent; coordinates are indicative centroids
-              for identification only. Detailed site characteristics and boundary
-              verification are confirmed at joint site inspection.
-            </p>
-          </div>
-        </details>
-
-        <!-- View Mode Switcher: Street View vs Satellite -->
-        <div class="imagery-tabs" role="tablist" aria-label="Asset imagery view">
-          <button type="button" class="imagery-tab is-active" id="tabStreetView" role="tab" aria-selected="true">
-            <svg aria-hidden="true" focusable="false"><use href="#i-camera"></use></svg>
-            <span>Street View (360°)</span>
-          </button>
-          <button type="button" class="imagery-tab" id="tabSatellite" role="tab" aria-selected="false">
-            <svg aria-hidden="true" focusable="false"><use href="#i-map"></use></svg>
-            <span>Satellite View</span>
-          </button>
-        </div>
-
-        <div class="modal__imagery" id="modalImagery">
-          <div id="modalMiniMap" class="modal-mini-map" hidden></div>
-          <iframe id="streetViewFrame" class="modal-streetview-frame" title="Google Street View" loading="lazy" allowfullscreen></iframe>
-          <div class="imagery-badge" id="modalImageryBadge">Street View 360°</div>
-        </div>
-
-        <div class="dossier-links">
-          <button type="button" id="modalLocateGis" class="dossier-link btn-locate-inline">
-            <svg aria-hidden="true" focusable="false"><use href="#i-map"></use></svg>
-            Locate on GIS Map
-          </button>
-          <a id="modalMapsLink" href="#" target="_blank" rel="noopener noreferrer" class="dossier-link">
-            <svg aria-hidden="true" focusable="false"><use href="#i-pin"></use></svg>
-            Google Maps
-            <svg aria-hidden="true" focusable="false"><use href="#i-external"></use></svg>
-            <span class="sr-only">(opens in a new tab)</span>
-          </a>
-          <a id="modalStreetViewLink" href="#" target="_blank" rel="noopener noreferrer" class="dossier-link">
-            <svg aria-hidden="true" focusable="false"><use href="#i-camera"></use></svg>
-            Street View
-            <svg aria-hidden="true" focusable="false"><use href="#i-external"></use></svg>
-            <span class="sr-only">(opens in a new tab)</span>
-          </a>
-        </div>
-
+      <div class="modal__header">
+        <span class="modal__doc-title">Municipal Corporation Ludhiana · Expression of Interest (Park Adoption)</span>
+        <h2 class="modal__doc-heading" id="modalDocHeading">Expression of Interest for Park Adoption</h2>
       </div>
 
-      <!-- ---- Right panel -------------------------------------------------- -->
-      <div class="modal__right-panel">
+      <div class="modal__grid">
 
-        <!-- Proposal form -->
-        <form class="modal__form" id="interestForm" name="mcl-csr-form-1" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-          <!-- Netlify Forms identifier — must match the form's name attribute. -->
-          <input type="hidden" name="form-name" value="mcl-csr-form-1">
+        <!-- ---- Municipal asset dossier -------------------------------------- -->
+        <div class="modal__dossier" id="modalSiteBlock">
 
-          <!-- Anti-bot honeypot trap field (hidden from human visitors & assistive tech) -->
-          <div class="form-bot-trap" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;height:0;width:0;overflow:hidden;">
-            <label for="botField">Leave this field blank</label>
-            <input type="text" name="bot-field" id="botField" tabindex="-1" autocomplete="off">
+          <div class="dossier-header">
+            <span class="dossier-label">Municipal asset dossier</span>
+            <span class="tag tag--status tag--status-available" id="modalStatusBadge">Available</span>
           </div>
 
-          <div class="form-title-wrap">
-            <h3 id="formHeading">Applicant &amp; park adoption details</h3>
-            <p class="form-sub" id="formSubtext">
-              Submit a formal park adoption expression to the MCL Estate &amp; Horticulture Wing.
-            </p>
+          <h3 id="modalTitle" class="dossier-title">Park name</h3>
+          <p class="dossier-id" id="modalId">Municipal asset ID: MCL_000</p>
+
+          <div class="dossier-pills">
+            <span class="tag tag--zone" id="modalZone">Zone A</span>
+            <span class="tag tag--ward" id="modalWard">Ward —</span>
+            <span class="tag" id="modalCategory">Park</span>
+            <span class="tag" id="modalFootfall">Footfall —</span>
           </div>
 
-          <fieldset class="form-fieldset">
-            <legend>1 · Applicant</legend>
-
-            <div class="form-group-field">
-              <label for="orgName">Organisation / business / entity name <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="orgName" name="organization" required autocomplete="organization" maxlength="200"
-                     placeholder="Registered name of applicant company, MSME, or business">
+          <dl class="dossier-table">
+            <div class="dossier-row">
+              <dt>Survey area</dt>
+              <dd id="modalArea">—</dd>
             </div>
-
-            <div class="form-group-field">
-              <label for="orgType">Entity classification <span class="req" aria-hidden="true">*</span></label>
-              <div class="field-select">
-                <select id="orgType" name="org_type" required>
-                  <option value="" disabled selected>Select applicant structure / entity type</option>
-                  <option value="Corporate / Large Enterprise (CSR Mandated)">Corporate / Large Enterprise (CSR Mandated under Sec 135)</option>
-                  <option value="MSME / Small &amp; Medium Enterprise (Non-CSR)">MSME / Small &amp; Medium Enterprise (Non-CSR Business Adoption)</option>
-                  <option value="Partnership Firm / LLP / Sole Proprietorship">Partnership Firm / LLP / Sole Proprietorship</option>
-                  <option value="Public Sector Undertaking">Public Sector Undertaking (PSU / Gov Enterprise)</option>
-                  <option value="Trade Body / Merchant Association / Chamber">Trade Body / Merchant Chamber / Market Association</option>
-                  <option value="Registered Trust / Foundation / NGO">Registered Trust / Non-Profit Foundation / NGO</option>
-                  <option value="Resident Welfare Association">Resident Welfare Association (RWA)</option>
-                  <option value="Individual / Citizen Philanthropist Group">Individual / Local Citizen Philanthropist Group</option>
-                </select>
-              </div>
+            <div class="dossier-row">
+              <dt>Current authority</dt>
+              <dd id="modalAuthority">—</dd>
             </div>
-
-            <div class="form-row-2">
-              <div class="form-group-field">
-                <label for="contactPerson">Authorised signatory <span class="req" aria-hidden="true">*</span></label>
-                <input type="text" id="contactPerson" name="contact_person" required autocomplete="name" maxlength="100"
-                       placeholder="Full name">
-              </div>
-              <div class="form-group-field">
-                <label for="contactRole">Designation / role <span class="req" aria-hidden="true">*</span></label>
-                <input type="text" id="contactRole" name="contact_role" required maxlength="100"
-                       placeholder="e.g. Managing Director, Partner, Proprietor, CSR Head, Secretary">
-              </div>
+            <div class="dossier-row">
+              <dt>Contract status</dt>
+              <dd id="modalContract">—</dd>
             </div>
-
-            <div class="form-row-2">
-              <div class="form-group-field">
-                <label for="contactEmail">Official email <span class="req" aria-hidden="true">*</span></label>
-                <input type="email" id="contactEmail" name="email" required autocomplete="email" maxlength="254"
-                       inputmode="email" placeholder="name@organisation.com">
-              </div>
-              <div class="form-group-field">
-                <label for="contactPhone">Phone number <span class="req" aria-hidden="true">*</span></label>
-                <div class="phone-input-wrap">
-                  <span class="phone-prefix" aria-hidden="true">+91</span>
-                  <input type="tel" id="contactPhone" name="phone" required autocomplete="tel"
-                         inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10"
-                         placeholder="9876543210"
-                         title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9">
-                </div>
-                <span class="field-hint">10-digit Indian mobile number (e.g. 98765 43210)</span>
-              </div>
+            <div class="dossier-row">
+              <dt>Coordinates</dt>
+              <dd class="font-mono" id="modalCoords">—</dd>
             </div>
-          </fieldset>
+          </dl>
 
-          <fieldset class="form-fieldset">
-            <legend>2 · Proposal</legend>
-
-            <div class="form-group-field">
-              <label for="siteOfInterest">Subject park / municipal asset</label>
-              <input type="text" id="siteOfInterest" name="site_of_interest" readonly class="input-readonly">
-              <span class="field-hint">Set from the site you opened. Close this form and pick another site to change it.</span>
+          <!-- Native <details>: keyboard-operable and animatable for free. -->
+          <details class="dossier-extra">
+            <summary>About this dossier</summary>
+            <div class="dossier-extra__body">
+              <p>
+                Figures are taken from the MCL Horticulture Wing park inventory. Survey
+                area is the recorded plot extent; coordinates are indicative centroids
+                for identification only. Detailed site characteristics and boundary
+                verification are confirmed at joint site inspection.
+              </p>
             </div>
+          </details>
 
-            <div class="form-group-field form-group-field--highlight">
-              <div class="field-header-row">
-                <label for="themeSelect">Proposed theme concept</label>
-                <span class="tag tag--priority">
-                  <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-                  Fast-Track priority
-                </span>
-              </div>
-              <select id="themeSelect" name="theme_concept">
-                <option value="Standard Civic Beautification">Standard civic beautification &amp; lawn maintenance</option>
-                <option value="Butterfly &amp; Bird Sanctuary Park">Butterfly &amp; Bird Sanctuary Park (priority)</option>
-                <option value="E-Waste &amp; Recycled Art Eco-Park">E-Waste &amp; Recycled Art Eco-Park (priority)</option>
-                <option value="Open-Air Reading &amp; Knowledge Park">Open-Air Reading &amp; Knowledge Park (priority)</option>
-                <option value="Urban Miyawaki Micro-Forest">Urban Miyawaki Micro-Forest &amp; Oxygen Hub (priority)</option>
-                <option value="Senior Citizen Sensory &amp; Wellness Park">Senior Citizen &amp; Sensory Wellness Park (priority)</option>
-                <option value="Children Eco-Science &amp; Play Park">Children's Eco-Science &amp; Play Park (priority)</option>
-                <option value="Other Custom Theme">Other / Custom Theme Concept (specify below)</option>
-              </select>
-              <span class="field-hint">Any priority or custom innovative theme concept qualifies for Fast-Track review.</span>
-
-              <!-- Dynamic Custom Theme Input (revealed when 'Other Custom Theme' is chosen) -->
-              <div id="customThemeWrap" class="custom-theme-wrap" hidden style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--forest-300);">
-                <label for="customThemeName" style="display: block; margin-bottom: 0.25rem; font-size: var(--t-xs); font-weight: 700; color: var(--forest-900);">
-                  Specify your proposed custom theme <span class="req" aria-hidden="true">*</span>
-                </label>
-                <input type="text" id="customThemeName" name="custom_theme_name" maxlength="200"
-                       placeholder="e.g. Herbal &amp; Medicinal Botanical Garden, Sports / Fitness Hub, Solar Eco-Park…"
-                       style="background: var(--surface);">
-                <span class="field-hint">Enter the title of your proposed custom theme or project.</span>
-              </div>
-            </div>
-
-            <div class="form-group-field">
-              <fieldset style="border:0;padding:0;margin:0">
-                <legend style="display:block;margin-bottom:.3125rem;font-family:var(--font-sans);font-size:var(--t-sm);font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink-1)">
-                  Proposed scope of green intervention &amp; maintenance
-                </legend>
-                <div class="scope-grid">
-                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Tree Plantation" checked> Plantation &amp; landscaping</label>
-                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Walking Track" checked> Walking / jogging track</label>
-                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Solar Lighting"> Solar LED lighting</label>
-                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Open Gym Equipment"> Open gym / play area</label>
-                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Daily Maintenance" checked> Daily mowing &amp; irrigation</label>
-                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Benches &amp; Gazebo"> Benches &amp; rainwater harvesting</label>
-                </div>
-              </fieldset>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group-field">
-                <label for="budgetRange">Indicative annual greening budget range</label>
-                <select id="budgetRange" name="budget_range">
-                  <option value="Under ₹1L / yr">Under ₹1 lakh / year (pocket park / basic greening)</option>
-                  <option value="₹1L – ₹3L / yr">₹1 lakh – ₹3 lakh / year (neighborhood park)</option>
-                  <option value="₹3L – ₹5L / yr">₹3 lakh – ₹5 lakh / year</option>
-                  <option value="₹5L – ₹10L / yr" selected>₹5 lakh – ₹10 lakh / year (standard)</option>
-                  <option value="₹10L – ₹25L / yr">₹10 lakh – ₹25 lakh / year (major municipal site)</option>
-                  <option value="Above ₹25L / Comprehensive">Above ₹25 lakh (model eco-park)</option>
-                </select>
-              </div>
-              <div class="form-group-field">
-                <label for="proposedDuration">Proposed adoption tenure</label>
-                <select id="proposedDuration" name="adoption_tenure">
-                  <option value="1 Year (Renewable)">1 year (renewable trial)</option>
-                  <option value="3 Years (Standard)" selected>3 years (standard stewardship agreement)</option>
-                  <option value="5 Years (Long-Term)">5 years (long-term partnership)</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group-field">
-              <label for="contactMessage">Additional notes / implementation details</label>
-              <textarea id="contactMessage" name="message" rows="3" maxlength="1000"
-                        placeholder="Specific business or corporate requirements, permitted signage/branding preferences, proposed maintenance plan, expected commencement date, or custom theme concept…"></textarea>
-            </div>
-          </fieldset>
-
-          <fieldset class="form-fieldset">
-            <legend>3 · Verification Document / ID Proof (Optional)</legend>
-            <div class="form-group-field">
-              <label>Upload Document or Image (Optional)</label>
-              <div class="adoption-upload-zone" id="adoptionDropZone">
-                <input type="file" id="adoptionFileInput" accept="image/jpeg,image/png,image/webp,application/pdf" aria-label="Upload document or image">
-                <svg class="upload-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 16V4m0 0-4 4m4-4 4 4"/>
-                  <path d="M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"/>
-                </svg>
-                <span class="upload-text">Drag &amp; drop document here, or <strong>click to browse</strong></span>
-                <span class="upload-hint">Supported formats: JPG, PNG, WEBP, PDF (Max size: 5 MB)</span>
-              </div>
-              <div class="adoption-file-preview" id="adoptionFilePreview" hidden style="display:none">
-                <div class="adoption-file-icon" id="adoptionFileIcon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/></svg>
-                </div>
-                <div class="preview-info">
-                  <span class="preview-name" id="adoptionFileName">filename.pdf</span>
-                  <span class="preview-size" id="adoptionFileSize">0 KB</span>
-                </div>
-                <button type="button" class="preview-remove" id="adoptionFileRemoveBtn" title="Remove document">
-                  <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                </button>
-              </div>
-              <span class="field-hint">Optional: Attach GST certificate, PAN card, Trust registration, or Govt ID proof.</span>
-            </div>
-          </fieldset>
-
-          <fieldset class="form-fieldset">
-            <legend>4 · Declaration</legend>
-            <div class="declaration-wrap">
-              <input type="checkbox" id="declarationCheck" required>
-              <label for="declarationCheck">
-                I/We declare that the information provided is accurate and that this
-                expression is submitted for civic enhancement, urban greening, and public park
-                stewardship in accordance with MCL guidelines.
-              </label>
-            </div>
-          </fieldset>
-
-          <button type="submit" class="btn btn--primary btn--block" id="submitBtn">
-            <span class="btn__spinner" aria-hidden="true"></span>
-            <span id="submitBtnLabel">Submit Expression of Interest (EOI)</span>
-          </button>
-
-          <p class="form-footnote">
-            On submission, your proposal is securely recorded in the MCL Park Adoption register and an official application reference is issued.
-          </p>
-        </form>
-
-        <!-- ---- Official Acknowledgment Receipt Card ------------------------- -->
-        <div class="modal__receipt" id="modalSuccessCard" hidden>
-          <div class="receipt__header">
-            <div class="receipt__seal" aria-hidden="true">
-              <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
-                <circle cx="32" cy="32" r="30" stroke="var(--forest-200)" stroke-width="2" fill="var(--forest-50)"/>
-                <circle cx="32" cy="32" r="24" stroke="var(--forest-300)" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
-                <path d="M32 14l2.5 5.2 5.7.8-4.1 4 1 5.6L32 27l-5.1 2.6 1-5.6-4.1-4 5.7-.8L32 14Z" fill="var(--forest-600)" opacity="0.9"/>
-                <path d="M22 38c0-2.5 4.5-4 10-4s10 1.5 10 4" stroke="var(--forest-500)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                <path d="M24 42h16M26 45h12" stroke="var(--forest-400)" stroke-width="1.2" stroke-linecap="round"/>
+          <!-- View Mode Switcher: Street View vs Satellite -->
+          <div class="imagery-tabs" role="tablist" aria-label="Asset imagery view">
+            <button type="button" class="imagery-tab is-active" id="tabStreetView" role="tab" aria-selected="true">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-camera"></use>
               </svg>
-            </div>
-            <span class="receipt__badge">✓ Successfully Recorded</span>
-            <h3 class="receipt__title">Thank You for Adopting a Green Space</h3>
-            <p class="receipt__sub">
-              Your Expression of Interest has been officially registered with the <strong>Estate &amp; Horticulture Wing</strong> of Municipal Corporation Ludhiana. A unique application reference has been assigned for tracking.
-            </p>
-          </div>
-
-          <div class="receipt__ref-box">
-            <span class="receipt__ref-label">Your Application Reference</span>
-            <div class="receipt__ref-value-wrap">
-              <strong class="receipt__ref-value" id="receiptRef">MCL/CSR/2026/MCL_000-0000</strong>
-              <button type="button" class="receipt__btn-copy" id="receiptCopyBtn" title="Copy Reference">
-                <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#i-doc"></use></svg>
-                Copy
-              </button>
-            </div>
-            <span class="receipt__timestamp" id="receiptTimestamp">Recorded on —</span>
-          </div>
-
-          <div class="receipt__summary">
-            <div class="receipt__summary-title">
-              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5"/></svg>
-              Submission Summary
-            </div>
-            <dl class="receipt__details">
-              <div class="receipt__row"><dt>Subject Site</dt><dd id="receiptSite">—</dd></div>
-              <div class="receipt__row"><dt>Applicant Entity</dt><dd id="receiptOrg">—</dd></div>
-              <div class="receipt__row"><dt>Authorised Signatory</dt><dd id="receiptSignatory">—</dd></div>
-              <div class="receipt__row"><dt>Contact Details</dt><dd id="receiptContact">—</dd></div>
-              <div class="receipt__row"><dt>Theme &amp; Proposal</dt><dd id="receiptTheme">—</dd></div>
-              <div class="receipt__row receipt__row--status"><dt>Review Status</dt><dd><span class="receipt__status-pill">Submitted · Awaiting Review</span></dd></div>
-            </dl>
-          </div>
-
-          <div class="receipt__steps">
-            <h4>
-              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
-              What Happens Next
-            </h4>
-            <ol>
-              <li><strong>Technical Evaluation</strong> — The Horticulture Cell verifies municipal asset boundaries and reviews your proposal for viability within 3–5 working days.</li>
-              <li><strong>Joint Site Inspection</strong> — An MCL field officer will contact you to coordinate an on-site survey and discuss implementation requirements.</li>
-              <li><strong>MoU &amp; Agreement</strong> — Upon recommendation, a standard tripartite Park Stewardship Agreement is executed under MCL's Green Adoption Policy.</li>
-            </ol>
-          </div>
-
-          <div class="receipt__note">
-            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/></svg>
-            <p>Please save or print this receipt for your records. Quote your reference number <strong id="receiptRefInline">—</strong> in all future correspondence with MCL.</p>
-          </div>
-
-          <div class="receipt__actions">
-            <button type="button" class="btn btn--primary" id="receiptPrintBtn">
-              <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-              Print / Save Receipt
+              <span>Street View (360°)</span>
             </button>
-            <button type="button" class="btn btn--secondary" id="receiptCloseBtn">
-              Close &amp; Return to Portal
+            <button type="button" class="imagery-tab" id="tabSatellite" role="tab" aria-selected="false">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-map"></use>
+              </svg>
+              <span>Satellite View</span>
             </button>
           </div>
+
+          <div class="modal__imagery" id="modalImagery">
+            <div id="modalMiniMap" class="modal-mini-map" hidden></div>
+            <iframe id="streetViewFrame" class="modal-streetview-frame" title="Google Street View" loading="lazy"
+              allowfullscreen></iframe>
+            <div class="imagery-badge" id="modalImageryBadge">Street View 360°</div>
+          </div>
+
+          <div class="dossier-links">
+            <button type="button" id="modalLocateGis" class="dossier-link btn-locate-inline">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-map"></use>
+              </svg>
+              Locate on GIS Map
+            </button>
+            <a id="modalMapsLink" href="#" target="_blank" rel="noopener noreferrer" class="dossier-link">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-pin"></use>
+              </svg>
+              Google Maps
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-external"></use>
+              </svg>
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+            <a id="modalStreetViewLink" href="#" target="_blank" rel="noopener noreferrer" class="dossier-link">
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-camera"></use>
+              </svg>
+              Street View
+              <svg aria-hidden="true" focusable="false">
+                <use href="#i-external"></use>
+              </svg>
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+
         </div>
 
-      </div><!-- /modal__right-panel -->
+        <!-- ---- Right panel -------------------------------------------------- -->
+        <div class="modal__right-panel">
 
+          <!-- Proposal form -->
+          <form class="modal__form" id="interestForm" name="mcl-csr-form-1" method="POST" data-netlify="true"
+            data-netlify-honeypot="bot-field">
+            <!-- Netlify Forms identifier — must match the form's name attribute. -->
+            <input type="hidden" name="form-name" value="mcl-csr-form-1">
+
+            <!-- Anti-bot honeypot trap field (hidden from human visitors & assistive tech) -->
+            <div class="form-bot-trap" aria-hidden="true"
+              style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;height:0;width:0;overflow:hidden;">
+              <label for="botField">Leave this field blank</label>
+              <input type="text" name="bot-field" id="botField" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-title-wrap">
+              <h3 id="formHeading">Applicant &amp; park adoption details</h3>
+              <p class="form-sub" id="formSubtext">
+                Submit a formal park adoption expression to the MCL Estate &amp; Horticulture Wing.
+              </p>
+            </div>
+
+            <fieldset class="form-fieldset">
+              <legend>1 · Applicant</legend>
+
+              <div class="form-group-field">
+                <label for="orgName">Organisation / business / entity name <span class="req"
+                    aria-hidden="true">*</span></label>
+                <input type="text" id="orgName" name="organization" required autocomplete="organization" maxlength="200"
+                  placeholder="Registered name of applicant company, MSME, or business">
+              </div>
+
+              <div class="form-group-field">
+                <label for="orgType">Entity classification <span class="req" aria-hidden="true">*</span></label>
+                <div class="field-select">
+                  <select id="orgType" name="org_type" required>
+                    <option value="" disabled selected>Select applicant structure / entity type</option>
+                    <option value="Corporate / Large Enterprise (CSR Mandated)">Corporate / Large Enterprise (CSR
+                      Mandated under Sec 135)</option>
+                    <option value="MSME / Small &amp; Medium Enterprise (Non-CSR)">MSME / Small &amp; Medium Enterprise
+                      (Non-CSR Business Adoption)</option>
+                    <option value="Partnership Firm / LLP / Sole Proprietorship">Partnership Firm / LLP / Sole
+                      Proprietorship</option>
+                    <option value="Public Sector Undertaking">Public Sector Undertaking (PSU / Gov Enterprise)</option>
+                    <option value="Trade Body / Merchant Association / Chamber">Trade Body / Merchant Chamber / Market
+                      Association</option>
+                    <option value="Registered Trust / Foundation / NGO">Registered Trust / Non-Profit Foundation / NGO
+                    </option>
+                    <option value="Resident Welfare Association">Resident Welfare Association (RWA)</option>
+                    <option value="Individual / Citizen Philanthropist Group">Individual / Local Citizen Philanthropist
+                      Group</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group-field">
+                  <label for="contactPerson">Authorised signatory <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="contactPerson" name="contact_person" required autocomplete="name"
+                    maxlength="100" placeholder="Full name">
+                </div>
+                <div class="form-group-field">
+                  <label for="contactRole">Designation / role <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="contactRole" name="contact_role" required maxlength="100"
+                    placeholder="e.g. Managing Director, Partner, Proprietor, CSR Head, Secretary">
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group-field">
+                  <label for="contactEmail">Official email <span class="req" aria-hidden="true">*</span></label>
+                  <input type="email" id="contactEmail" name="email" required autocomplete="email" maxlength="254"
+                    inputmode="email" placeholder="name@organisation.com">
+                </div>
+                <div class="form-group-field">
+                  <label for="contactPhone">Phone number <span class="req" aria-hidden="true">*</span></label>
+                  <div class="phone-input-wrap">
+                    <span class="phone-prefix" aria-hidden="true">+91</span>
+                    <input type="tel" id="contactPhone" name="phone" required autocomplete="tel" inputmode="numeric"
+                      pattern="[6-9][0-9]{9}" maxlength="10" placeholder="9876543210"
+                      title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9">
+                  </div>
+                  <span class="field-hint">10-digit Indian mobile number (e.g. 98765 43210)</span>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-fieldset">
+              <legend>2 · Proposal</legend>
+
+              <div class="form-group-field">
+                <label for="siteOfInterest">Subject park / municipal asset</label>
+                <input type="text" id="siteOfInterest" name="site_of_interest" readonly class="input-readonly">
+                <span class="field-hint">Set from the site you opened. Close this form and pick another site to change
+                  it.</span>
+              </div>
+
+              <div class="form-group-field form-group-field--highlight">
+                <div class="field-header-row">
+                  <label for="themeSelect">Proposed theme concept</label>
+                  <span class="tag tag--priority">
+                    <svg aria-hidden="true" focusable="false">
+                      <use href="#i-star"></use>
+                    </svg>
+                    Fast-Track priority
+                  </span>
+                </div>
+                <select id="themeSelect" name="theme_concept">
+                  <option value="Standard Civic Beautification">Standard civic beautification &amp; lawn maintenance
+                  </option>
+                  <option value="Butterfly &amp; Bird Sanctuary Park">Butterfly &amp; Bird Sanctuary Park (priority)
+                  </option>
+                  <option value="E-Waste &amp; Recycled Art Eco-Park">E-Waste &amp; Recycled Art Eco-Park (priority)
+                  </option>
+                  <option value="Open-Air Reading &amp; Knowledge Park">Open-Air Reading &amp; Knowledge Park (priority)
+                  </option>
+                  <option value="Urban Miyawaki Micro-Forest">Urban Miyawaki Micro-Forest &amp; Oxygen Hub (priority)
+                  </option>
+                  <option value="Senior Citizen Sensory &amp; Wellness Park">Senior Citizen &amp; Sensory Wellness Park
+                    (priority)</option>
+                  <option value="Children Eco-Science &amp; Play Park">Children's Eco-Science &amp; Play Park (priority)
+                  </option>
+                  <option value="Other Custom Theme">Other / Custom Theme Concept (specify below)</option>
+                </select>
+                <span class="field-hint">Any priority or custom innovative theme concept qualifies for Fast-Track
+                  review.</span>
+
+                <!-- Dynamic Custom Theme Input (revealed when 'Other Custom Theme' is chosen) -->
+                <div id="customThemeWrap" class="custom-theme-wrap" hidden
+                  style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--forest-300);">
+                  <label for="customThemeName"
+                    style="display: block; margin-bottom: 0.25rem; font-size: var(--t-xs); font-weight: 700; color: var(--forest-900);">
+                    Specify your proposed custom theme <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" id="customThemeName" name="custom_theme_name" maxlength="200"
+                    placeholder="e.g. Herbal &amp; Medicinal Botanical Garden, Sports / Fitness Hub, Solar Eco-Park…"
+                    style="background: var(--surface);">
+                  <span class="field-hint">Enter the title of your proposed custom theme or project.</span>
+                </div>
+              </div>
+
+              <div class="form-group-field">
+                <fieldset style="border:0;padding:0;margin:0">
+                  <legend
+                    style="display:block;margin-bottom:.3125rem;font-family:var(--font-sans);font-size:var(--t-sm);font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink-1)">
+                    Proposed scope of green intervention &amp; maintenance
+                  </legend>
+                  <div class="scope-grid">
+                    <label class="scope-item"><input type="checkbox" name="scope[]" value="Tree Plantation" checked>
+                      Plantation &amp; landscaping</label>
+                    <label class="scope-item"><input type="checkbox" name="scope[]" value="Walking Track" checked>
+                      Walking / jogging track</label>
+                    <label class="scope-item"><input type="checkbox" name="scope[]" value="Solar Lighting"> Solar LED
+                      lighting</label>
+                    <label class="scope-item"><input type="checkbox" name="scope[]" value="Open Gym Equipment"> Open gym
+                      / play area</label>
+                    <label class="scope-item"><input type="checkbox" name="scope[]" value="Daily Maintenance" checked>
+                      Daily mowing &amp; irrigation</label>
+                    <label class="scope-item"><input type="checkbox" name="scope[]" value="Benches &amp; Gazebo">
+                      Benches &amp; rainwater harvesting</label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group-field">
+                  <label for="budgetRange">Indicative annual greening budget range</label>
+                  <select id="budgetRange" name="budget_range">
+                    <option value="Under ₹1L / yr">Under ₹1 lakh / year (pocket park / basic greening)</option>
+                    <option value="₹1L – ₹3L / yr">₹1 lakh – ₹3 lakh / year (neighborhood park)</option>
+                    <option value="₹3L – ₹5L / yr">₹3 lakh – ₹5 lakh / year</option>
+                    <option value="₹5L – ₹10L / yr" selected>₹5 lakh – ₹10 lakh / year (standard)</option>
+                    <option value="₹10L – ₹25L / yr">₹10 lakh – ₹25 lakh / year (major municipal site)</option>
+                    <option value="Above ₹25L / Comprehensive">Above ₹25 lakh (model eco-park)</option>
+                  </select>
+                </div>
+                <div class="form-group-field">
+                  <label for="proposedDuration">Proposed adoption tenure</label>
+                  <select id="proposedDuration" name="adoption_tenure">
+                    <option value="1 Year (Renewable)">1 year (renewable trial)</option>
+                    <option value="3 Years (Standard)" selected>3 years (standard stewardship agreement)</option>
+                    <option value="5 Years (Long-Term)">5 years (long-term partnership)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group-field">
+                <label for="contactMessage">Additional notes / implementation details</label>
+                <textarea id="contactMessage" name="message" rows="3" maxlength="1000"
+                  placeholder="Specific business or corporate requirements, permitted signage/branding preferences, proposed maintenance plan, expected commencement date, or custom theme concept…"></textarea>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-fieldset">
+              <legend>3 · Verification Document / ID Proof (Optional)</legend>
+              <div class="form-group-field">
+                <label>Upload Document or Image (Optional)</label>
+                <div class="adoption-upload-zone" id="adoptionDropZone">
+                  <input type="file" id="adoptionFileInput" accept="image/jpeg,image/png,image/webp,application/pdf"
+                    aria-label="Upload document or image">
+                  <svg class="upload-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 16V4m0 0-4 4m4-4 4 4" />
+                    <path d="M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17" />
+                  </svg>
+                  <span class="upload-text">Drag &amp; drop document here, or <strong>click to browse</strong></span>
+                  <span class="upload-hint">Supported formats: JPG, PNG, WEBP, PDF (Max size: 5 MB)</span>
+                </div>
+                <div class="adoption-file-preview" id="adoptionFilePreview" hidden style="display:none">
+                  <div class="adoption-file-icon" id="adoptionFileIcon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round">
+                      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+                      <path d="M14 3v5h5" />
+                    </svg>
+                  </div>
+                  <div class="preview-info">
+                    <span class="preview-name" id="adoptionFileName">filename.pdf</span>
+                    <span class="preview-size" id="adoptionFileSize">0 KB</span>
+                  </div>
+                  <button type="button" class="preview-remove" id="adoptionFileRemoveBtn" title="Remove document">
+                    <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-fieldset">
+              <legend>4 · Declaration</legend>
+              <div class="declaration-wrap">
+                <input type="checkbox" id="declarationCheck" required>
+                <label for="declarationCheck">
+                  I/We declare that the information provided is accurate and that this
+                  expression is submitted for civic enhancement, urban greening, and public park
+                  stewardship in accordance with MCL guidelines.
+                </label>
+              </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn--primary btn--block" id="submitBtn">
+              <span class="btn__spinner" aria-hidden="true"></span>
+              <span id="submitBtnLabel">Submit Expression of Interest (EOI)</span>
+            </button>
+
+            <p class="form-footnote">
+              On submission, your proposal is securely recorded in the MCL Park Adoption register and an official
+              application reference is issued.
+            </p>
+          </form>
+
+          <!-- ---- Official Acknowledgment Receipt Card ------------------------- -->
+          <div class="modal__receipt" id="modalSuccessCard" hidden>
+            <div class="receipt__header">
+              <div class="receipt__seal" aria-hidden="true">
+                <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
+                  <circle cx="32" cy="32" r="30" stroke="var(--forest-200)" stroke-width="2" fill="var(--forest-50)" />
+                  <circle cx="32" cy="32" r="24" stroke="var(--forest-300)" stroke-width="1" stroke-dasharray="3 2"
+                    fill="none" />
+                  <path d="M32 14l2.5 5.2 5.7.8-4.1 4 1 5.6L32 27l-5.1 2.6 1-5.6-4.1-4 5.7-.8L32 14Z"
+                    fill="var(--forest-600)" opacity="0.9" />
+                  <path d="M22 38c0-2.5 4.5-4 10-4s10 1.5 10 4" stroke="var(--forest-500)" stroke-width="1.5"
+                    stroke-linecap="round" fill="none" />
+                  <path d="M24 42h16M26 45h12" stroke="var(--forest-400)" stroke-width="1.2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <span class="receipt__badge">✓ Successfully Recorded</span>
+              <h3 class="receipt__title">Thank You for Adopting a Green Space</h3>
+              <p class="receipt__sub">
+                Your Expression of Interest has been officially registered with the <strong>Estate &amp; Horticulture
+                  Wing</strong> of Municipal Corporation Ludhiana. A unique application reference has been assigned for
+                tracking.
+              </p>
+            </div>
+
+            <div class="receipt__ref-box">
+              <span class="receipt__ref-label">Your Application Reference</span>
+              <div class="receipt__ref-value-wrap">
+                <strong class="receipt__ref-value" id="receiptRef">MCL/CSR/2026/MCL_000-0000</strong>
+                <button type="button" class="receipt__btn-copy" id="receiptCopyBtn" title="Copy Reference">
+                  <svg aria-hidden="true" focusable="false" width="14" height="14">
+                    <use href="#i-doc"></use>
+                  </svg>
+                  Copy
+                </button>
+              </div>
+              <span class="receipt__timestamp" id="receiptTimestamp">Recorded on —</span>
+            </div>
+
+            <div class="receipt__summary">
+              <div class="receipt__summary-title">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round">
+                  <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+                  <path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5" />
+                </svg>
+                Submission Summary
+              </div>
+              <dl class="receipt__details">
+                <div class="receipt__row">
+                  <dt>Subject Site</dt>
+                  <dd id="receiptSite">—</dd>
+                </div>
+                <div class="receipt__row">
+                  <dt>Applicant Entity</dt>
+                  <dd id="receiptOrg">—</dd>
+                </div>
+                <div class="receipt__row">
+                  <dt>Authorised Signatory</dt>
+                  <dd id="receiptSignatory">—</dd>
+                </div>
+                <div class="receipt__row">
+                  <dt>Contact Details</dt>
+                  <dd id="receiptContact">—</dd>
+                </div>
+                <div class="receipt__row">
+                  <dt>Theme &amp; Proposal</dt>
+                  <dd id="receiptTheme">—</dd>
+                </div>
+                <div class="receipt__row receipt__row--status">
+                  <dt>Review Status</dt>
+                  <dd><span class="receipt__status-pill">Submitted · Awaiting Review</span></dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="receipt__steps">
+              <h4>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z" />
+                  <circle cx="12" cy="10" r="2.6" />
+                </svg>
+                What Happens Next
+              </h4>
+              <ol>
+                <li><strong>Technical Evaluation</strong> — The Horticulture Cell verifies municipal asset boundaries
+                  and reviews your proposal for viability within 3–5 working days.</li>
+                <li><strong>Joint Site Inspection</strong> — An MCL field officer will contact you to coordinate an
+                  on-site survey and discuss implementation requirements.</li>
+                <li><strong>MoU &amp; Agreement</strong> — Upon recommendation, a standard tripartite Park Stewardship
+                  Agreement is executed under MCL's Green Adoption Policy.</li>
+              </ol>
+            </div>
+
+            <div class="receipt__note">
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 11v5.5" />
+                <circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none" />
+              </svg>
+              <p>Please save or print this receipt for your records. Quote your reference number <strong
+                  id="receiptRefInline">—</strong> in all future correspondence with MCL.</p>
+            </div>
+
+            <div class="receipt__actions">
+              <button type="button" class="btn btn--primary" id="receiptPrintBtn">
+                <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
+                  <path d="M6 14h12v8H6z" />
+                </svg>
+                Print / Save Receipt
+              </button>
+              <button type="button" class="btn btn--secondary" id="receiptCloseBtn">
+                Close &amp; Return to Portal
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /modal__right-panel -->
+
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Live region for status announcements -->
-<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <!-- Live region for status announcements -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-<script src="config.js?v=5.6"></script>
-<!-- Leaflet & MarkerCluster JS for fast, reliable, zero-dependency GIS mapping -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
-<script defer src="motion.js?v=4.7"></script>
-<script defer src="script.js?v=5.6"></script>
+  <script src="config.js?v=5.6"></script>
+  <!-- Leaflet & MarkerCluster JS for fast, reliable, zero-dependency GIS mapping -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
+  <script defer src="motion.js?v=4.7"></script>
+  <script defer src="script.js?v=5.6"></script>
 </body>
+
 </html>
