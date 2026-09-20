@@ -26,13 +26,14 @@ create table if not exists public.eoi_submissions (
     email text not null,
     phone text not null,
     
-    -- Proposal Details
+    -- Proposal Details & Verification Attachment
     theme_concept text not null,
     is_priority_theme boolean default false,
     scope text[] default '{}',
     budget_range text,
     adoption_tenure text,
     message text,
+    document_url text,
     
     -- Municipal Workflow & Review Status
     status text default 'Submitted' not null check (status in (
@@ -47,6 +48,9 @@ create table if not exists public.eoi_submissions (
     reviewed_by text,
     reviewed_at timestamp with time zone
 );
+
+-- Migration statement for existing table deployments:
+alter table public.eoi_submissions add column if not exists document_url text;
 
 -- 2. Indexes for fast queries, searching, and dashboard reporting
 create index if not exists idx_eoi_app_ref on public.eoi_submissions (application_reference);

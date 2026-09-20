@@ -1227,370 +1227,296 @@
 
       </div>
 
-      <!-- ---- Right panel with tabs ---------------------------------------- -->
+      <!-- ---- Right panel -------------------------------------------------- -->
       <div class="modal__right-panel">
 
-        <!-- Tab bar -->
-        <div class="modal__tabs" role="tablist" aria-label="Modal form tabs">
-          <button type="button" class="modal__tab-btn is-active" id="tabApplicationForm" role="tab" aria-selected="true" aria-controls="panelApplicationForm">
-            <svg aria-hidden="true" focusable="false"><use href="#i-book"></use></svg>
-            Application Form
-          </button>
-          <button type="button" class="modal__tab-btn" id="tabComplaint" role="tab" aria-selected="false" aria-controls="panelComplaint">
-            <svg aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>
-            Complaint / Suggestion
-          </button>
-        </div>
+        <!-- Proposal form -->
+        <form class="modal__form" id="interestForm" name="mcl-csr-form-1" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+          <!-- Netlify Forms identifier — must match the form's name attribute. -->
+          <input type="hidden" name="form-name" value="mcl-csr-form-1">
 
-        <!-- Tab Panel 1: Application Form (existing EOI form) -->
-        <div class="modal__tab-panel is-active" id="panelApplicationForm" role="tabpanel" aria-labelledby="tabApplicationForm">
-
-      <!-- ---- Proposal form ------------------------------------------------ -->
-      <form class="modal__form" id="interestForm" name="mcl-csr-form-1" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-        <!-- Netlify Forms identifier — must match the form's name attribute. -->
-        <input type="hidden" name="form-name" value="mcl-csr-form-1">
-
-        <!-- Anti-bot honeypot trap field (hidden from human visitors & assistive tech) -->
-        <div class="form-bot-trap" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;height:0;width:0;overflow:hidden;">
-          <label for="botField">Leave this field blank</label>
-          <input type="text" name="bot-field" id="botField" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="form-title-wrap">
-          <h3 id="formHeading">Applicant &amp; park adoption details</h3>
-          <p class="form-sub" id="formSubtext">
-            Submit a formal park adoption expression to the MCL Estate &amp; Horticulture Wing.
-          </p>
-        </div>
-
-        <fieldset class="form-fieldset">
-          <legend>1 · Applicant</legend>
-
-          <div class="form-group-field">
-            <label for="orgName">Organisation / business / entity name <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="orgName" name="organization" required autocomplete="organization" maxlength="200"
-                   placeholder="Registered name of applicant company, MSME, or business">
+          <!-- Anti-bot honeypot trap field (hidden from human visitors & assistive tech) -->
+          <div class="form-bot-trap" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;height:0;width:0;overflow:hidden;">
+            <label for="botField">Leave this field blank</label>
+            <input type="text" name="bot-field" id="botField" tabindex="-1" autocomplete="off">
           </div>
 
-          <div class="form-group-field">
-            <label for="orgType">Entity classification <span class="req" aria-hidden="true">*</span></label>
-            <div class="field-select">
-              <select id="orgType" name="org_type" required>
-                <option value="" disabled selected>Select applicant structure / entity type</option>
-                <option value="Corporate / Large Enterprise (CSR Mandated)">Corporate / Large Enterprise (CSR Mandated under Sec 135)</option>
-                <option value="MSME / Small &amp; Medium Enterprise (Non-CSR)">MSME / Small &amp; Medium Enterprise (Non-CSR Business Adoption)</option>
-                <option value="Partnership Firm / LLP / Sole Proprietorship">Partnership Firm / LLP / Sole Proprietorship</option>
-                <option value="Public Sector Undertaking">Public Sector Undertaking (PSU / Gov Enterprise)</option>
-                <option value="Trade Body / Merchant Association / Chamber">Trade Body / Merchant Chamber / Market Association</option>
-                <option value="Registered Trust / Foundation / NGO">Registered Trust / Non-Profit Foundation / NGO</option>
-                <option value="Resident Welfare Association">Resident Welfare Association (RWA)</option>
-                <option value="Individual / Citizen Philanthropist Group">Individual / Local Citizen Philanthropist Group</option>
-              </select>
-            </div>
+          <div class="form-title-wrap">
+            <h3 id="formHeading">Applicant &amp; park adoption details</h3>
+            <p class="form-sub" id="formSubtext">
+              Submit a formal park adoption expression to the MCL Estate &amp; Horticulture Wing.
+            </p>
           </div>
 
-          <div class="form-row-2">
-            <div class="form-group-field">
-              <label for="contactPerson">Authorised signatory <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="contactPerson" name="contact_person" required autocomplete="name" maxlength="100"
-                     placeholder="Full name">
-            </div>
-            <div class="form-group-field">
-              <label for="contactRole">Designation / role <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="contactRole" name="contact_role" required maxlength="100"
-                     placeholder="e.g. Managing Director, Partner, Proprietor, CSR Head, Secretary">
-            </div>
-          </div>
+          <fieldset class="form-fieldset">
+            <legend>1 · Applicant</legend>
 
-          <div class="form-row-2">
             <div class="form-group-field">
-              <label for="contactEmail">Official email <span class="req" aria-hidden="true">*</span></label>
-              <input type="email" id="contactEmail" name="email" required autocomplete="email" maxlength="254"
-                     inputmode="email" placeholder="name@organisation.com">
+              <label for="orgName">Organisation / business / entity name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="orgName" name="organization" required autocomplete="organization" maxlength="200"
+                     placeholder="Registered name of applicant company, MSME, or business">
             </div>
+
             <div class="form-group-field">
-              <label for="contactPhone">Phone number <span class="req" aria-hidden="true">*</span></label>
-              <div class="phone-input-wrap">
-                <span class="phone-prefix" aria-hidden="true">+91</span>
-                <input type="tel" id="contactPhone" name="phone" required autocomplete="tel"
-                       inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10"
-                       placeholder="9876543210"
-                       title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9">
+              <label for="orgType">Entity classification <span class="req" aria-hidden="true">*</span></label>
+              <div class="field-select">
+                <select id="orgType" name="org_type" required>
+                  <option value="" disabled selected>Select applicant structure / entity type</option>
+                  <option value="Corporate / Large Enterprise (CSR Mandated)">Corporate / Large Enterprise (CSR Mandated under Sec 135)</option>
+                  <option value="MSME / Small &amp; Medium Enterprise (Non-CSR)">MSME / Small &amp; Medium Enterprise (Non-CSR Business Adoption)</option>
+                  <option value="Partnership Firm / LLP / Sole Proprietorship">Partnership Firm / LLP / Sole Proprietorship</option>
+                  <option value="Public Sector Undertaking">Public Sector Undertaking (PSU / Gov Enterprise)</option>
+                  <option value="Trade Body / Merchant Association / Chamber">Trade Body / Merchant Chamber / Market Association</option>
+                  <option value="Registered Trust / Foundation / NGO">Registered Trust / Non-Profit Foundation / NGO</option>
+                  <option value="Resident Welfare Association">Resident Welfare Association (RWA)</option>
+                  <option value="Individual / Citizen Philanthropist Group">Individual / Local Citizen Philanthropist Group</option>
+                </select>
               </div>
-              <span class="field-hint">10-digit Indian mobile number (e.g. 98765 43210)</span>
             </div>
-          </div>
-        </fieldset>
 
-        <fieldset class="form-fieldset">
-          <legend>2 · Proposal</legend>
-
-          <div class="form-group-field">
-            <label for="siteOfInterest">Subject park / municipal asset</label>
-            <input type="text" id="siteOfInterest" name="site_of_interest" readonly class="input-readonly">
-            <span class="field-hint">Set from the site you opened. Close this form and pick another site to change it.</span>
-          </div>
-
-          <div class="form-group-field form-group-field--highlight">
-            <div class="field-header-row">
-              <label for="themeSelect">Proposed theme concept</label>
-              <span class="tag tag--priority">
-                <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
-                Fast-Track priority
-              </span>
-            </div>
-            <select id="themeSelect" name="theme_concept">
-              <option value="Standard Civic Beautification">Standard civic beautification &amp; lawn maintenance</option>
-              <option value="Butterfly &amp; Bird Sanctuary Park">Butterfly &amp; Bird Sanctuary Park (priority)</option>
-              <option value="E-Waste &amp; Recycled Art Eco-Park">E-Waste &amp; Recycled Art Eco-Park (priority)</option>
-              <option value="Open-Air Reading &amp; Knowledge Park">Open-Air Reading &amp; Knowledge Park (priority)</option>
-              <option value="Urban Miyawaki Micro-Forest">Urban Miyawaki Micro-Forest &amp; Oxygen Hub (priority)</option>
-              <option value="Senior Citizen Sensory &amp; Wellness Park">Senior Citizen &amp; Sensory Wellness Park (priority)</option>
-              <option value="Children Eco-Science &amp; Play Park">Children's Eco-Science &amp; Play Park (priority)</option>
-              <option value="Other Custom Theme">Other / Custom Theme Concept (specify below)</option>
-            </select>
-            <span class="field-hint">Any priority or custom innovative theme concept qualifies for Fast-Track review.</span>
-
-            <!-- Dynamic Custom Theme Input (revealed when 'Other Custom Theme' is chosen) -->
-            <div id="customThemeWrap" class="custom-theme-wrap" hidden style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--forest-300);">
-              <label for="customThemeName" style="display: block; margin-bottom: 0.25rem; font-size: var(--t-xs); font-weight: 700; color: var(--forest-900);">
-                Specify your proposed custom theme <span class="req" aria-hidden="true">*</span>
-              </label>
-              <input type="text" id="customThemeName" name="custom_theme_name" maxlength="200"
-                     placeholder="e.g. Herbal &amp; Medicinal Botanical Garden, Sports / Fitness Hub, Solar Eco-Park…"
-                     style="background: var(--surface);">
-              <span class="field-hint">Enter the title of your proposed custom theme or project.</span>
-            </div>
-          </div>
-
-          <div class="form-group-field">
-            <fieldset style="border:0;padding:0;margin:0">
-              <legend style="display:block;margin-bottom:.3125rem;font-family:var(--font-sans);font-size:var(--t-sm);font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink-1)">
-                Proposed scope of green intervention &amp; maintenance
-              </legend>
-              <div class="scope-grid">
-                <label class="scope-item"><input type="checkbox" name="scope[]" value="Tree Plantation" checked> Plantation &amp; landscaping</label>
-                <label class="scope-item"><input type="checkbox" name="scope[]" value="Walking Track" checked> Walking / jogging track</label>
-                <label class="scope-item"><input type="checkbox" name="scope[]" value="Solar Lighting"> Solar LED lighting</label>
-                <label class="scope-item"><input type="checkbox" name="scope[]" value="Open Gym Equipment"> Open gym / play area</label>
-                <label class="scope-item"><input type="checkbox" name="scope[]" value="Daily Maintenance" checked> Daily mowing &amp; irrigation</label>
-                <label class="scope-item"><input type="checkbox" name="scope[]" value="Benches &amp; Gazebo"> Benches &amp; rainwater harvesting</label>
+            <div class="form-row-2">
+              <div class="form-group-field">
+                <label for="contactPerson">Authorised signatory <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="contactPerson" name="contact_person" required autocomplete="name" maxlength="100"
+                       placeholder="Full name">
               </div>
-            </fieldset>
-          </div>
+              <div class="form-group-field">
+                <label for="contactRole">Designation / role <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="contactRole" name="contact_role" required maxlength="100"
+                       placeholder="e.g. Managing Director, Partner, Proprietor, CSR Head, Secretary">
+              </div>
+            </div>
 
-          <div class="form-grid-2">
+            <div class="form-row-2">
+              <div class="form-group-field">
+                <label for="contactEmail">Official email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="contactEmail" name="email" required autocomplete="email" maxlength="254"
+                       inputmode="email" placeholder="name@organisation.com">
+              </div>
+              <div class="form-group-field">
+                <label for="contactPhone">Phone number <span class="req" aria-hidden="true">*</span></label>
+                <div class="phone-input-wrap">
+                  <span class="phone-prefix" aria-hidden="true">+91</span>
+                  <input type="tel" id="contactPhone" name="phone" required autocomplete="tel"
+                         inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10"
+                         placeholder="9876543210"
+                         title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9">
+                </div>
+                <span class="field-hint">10-digit Indian mobile number (e.g. 98765 43210)</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend>2 · Proposal</legend>
+
             <div class="form-group-field">
-              <label for="budgetRange">Indicative annual greening budget range</label>
-              <select id="budgetRange" name="budget_range">
-                <option value="Under ₹1L / yr">Under ₹1 lakh / year (pocket park / basic greening)</option>
-                <option value="₹1L – ₹3L / yr">₹1 lakh – ₹3 lakh / year (neighborhood park)</option>
-                <option value="₹3L – ₹5L / yr">₹3 lakh – ₹5 lakh / year</option>
-                <option value="₹5L – ₹10L / yr" selected>₹5 lakh – ₹10 lakh / year (standard)</option>
-                <option value="₹10L – ₹25L / yr">₹10 lakh – ₹25 lakh / year (major municipal site)</option>
-                <option value="Above ₹25L / Comprehensive">Above ₹25 lakh (model eco-park)</option>
+              <label for="siteOfInterest">Subject park / municipal asset</label>
+              <input type="text" id="siteOfInterest" name="site_of_interest" readonly class="input-readonly">
+              <span class="field-hint">Set from the site you opened. Close this form and pick another site to change it.</span>
+            </div>
+
+            <div class="form-group-field form-group-field--highlight">
+              <div class="field-header-row">
+                <label for="themeSelect">Proposed theme concept</label>
+                <span class="tag tag--priority">
+                  <svg aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
+                  Fast-Track priority
+                </span>
+              </div>
+              <select id="themeSelect" name="theme_concept">
+                <option value="Standard Civic Beautification">Standard civic beautification &amp; lawn maintenance</option>
+                <option value="Butterfly &amp; Bird Sanctuary Park">Butterfly &amp; Bird Sanctuary Park (priority)</option>
+                <option value="E-Waste &amp; Recycled Art Eco-Park">E-Waste &amp; Recycled Art Eco-Park (priority)</option>
+                <option value="Open-Air Reading &amp; Knowledge Park">Open-Air Reading &amp; Knowledge Park (priority)</option>
+                <option value="Urban Miyawaki Micro-Forest">Urban Miyawaki Micro-Forest &amp; Oxygen Hub (priority)</option>
+                <option value="Senior Citizen Sensory &amp; Wellness Park">Senior Citizen &amp; Sensory Wellness Park (priority)</option>
+                <option value="Children Eco-Science &amp; Play Park">Children's Eco-Science &amp; Play Park (priority)</option>
+                <option value="Other Custom Theme">Other / Custom Theme Concept (specify below)</option>
               </select>
-            </div>
-            <div class="form-group-field">
-              <label for="proposedDuration">Proposed adoption tenure</label>
-              <select id="proposedDuration" name="adoption_tenure">
-                <option value="1 Year (Renewable)">1 year (renewable trial)</option>
-                <option value="3 Years (Standard)" selected>3 years (standard stewardship agreement)</option>
-                <option value="5 Years (Long-Term)">5 years (long-term partnership)</option>
-              </select>
-            </div>
-          </div>
+              <span class="field-hint">Any priority or custom innovative theme concept qualifies for Fast-Track review.</span>
 
-          <div class="form-group-field">
-            <label for="contactMessage">Additional notes / implementation details</label>
-            <textarea id="contactMessage" name="message" rows="3" maxlength="1000"
-                      placeholder="Specific business or corporate requirements, permitted signage/branding preferences, proposed maintenance plan, expected commencement date, or custom theme concept…"></textarea>
-          </div>
-        </fieldset>
-
-        <fieldset class="form-fieldset">
-          <legend>3 · Declaration</legend>
-          <div class="declaration-wrap">
-            <input type="checkbox" id="declarationCheck" required>
-            <label for="declarationCheck">
-              I/We declare that the information provided is accurate and that this
-              expression is submitted for civic enhancement, urban greening, and public park
-              stewardship in accordance with MCL guidelines.
-            </label>
-          </div>
-        </fieldset>
-
-        <button type="submit" class="btn btn--primary btn--block" id="submitBtn">
-          <span class="btn__spinner" aria-hidden="true"></span>
-          <span id="submitBtnLabel">Submit Expression of Interest (EOI)</span>
-        </button>
-
-        <p class="form-footnote">
-          On submission, your proposal is securely recorded in the MCL Park Adoption register and an official application reference is issued.
-        </p>
-      </form>
-
-      <!-- ---- Official Acknowledgment Receipt Card ------------------------- -->
-      <div class="modal__receipt" id="modalSuccessCard" hidden>
-        <div class="receipt__header">
-          <div class="receipt__seal" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
-              <circle cx="32" cy="32" r="30" stroke="var(--forest-200)" stroke-width="2" fill="var(--forest-50)"/>
-              <circle cx="32" cy="32" r="24" stroke="var(--forest-300)" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
-              <path d="M32 14l2.5 5.2 5.7.8-4.1 4 1 5.6L32 27l-5.1 2.6 1-5.6-4.1-4 5.7-.8L32 14Z" fill="var(--forest-600)" opacity="0.9"/>
-              <path d="M22 38c0-2.5 4.5-4 10-4s10 1.5 10 4" stroke="var(--forest-500)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-              <path d="M24 42h16M26 45h12" stroke="var(--forest-400)" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="receipt__badge">✓ Successfully Recorded</span>
-          <h3 class="receipt__title">Thank You for Adopting a Green Space</h3>
-          <p class="receipt__sub">
-            Your Expression of Interest has been officially registered with the <strong>Estate &amp; Horticulture Wing</strong> of Municipal Corporation Ludhiana. A unique application reference has been assigned for tracking.
-          </p>
-        </div>
-
-        <div class="receipt__ref-box">
-          <span class="receipt__ref-label">Your Application Reference</span>
-          <div class="receipt__ref-value-wrap">
-            <strong class="receipt__ref-value" id="receiptRef">MCL/CSR/2026/MCL_000-0000</strong>
-            <button type="button" class="receipt__btn-copy" id="receiptCopyBtn" title="Copy Reference">
-              <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#i-doc"></use></svg>
-              Copy
-            </button>
-          </div>
-          <span class="receipt__timestamp" id="receiptTimestamp">Recorded on —</span>
-        </div>
-
-        <div class="receipt__summary">
-          <div class="receipt__summary-title">
-            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5"/></svg>
-            Submission Summary
-          </div>
-          <dl class="receipt__details">
-            <div class="receipt__row"><dt>Subject Site</dt><dd id="receiptSite">—</dd></div>
-            <div class="receipt__row"><dt>Applicant Entity</dt><dd id="receiptOrg">—</dd></div>
-            <div class="receipt__row"><dt>Authorised Signatory</dt><dd id="receiptSignatory">—</dd></div>
-            <div class="receipt__row"><dt>Contact Details</dt><dd id="receiptContact">—</dd></div>
-            <div class="receipt__row"><dt>Theme &amp; Proposal</dt><dd id="receiptTheme">—</dd></div>
-            <div class="receipt__row receipt__row--status"><dt>Review Status</dt><dd><span class="receipt__status-pill">Submitted · Awaiting Review</span></dd></div>
-          </dl>
-        </div>
-
-        <div class="receipt__steps">
-          <h4>
-            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
-            What Happens Next
-          </h4>
-          <ol>
-            <li><strong>Technical Evaluation</strong> — The Horticulture Cell verifies municipal asset boundaries and reviews your proposal for viability within 3–5 working days.</li>
-            <li><strong>Joint Site Inspection</strong> — An MCL field officer will contact you to coordinate an on-site survey and discuss implementation requirements.</li>
-            <li><strong>MoU &amp; Agreement</strong> — Upon recommendation, a standard tripartite Park Stewardship Agreement is executed under MCL's Green Adoption Policy.</li>
-          </ol>
-        </div>
-
-        <div class="receipt__note">
-          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/></svg>
-          <p>Please save or print this receipt for your records. Quote your reference number <strong id="receiptRefInline">—</strong> in all future correspondence with MCL.</p>
-        </div>
-
-        <div class="receipt__actions">
-          <button type="button" class="btn btn--primary" id="receiptPrintBtn">
-            <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-            Print / Save Receipt
-          </button>
-          <button type="button" class="btn btn--secondary" id="receiptCloseBtn">
-            Close &amp; Return to Portal
-          </button>
-        </div>
-      </div>
-
-        </div><!-- /panelApplicationForm -->
-
-        <!-- Tab Panel 2: Complaint / Suggestion -->
-        <div class="modal__tab-panel" id="panelComplaint" role="tabpanel" aria-labelledby="tabComplaint">
-          <div class="complaint-form" id="complaintFormContainer">
-
-            <div class="complaint-form__header">
-              <h3>Raise a complaint or suggestion</h3>
-              <p>Help us keep our parks clean, safe and better for everyone. You can report an issue or share a suggestion.</p>
-            </div>
-
-            <!-- Type selector -->
-            <div class="complaint-type-group">
-              <label class="complaint-type-label">Type <span class="req" aria-hidden="true">*</span></label>
-              <div class="complaint-type-cards">
-                <label class="complaint-type-card is-complaint">
-                  <input type="radio" name="complaint_type" value="Complaint" checked>
-                  <span class="card-radio"></span>
-                  <span class="card-icon" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
-                  </span>
-                  <span class="card-body">
-                    <span class="card-title">Complaint</span>
-                    <span class="card-desc">Report an issue or problem</span>
-                  </span>
+              <!-- Dynamic Custom Theme Input (revealed when 'Other Custom Theme' is chosen) -->
+              <div id="customThemeWrap" class="custom-theme-wrap" hidden style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--forest-300);">
+                <label for="customThemeName" style="display: block; margin-bottom: 0.25rem; font-size: var(--t-xs); font-weight: 700; color: var(--forest-900);">
+                  Specify your proposed custom theme <span class="req" aria-hidden="true">*</span>
                 </label>
-                <label class="complaint-type-card is-suggestion">
-                  <input type="radio" name="complaint_type" value="Suggestion">
-                  <span class="card-radio"></span>
-                  <span class="card-icon" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547Z"/></svg>
-                  </span>
-                  <span class="card-body">
-                    <span class="card-title">Suggestion</span>
-                    <span class="card-desc">Share an idea or improvement</span>
-                  </span>
-                </label>
+                <input type="text" id="customThemeName" name="custom_theme_name" maxlength="200"
+                       placeholder="e.g. Herbal &amp; Medicinal Botanical Garden, Sports / Fitness Hub, Solar Eco-Park…"
+                       style="background: var(--surface);">
+                <span class="field-hint">Enter the title of your proposed custom theme or project.</span>
               </div>
             </div>
 
-            <!-- Description -->
-            <div class="complaint-desc-group">
-              <label for="complaintDescription">Description <span class="req" aria-hidden="true">*</span></label>
-              <textarea id="complaintDescription" maxlength="500" rows="4"
-                        placeholder="Please describe the issue or suggestion in detail…"></textarea>
-              <span class="complaint-char-counter" id="complaintCharCounter">0/500</span>
+            <div class="form-group-field">
+              <fieldset style="border:0;padding:0;margin:0">
+                <legend style="display:block;margin-bottom:.3125rem;font-family:var(--font-sans);font-size:var(--t-sm);font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink-1)">
+                  Proposed scope of green intervention &amp; maintenance
+                </legend>
+                <div class="scope-grid">
+                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Tree Plantation" checked> Plantation &amp; landscaping</label>
+                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Walking Track" checked> Walking / jogging track</label>
+                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Solar Lighting"> Solar LED lighting</label>
+                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Open Gym Equipment"> Open gym / play area</label>
+                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Daily Maintenance" checked> Daily mowing &amp; irrigation</label>
+                  <label class="scope-item"><input type="checkbox" name="scope[]" value="Benches &amp; Gazebo"> Benches &amp; rainwater harvesting</label>
+                </div>
+              </fieldset>
             </div>
 
-            <!-- Image upload -->
-            <div class="complaint-upload-group">
-              <label>Upload Image (Optional)</label>
-              <div class="complaint-upload-zone" id="complaintUploadZone">
-                <input type="file" id="complaintImageInput" accept="image/jpeg,image/png,image/webp" aria-label="Upload an image">
+            <div class="form-grid-2">
+              <div class="form-group-field">
+                <label for="budgetRange">Indicative annual greening budget range</label>
+                <select id="budgetRange" name="budget_range">
+                  <option value="Under ₹1L / yr">Under ₹1 lakh / year (pocket park / basic greening)</option>
+                  <option value="₹1L – ₹3L / yr">₹1 lakh – ₹3 lakh / year (neighborhood park)</option>
+                  <option value="₹3L – ₹5L / yr">₹3 lakh – ₹5 lakh / year</option>
+                  <option value="₹5L – ₹10L / yr" selected>₹5 lakh – ₹10 lakh / year (standard)</option>
+                  <option value="₹10L – ₹25L / yr">₹10 lakh – ₹25 lakh / year (major municipal site)</option>
+                  <option value="Above ₹25L / Comprehensive">Above ₹25 lakh (model eco-park)</option>
+                </select>
+              </div>
+              <div class="form-group-field">
+                <label for="proposedDuration">Proposed adoption tenure</label>
+                <select id="proposedDuration" name="adoption_tenure">
+                  <option value="1 Year (Renewable)">1 year (renewable trial)</option>
+                  <option value="3 Years (Standard)" selected>3 years (standard stewardship agreement)</option>
+                  <option value="5 Years (Long-Term)">5 years (long-term partnership)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-field">
+              <label for="contactMessage">Additional notes / implementation details</label>
+              <textarea id="contactMessage" name="message" rows="3" maxlength="1000"
+                        placeholder="Specific business or corporate requirements, permitted signage/branding preferences, proposed maintenance plan, expected commencement date, or custom theme concept…"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend>3 · Verification Document / ID Proof (Optional)</legend>
+            <div class="form-group-field">
+              <label>Upload Document or Image (Optional)</label>
+              <div class="adoption-upload-zone" id="adoptionDropZone">
+                <input type="file" id="adoptionFileInput" accept="image/jpeg,image/png,image/webp,application/pdf" aria-label="Upload document or image">
                 <svg class="upload-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 16V4m0 0-4 4m4-4 4 4"/>
                   <path d="M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"/>
                 </svg>
-                <span class="upload-text">Drag and drop an image here, or <strong>click to browse</strong></span>
-                <span class="upload-hint">Supported formats: JPG, PNG, WEBP (Max size: 5 MB)</span>
+                <span class="upload-text">Drag &amp; drop document here, or <strong>click to browse</strong></span>
+                <span class="upload-hint">Supported formats: JPG, PNG, WEBP, PDF (Max size: 5 MB)</span>
               </div>
-              <div class="complaint-image-preview" id="complaintImagePreview">
-                <img id="complaintPreviewImg" src="" alt="Preview">
-                <div class="preview-info">
-                  <span class="preview-name" id="complaintPreviewName"></span>
-                  <span class="preview-size" id="complaintPreviewSize"></span>
+              <div class="adoption-file-preview" id="adoptionFilePreview" hidden style="display:none">
+                <div class="adoption-file-icon" id="adoptionFileIcon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/></svg>
                 </div>
-                <button type="button" class="preview-remove" id="complaintRemoveImage" title="Remove image">
-                  <svg aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
+                <div class="preview-info">
+                  <span class="preview-name" id="adoptionFileName">filename.pdf</span>
+                  <span class="preview-size" id="adoptionFileSize">0 KB</span>
+                </div>
+                <button type="button" class="preview-remove" id="adoptionFileRemoveBtn" title="Remove document">
+                  <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
               </div>
+              <span class="field-hint">Optional: Attach GST certificate, PAN card, Trust registration, or Govt ID proof.</span>
             </div>
+          </fieldset>
 
-            <!-- Hidden fields for park context -->
-            <input type="hidden" id="complaintParkId" value="">
-            <input type="hidden" id="complaintParkName" value="">
+          <fieldset class="form-fieldset">
+            <legend>4 · Declaration</legend>
+            <div class="declaration-wrap">
+              <input type="checkbox" id="declarationCheck" required>
+              <label for="declarationCheck">
+                I/We declare that the information provided is accurate and that this
+                expression is submitted for civic enhancement, urban greening, and public park
+                stewardship in accordance with MCL guidelines.
+              </label>
+            </div>
+          </fieldset>
 
-            <!-- Actions -->
-            <div class="complaint-actions">
-              <button type="button" class="btn btn--secondary" id="complaintCancelBtn">Cancel</button>
-              <button type="button" class="btn btn--primary" id="complaintSubmitBtn">
-                <span class="btn__spinner" aria-hidden="true"></span>
-                <span id="complaintSubmitLabel">Submit →</span>
+          <button type="submit" class="btn btn--primary btn--block" id="submitBtn">
+            <span class="btn__spinner" aria-hidden="true"></span>
+            <span id="submitBtnLabel">Submit Expression of Interest (EOI)</span>
+          </button>
+
+          <p class="form-footnote">
+            On submission, your proposal is securely recorded in the MCL Park Adoption register and an official application reference is issued.
+          </p>
+        </form>
+
+        <!-- ---- Official Acknowledgment Receipt Card ------------------------- -->
+        <div class="modal__receipt" id="modalSuccessCard" hidden>
+          <div class="receipt__header">
+            <div class="receipt__seal" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="64" height="64" fill="none">
+                <circle cx="32" cy="32" r="30" stroke="var(--forest-200)" stroke-width="2" fill="var(--forest-50)"/>
+                <circle cx="32" cy="32" r="24" stroke="var(--forest-300)" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
+                <path d="M32 14l2.5 5.2 5.7.8-4.1 4 1 5.6L32 27l-5.1 2.6 1-5.6-4.1-4 5.7-.8L32 14Z" fill="var(--forest-600)" opacity="0.9"/>
+                <path d="M22 38c0-2.5 4.5-4 10-4s10 1.5 10 4" stroke="var(--forest-500)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <path d="M24 42h16M26 45h12" stroke="var(--forest-400)" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="receipt__badge">✓ Successfully Recorded</span>
+            <h3 class="receipt__title">Thank You for Adopting a Green Space</h3>
+            <p class="receipt__sub">
+              Your Expression of Interest has been officially registered with the <strong>Estate &amp; Horticulture Wing</strong> of Municipal Corporation Ludhiana. A unique application reference has been assigned for tracking.
+            </p>
+          </div>
+
+          <div class="receipt__ref-box">
+            <span class="receipt__ref-label">Your Application Reference</span>
+            <div class="receipt__ref-value-wrap">
+              <strong class="receipt__ref-value" id="receiptRef">MCL/CSR/2026/MCL_000-0000</strong>
+              <button type="button" class="receipt__btn-copy" id="receiptCopyBtn" title="Copy Reference">
+                <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#i-doc"></use></svg>
+                Copy
               </button>
             </div>
-
+            <span class="receipt__timestamp" id="receiptTimestamp">Recorded on —</span>
           </div>
-        </div><!-- /panelComplaint -->
+
+          <div class="receipt__summary">
+            <div class="receipt__summary-title">
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5"/></svg>
+              Submission Summary
+            </div>
+            <dl class="receipt__details">
+              <div class="receipt__row"><dt>Subject Site</dt><dd id="receiptSite">—</dd></div>
+              <div class="receipt__row"><dt>Applicant Entity</dt><dd id="receiptOrg">—</dd></div>
+              <div class="receipt__row"><dt>Authorised Signatory</dt><dd id="receiptSignatory">—</dd></div>
+              <div class="receipt__row"><dt>Contact Details</dt><dd id="receiptContact">—</dd></div>
+              <div class="receipt__row"><dt>Theme &amp; Proposal</dt><dd id="receiptTheme">—</dd></div>
+              <div class="receipt__row receipt__row--status"><dt>Review Status</dt><dd><span class="receipt__status-pill">Submitted · Awaiting Review</span></dd></div>
+            </dl>
+          </div>
+
+          <div class="receipt__steps">
+            <h4>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              What Happens Next
+            </h4>
+            <ol>
+              <li><strong>Technical Evaluation</strong> — The Horticulture Cell verifies municipal asset boundaries and reviews your proposal for viability within 3–5 working days.</li>
+              <li><strong>Joint Site Inspection</strong> — An MCL field officer will contact you to coordinate an on-site survey and discuss implementation requirements.</li>
+              <li><strong>MoU &amp; Agreement</strong> — Upon recommendation, a standard tripartite Park Stewardship Agreement is executed under MCL's Green Adoption Policy.</li>
+            </ol>
+          </div>
+
+          <div class="receipt__note">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/></svg>
+            <p>Please save or print this receipt for your records. Quote your reference number <strong id="receiptRefInline">—</strong> in all future correspondence with MCL.</p>
+          </div>
+
+          <div class="receipt__actions">
+            <button type="button" class="btn btn--primary" id="receiptPrintBtn">
+              <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+              Print / Save Receipt
+            </button>
+            <button type="button" class="btn btn--secondary" id="receiptCloseBtn">
+              Close &amp; Return to Portal
+            </button>
+          </div>
+        </div>
 
       </div><!-- /modal__right-panel -->
 
