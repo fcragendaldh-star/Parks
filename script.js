@@ -1851,18 +1851,16 @@
   }
 
   function validateAdoptionFile(file) {
-    const ALLOWED = ["image/jpeg", "image/png", "image/webp", "application/pdf"];
     const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
-
     const ext = file.name.split(".").pop().toLowerCase();
-    const isAllowed = ALLOWED.includes(file.type) || ["jpg", "jpeg", "png", "webp", "pdf"].includes(ext);
+    const isPdf = file.type === "application/pdf" || ext === "pdf";
 
-    if (!isAllowed) {
-      showToast("Please upload a JPG, PNG, WEBP image, or PDF document.");
+    if (!isPdf) {
+      showToast("Please upload a PDF document only.");
       return false;
     }
     if (file.size > MAX_SIZE) {
-      showToast("Uploaded file must be 5 MB or smaller.");
+      showToast("Uploaded PDF file must be 5 MB or smaller.");
       return false;
     }
     return true;
